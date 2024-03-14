@@ -11,14 +11,19 @@ package fr.insa.bailly.projet_test_g12;
 public class Projet_Test_G12 {
 
     public static void main(String[] args) {
-        //System.out.println("Hello World!");
-        // Exemple de calcul
-        int n ;
-        System.out.println("donner un entier n.");
-        n=Lire.i() ;
-        for (int i=0; i<=n; i++) {
-            if (i%2==1) System.out.println(i) ; 
-        }
+        //Création d'un Bâtiment
+        
+        //Création d'un Niveau
+        
+        //Création d'un Appartement
+        
+        //Création d'une Pièce
+        
+        //Création d'un Mur
+        
+        //Création d'un Sol
+        
+        //Création d'un Plafond
         
         // Création d'un coin
         int id;
@@ -33,6 +38,22 @@ public class Projet_Test_G12 {
         Coin c ;
         c= new Coin(id,abscisse,ordonnee) ;
         c.afficher();
-            
+
+        //Création d'une Ouverture
+        int idOuverture;
+        double dimX, dimY ;
+        System.out.println("Identifiant de l'Ouverture : ");
+        idOuverture = Lire.i();
+        System.out.println("Dimension en x de l'Ouverture " + idOuverture + " : ");
+        dimX = Lire.d();
+        System.out.println("Dimension en y de l'Ouverture " + idOuverture + " : ");
+        dimY = Lire.d();
+        // Appel du constructeur pour créer une instance de Coin
+        Ouverture o;
+        o = new Ouverture(idOuverture, dimX, dimY);
+        o.afficher();
+        
+        //Création d'un Revêtement
+        
     }
 }
