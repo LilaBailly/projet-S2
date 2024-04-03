@@ -48,7 +48,7 @@ public class Projet_Test_G12 {
         dimX = Lire.d();
         System.out.println("Dimension en y de l'Ouverture " + idOuverture + " : ");
         dimY = Lire.d();
-        // Appel du constructeur pour créer une instance de Coin
+        // Appel du constructeur pour créer une instance d'Ouverture
         Ouverture o;
         o = new Ouverture(idOuverture, dimX, dimY);
         o.afficher();
