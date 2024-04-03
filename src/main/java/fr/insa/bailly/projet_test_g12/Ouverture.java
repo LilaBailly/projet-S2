@@ -22,6 +22,6 @@ public class Ouverture {
     }
     
     void afficher(){
-            System.out.println("Identifiant :"+this.idOuverture+" Dimension en x :"+this.cx+" Dimension en y :"+this.cy);
+            System.out.println("Identifiant :"+this.idOuverture+" Dimension en x :"+this.dimx+" Dimension en y :"+this.dimy);
     }
 }
