@@ -8,6 +8,7 @@ package fr.insa.bailly.projet_test_g12;
  *
  * @author Elève
  */
+
 public class Coin {
     // Déclaration des attributs de la classe coin
     int idCoin ;
