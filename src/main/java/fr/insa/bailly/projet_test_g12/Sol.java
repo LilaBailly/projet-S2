@@ -3,13 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package fr.insa.bailly.projet_test_g12;
-
+import java.util*;
 /**
  *
  * @author Elève
  */
 public class Sol {
-import java.utils* ;
+
 
 //idSol : int
 //listeCoins : List
@@ -21,11 +21,15 @@ import java.utils* ;
 //montantRevetement()
     // Déclaration des attributs de la classe Sol
     int idSol ;
-    
+    Coin coinDebut ;
+    Coin coinFin ;
+    Coin coinLargeur;
     //déclaration du constructeur
-    Sol(int id, double x, double y) {
-        this.idCoin=id ;
-        this.cx=x ;
-        this.cy=y ;
+    Sol(int id, Coin debut, Coin fin, Coin Largeur) {
+        this.idSol=id ;
+        this.coinDebut=debut ;
+        this.coinFin=fin ;
+        this.coinLargeur=Largeur;
     }
+}
     
