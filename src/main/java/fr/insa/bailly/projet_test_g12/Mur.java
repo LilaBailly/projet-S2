@@ -15,7 +15,7 @@ public class Mur {
     Coin coinFin ;
     int nbrPorte ;
     int nbrFenetre ;
-    double hauteurssplafond ;
+    double hauteur ;
     double surface ;
     //liste de revetement
     
@@ -39,9 +39,10 @@ public class Mur {
         double surface ;
         this.coinDebut=debut ;
         this.coinFin=fin ;
-        this.hauteurssplafond=hauteur ;
+        this.hauteur=hauteur ;
         //on calcule la distance entre les deux points, en assurant le cas où les hauteurs sont différentes.
-        getter.cx
         
-        return surface
+        
+        return surface;
     }
+}
