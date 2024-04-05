@@ -38,6 +38,9 @@ public class Main {
         Coin c ;
         c= new Coin(id,abscisse,ordonnee) ;
         c.afficher();
+         // Création d'une liste de coin
+        ArrayList<Coin>ListeCoins;
+        ListeCoins = new ArrayList<>();
         
         //Création d'une Ouverture
         int idOuverture;
