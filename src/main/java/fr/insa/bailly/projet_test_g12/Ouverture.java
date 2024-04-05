@@ -25,3 +25,5 @@ public class Ouverture {
             System.out.println("Identifiant :"+this.idOuverture+" Dimension en x :"+this.dimx+" Dimension en y :"+this.dimy);
     }
 }
+//toString()
+//surface()

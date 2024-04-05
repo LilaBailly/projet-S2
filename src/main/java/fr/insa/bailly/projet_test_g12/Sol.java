@@ -9,9 +9,18 @@ package fr.insa.bailly.projet_test_g12;
  * @author Elève
  */
 public class Sol {
+import java.utils* ;
+
+//idSol : int
+//listeCoins : List
+//listeRevetements:List
+
+//afficher()
+//toString()
+//surface()
+//montantRevetement()
     // Déclaration des attributs de la classe Sol
     int idSol ;
-    List Listecoin = new ArrayList() ;
     
     //déclaration du constructeur
     Sol(int id, double x, double y) {

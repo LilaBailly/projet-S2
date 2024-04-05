@@ -25,3 +25,4 @@ public class Coin {
             System.out.println("Identifiant :"+this.idCoin+" Abcisse :"+this.cx+"Ordonnée :"+this.cy);
     }
 }
+//faire toString

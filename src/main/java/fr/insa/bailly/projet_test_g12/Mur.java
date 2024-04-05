@@ -17,6 +17,12 @@ public class Mur {
     int nbrFenetre ;
     double hauteurssplafond ;
     double surface ;
+    //liste de revetement
+    
+    //afficher()
+//toString()
+//surface()
+//montantRevement()
     
     //déclaration du constructeur
     Mur(int id, Coin debut, Coin fin) {
