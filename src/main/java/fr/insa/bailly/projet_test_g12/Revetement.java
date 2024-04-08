@@ -21,7 +21,8 @@ boolean pourPlafond;
 double prixUnitaire;
 
     
-    // creer la fonction rechercher_Revetement_Designation
+    /* Mettre aussi dans le main??
+    creer la fonction rechercher_Revetement_Designation
     	public static int rechercher_Revetement_Designation (String ligne, String typeRevetement){
 
             //à modifier pour adapter à la situation, pas chemin fichier je crois
@@ -49,4 +50,5 @@ double prixUnitaire;
   		  e.printStackTrace();
   	  }
 
-        }
+        }*/
+}
