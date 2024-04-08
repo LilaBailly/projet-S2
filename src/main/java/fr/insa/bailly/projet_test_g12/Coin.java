@@ -6,7 +6,7 @@ package fr.insa.bailly.projet_test_g12;
 
 /**
  *
- * @author Elève
+ * @author ElèveTEST
  */
 
 public class Coin {
