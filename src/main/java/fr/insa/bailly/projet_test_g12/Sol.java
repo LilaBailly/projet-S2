@@ -4,6 +4,8 @@
  */
 package fr.insa.bailly.projet_test_g12;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Elève
@@ -21,15 +23,11 @@ public class Sol {
 //montantRevetement()
     // Déclaration des attributs de la classe Sol
     int idSol ;
-    Coin coinDebut ;
-    Coin coinFin ;
-    Coin coinLargeur;
+    ArrayList<Coin>ListeCoins;
+    ArrayList<Revetement>ListeRevetements;
     //déclaration du constructeur
-    Sol(int id, Coin debut, Coin fin, Coin Largeur) {
+    Sol(int id, ArrayList<Coin>ListeCoin, ArrayList<Revetement>ListeRevetement) {
         this.idSol=id ;
-        this.coinDebut=debut ;
-        this.coinFin=fin ;
-        this.coinLargeur=Largeur;
     }
 }
     
