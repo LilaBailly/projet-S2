@@ -27,7 +27,7 @@ double prixUnitaire;
             //à modifier pour adapter à la situation, pas chemin fichier je crois
             try {
   		  // Création d'un fileReader pour lire le fichier
-  		  FileReader fileReader = new FileReader();
+  		 // FileReader fileReader = new FileReader();  //trouver comment mettre le fichier catalogue revetement
   		 
   		  // Création d'un bufferedReader qui utilise le fileReader
   		  BufferedReader reader = new BufferedReader(fileReader);
