@@ -4,6 +4,9 @@
  */
 package fr.insa.bailly.projet_test_g12;
 
+import java.io.*;
+
+
 /**
  *
  * @author Elève
@@ -24,7 +27,7 @@ double prixUnitaire;
             //à modifier pour adapter à la situation, pas chemin fichier je crois
             try {
   		  // Création d'un fileReader pour lire le fichier
-  		  FileReader fileReader = new FileReader(cheminFichier);
+  		  FileReader fileReader = new FileReader();
   		 
   		  // Création d'un bufferedReader qui utilise le fileReader
   		  BufferedReader reader = new BufferedReader(fileReader);
@@ -34,10 +37,16 @@ double prixUnitaire;
   		  while (ligne != null) {
   			  // découpe la ligne
   			  ligne.split("\n");
-  	  if (ligne.contains(typeRevetement) == true) {
-  		    System.out.println();               //renvoie la ligne entière du document
-        }
+                          if (ligne.contains(typeRevetement) == true) {
+                            System.out.println();               //renvoie la ligne entière du document
+                         }
     
     // creer la fonction rechercher_Revetement_Identifiant
     
-}
+                }
+            }
+            catch (IOException e) {
+  		  e.printStackTrace();
+  	  }
+
+        }
