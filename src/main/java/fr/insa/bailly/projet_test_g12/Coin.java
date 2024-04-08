@@ -6,7 +6,7 @@ package fr.insa.bailly.projet_test_g12;
 
 /**
  *
- * @author Elève
+ * @author ElèveTEST
  */
 
 public class Coin {
@@ -23,7 +23,7 @@ public class Coin {
     }
     
     void afficher(){
-            System.out.println("Identifiant :"+this.idCoin+" Abcisse :"+this.cx+"Ordonnée :"+this.cy);
+            System.out.println("Identifiant :"+this.idCoin+" Abcisse :"+this.cx+" Ordonnée :"+this.cy);
     }
 }
 //faire toString

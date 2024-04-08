@@ -26,8 +26,13 @@ public class Main {
         //Création d'un Plafond
         
         // Création d'un coin
-        int idCoin;
+        int idCoin, n, m;
         double abscisse, ordonnee ;
+        ArrayList<Coin>ListeCoins;
+        ListeCoins = new ArrayList<>();
+        System.out.println("Combien de coin ?");
+        n=Lire.i();
+        for(int i =1; i<=n;){
         System.out.println("Donner un identifiant d'un coin") ;
         idCoin=Lire.i() ;
         System.out.println("Donner l'abscisse du coin "+idCoin) ;
@@ -38,10 +43,19 @@ public class Main {
         Coin c ;
         c= new Coin(idCoin,abscisse,ordonnee) ;
         c.afficher();
-         // Création d'une liste de coin
-        ArrayList<Coin>ListeCoins;
-        ListeCoins = new ArrayList<>();
         ListeCoins.add(c);
+        i=i+1;
+        
+        }
+         // Création d'une liste de coin
+         m=ListeCoins.size();
+        System.out.println("nombre élément dans la liste de coin "+m);
+        for(Coin elem: ListeCoins)
+       {
+       	 System.out.println (elem);
+       }
+        
+        
         //Création d'une Ouverture
         int idOuverture;
         double dimX, dimY ;
