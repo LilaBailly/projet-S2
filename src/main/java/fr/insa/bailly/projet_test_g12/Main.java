@@ -44,6 +44,7 @@ public class Main {
         c= new Coin(idCoin,abscisse,ordonnee) ;
         c.afficher();
         ListeCoins.add(c);
+        i=i+1;
         }
          // Création d'une liste de coin
         
