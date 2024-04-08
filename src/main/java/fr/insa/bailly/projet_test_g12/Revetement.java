@@ -10,13 +10,13 @@ package fr.insa.bailly.projet_test_g12;
  */
 public class Revetement {
     
-int idRevetement
-String designation
-boolean pourMur
-boolean pourSol
-boolean pourPlafond
-double prixUnitaire(2)
-    
+int idRevetement;
+String designation;
+boolean pourMur;
+boolean pourSol;
+boolean pourPlafond;
+double prixUnitaire;
+
     
     // creer la fonction rechercher_Revetement_Designation
     	public static int rechercher_Revetement_Designation (String ligne, String typeRevetement){
