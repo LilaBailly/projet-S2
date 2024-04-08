@@ -34,7 +34,7 @@ public class Mur {
     void afficher(){
             System.out.println("Identifiant :"+this.idMur+" Coin de début :"+this.coinDebut+"Coin de fin :"+this.coinFin+"Nombre de fenetre :"+this.nbrFenetre+" Nombre de porte"+this.nbrPorte+" Surface :");
     }
-    
+    /* Il faudrait pas mettre ça dans le main ??
     double surface(Coin debut, Coin fin, double hauteur) {
         double surface ;
         this.coinDebut=debut ;
@@ -44,5 +44,5 @@ public class Mur {
         
         
         return surface;
-    }
+    }*/
 }
