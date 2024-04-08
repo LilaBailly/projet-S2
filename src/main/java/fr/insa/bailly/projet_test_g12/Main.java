@@ -26,22 +26,22 @@ public class Main {
         //Création d'un Plafond
         
         // Création d'un coin
-        int id;
+        int idCoin;
         double abscisse, ordonnee ;
-        System.out.println("Donner un identifiant") ;
-        id=Lire.i() ;
-        System.out.println("Donner une abscisse") ;
+        System.out.println("Donner un identifiant d'un coin") ;
+        idCoin=Lire.i() ;
+        System.out.println("Donner l'abscisse du coin "+idCoin) ;
         abscisse=Lire.d() ;
-        System.out.println("Donner une ordonnee") ;
+        System.out.println("Donner l'ordonnee du coin "+idCoin) ;
         ordonnee=Lire.d() ;
         // Appel du constructeur pour creer l'instance de Coin
         Coin c ;
-        c= new Coin(id,abscisse,ordonnee) ;
+        c= new Coin(idCoin,abscisse,ordonnee) ;
         c.afficher();
          // Création d'une liste de coin
         ArrayList<Coin>ListeCoins;
         ListeCoins = new ArrayList<>();
-        
+        ListeCoins.add(c);
         //Création d'une Ouverture
         int idOuverture;
         double dimX, dimY ;
