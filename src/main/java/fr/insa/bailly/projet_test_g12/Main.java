@@ -12,7 +12,7 @@ public class Main {
 
     public static void main(String[] args) {
     String nomfichier="catalogue revetement.txt";
-       Revetement.LectureRevetement(nomfichier);} 
+       Revetement.LectureRevetement(nomfichier);
         //Création d'un Bâtiment
         
         //Création d'un Niveau
@@ -27,8 +27,8 @@ public class Main {
         
         //Création d'un Plafond
         
-        // Création d'un coin */
-        /*int idCoin, n, m;
+        // Création d'un coin 
+        int idCoin, n, m;
         double abscisse, ordonnee ;
         ArrayList<Coin>ListeCoins;
         ListeCoins = new ArrayList<>();
@@ -75,5 +75,4 @@ public class Main {
         //Création d'un Revêtement
         
     }
-}*/
 } 
