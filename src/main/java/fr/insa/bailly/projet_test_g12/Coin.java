@@ -23,7 +23,7 @@ public class Coin {
     }
     
     void afficher(){
-            System.out.println("Identifiant :"+this.idCoin+" Abcisse :"+this.cx+" Ordonnée :"+this.cy);
+            System.out.println("Identifiant :"+this.idCoin+" Abscisse :"+this.cx+" Ordonnée :"+this.cy);
     }
 }
 //faire toString
