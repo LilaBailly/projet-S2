@@ -47,4 +47,10 @@ public static void LectureRevetement(String nomfichier) {
         System.out.println(" Erreur :\n "+e);
     }
 }
+
+    //déclaration du constructeur
+    Revetement(String ligne) {
+        //int id, String designation; boolean mur; boolean sol; boolean plafond; double prix
+        //découper la ligne et mettre les différents éléments
+    }
 }
