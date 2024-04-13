@@ -4,8 +4,8 @@
  */
 package fr.insa.bailly.projet_test_g12;
 
+import java.util.ArrayList;
 import java.io.*;
-
 
 /**
  *
@@ -19,36 +19,26 @@ boolean pourMur;
 boolean pourSol;
 boolean pourPlafond;
 double prixUnitaire;
+ArrayList<Revetement> listeRevetement;
+listeRevetement = new ArrayList<>();
+    
+    //lire le doc, découper une ligne, avec cette ligne mettre dans revêtement
+    try {
+        // Création d'un fileReader pour lire le fichier
+        FileReader fileReader = new FileReader("D:/catalogue revetement.txt");  // Création d'un fileReader pour lire le fichier
+        // Création d'un bufferedReader qui utilise le fileReader
+  	BufferedReader reader = new BufferedReader(fileReader);
 
-    
-    /* Mettre aussi dans le main??
-    creer la fonction rechercher_Revetement_Designation
-    	public static int rechercher_Revetement_Designation (String ligne, String typeRevetement){
-
-            //à modifier pour adapter à la situation, pas chemin fichier je crois
-            try {
-  		  // Création d'un fileReader pour lire le fichier
-  		 // FileReader fileReader = new FileReader();  //trouver comment mettre le fichier catalogue revetement
-  		 
-  		  // Création d'un bufferedReader qui utilise le fileReader
-  		  BufferedReader reader = new BufferedReader(fileReader);
-  		 
-  		  // une fonction à essayer pouvant générer une erreur
-  		  ligne = reader.readLine();
-  		  while (ligne != null) {
-  			  // découpe la ligne
-  			  ligne.split("\n");
-                          if (ligne.contains(typeRevetement) == true) {
-                            System.out.println();               //renvoie la ligne entière du document
-                         }
-    
-    // creer la fonction rechercher_Revetement_Identifiant
-    
-                }
+            String ligne = reader.readLine();
+            while (ligne != null) {
+  		ligne.split("\n"); // découpe la ligne
+                Revetement Rev = new Revetement (ligne) ; //Création d'un nouveau revetement
+                listeRevetement.add(Rev); //ajout du revetement à la liste                        
             }
-            catch (IOException e) {
-  		  e.printStackTrace();
-  	  }
+    
+        }
+    catch (IOException e) {
+        e.printStackTrace();
+    }
 
-        }*/
 }
