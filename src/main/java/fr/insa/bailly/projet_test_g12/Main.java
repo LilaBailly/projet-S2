@@ -28,7 +28,7 @@ public class Main {
         //Création d'un Plafond
         
         // Création d'un coin 
-        int idCoin, n, m;
+        /*int idCoin, n, m;
         double abscisse, ordonnee ;
         ArrayList<Coin>ListeCoins;
         ListeCoins = new ArrayList<>();
@@ -72,7 +72,7 @@ public class Main {
         o = new Ouverture(idOuverture, dimX, dimY);
         o.afficher();
         
-        //Création d'un Revêtement
+        //Création d'un Revêtement*/
         
     }
 } 

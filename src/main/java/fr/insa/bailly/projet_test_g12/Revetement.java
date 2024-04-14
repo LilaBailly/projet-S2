@@ -15,14 +15,13 @@ import java.util.logging.Logger;
  */
 public class Revetement {
     
-int idRevetement;
-String designation;
-boolean pourMur;
-boolean pourSol;
-boolean pourPlafond;
-double prixUnitaire;
-ArrayList<Revetement> listeRevetement;
-//listeRevetement = new ArrayList<>();
+int idRevetement ;
+String designation ;
+boolean pourMur ;
+boolean pourSol ;
+boolean pourPlafond ;
+double prixUnitaire ;
+ArrayList<Revetement> listeRevetement = new ArrayList<>(); 
     
 public static void LectureRevetement(String nomfichier) {
     //lire le doc, découper une ligne, avec cette ligne mettre dans revêtement
@@ -32,8 +31,8 @@ public static void LectureRevetement(String nomfichier) {
             String ligne = reader.readLine(); 
             while (ligne != null) {
                 ligne.split("\n"); // découpe la ligne
-                /*Revetement Rev = new Revetement (ligne) ; //Création d'un nouveau revetement
-                listeRevetement.add(Rev); //ajout du revetement à la liste  */
+                Revetement Rev = new Revetement (ligne) ; //Création d'un nouveau revetement
+                listeRevetement.add(Rev); //ajout du revetement à la liste
                 System.out.println(ligne); //pour tester
         
             }
@@ -52,5 +51,12 @@ public static void LectureRevetement(String nomfichier) {
     Revetement(String ligne) {
         //int id, String designation; boolean mur; boolean sol; boolean plafond; double prix
         //découper la ligne et mettre les différents éléments
+        String[] decoupe = ligne.split(";") ;
+        this.idRevetement = Integer.parseInt(decoupe[1]) ; //conversion du String en int
+        this.designation = decoupe[2] ;
+        this.pourMur = Boolean.parseBoolean(decoupe[3]) ; //conversion du String en Boolean
+        this.pourSol = Boolean.parseBoolean(decoupe[4]) ; //conversion du String en Boolean
+        this.pourPlafond = Boolean.parseBoolean(decoupe[5]) ; //conversion du String en Boolean
+        this.prixUnitaire = Double.parseDouble(decoupe[6]) ; //conversion du String en double
     }
 }
