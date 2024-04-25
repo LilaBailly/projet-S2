@@ -22,6 +22,13 @@ public class Coin {
         this.cy=y ;
     }
     
+    public double getcx () {
+        return cx ;
+    }
+    
+    public double getcy () {
+        return cx ;
+    }
     void afficher(){
             System.out.println("Identifiant :"+this.idCoin+" Abscisse :"+this.cx+" Ordonnée :"+this.cy);
     }
