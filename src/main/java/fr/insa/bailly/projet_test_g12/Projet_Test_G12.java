@@ -26,7 +26,7 @@ public class Projet_Test_G12 {
         //Création d'un Plafond
         
         // Création d'un coin
-        int id;
+        /*int id;
         double abscisse, ordonnee ;
         System.out.println("Donner un identifiant") ;
         id=Lire.i() ;
@@ -51,9 +51,10 @@ public class Projet_Test_G12 {
         // Appel du constructeur pour créer une instance d'Ouverture
         Ouverture o;
         o = new Ouverture(idOuverture, dimX, dimY);
-        o.afficher();
+        o.afficher();*/
         
         //Création d'un Revêtement
-        
+        String nomfichier="catalogue revetement.txt";
+       Revetement.LectureRevetement(nomfichier);
     }
 }
