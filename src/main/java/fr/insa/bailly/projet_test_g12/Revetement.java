@@ -59,4 +59,5 @@ public static void LectureRevetement(String nomfichier) {
         this.pourPlafond = Boolean.parseBoolean(decoupe[5]) ; //conversion du String en Boolean
         this.prixUnitaire = Double.parseDouble(decoupe[6]) ; //conversion du String en double
     }
+    //faire une procédure pour rechercher un revetement
 }
