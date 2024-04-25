@@ -20,20 +20,20 @@ String designation ;
 boolean pourMur ;
 boolean pourSol ;
 boolean pourPlafond ;
-double prixUnitaire ;
-ArrayList<Revetement> listeRevetement = new ArrayList<>(); 
+double prixUnitaire ; 
     
 public static void LectureRevetement(String nomfichier) {
     //lire le doc, découper une ligne, avec cette ligne mettre dans revêtement
     try {
+        ArrayList<Revetement> listeRevetement = new ArrayList<>();
         //création d'un buffered reader qui utilise un filereader pour lire le fichier
-        BufferedReader reader = new BufferedReader(new FileReader("catalogue revetement.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader("catalogue revetement.txt"));//changer pour mettre nomfichier
             String ligne = reader.readLine(); 
             while (ligne != null) {
                 ligne.split("\n"); // découpe la ligne
                 Revetement Rev = new Revetement (ligne) ; //Création d'un nouveau revetement
                 listeRevetement.add(Rev); //ajout du revetement à la liste
-                System.out.println(ligne); //pour tester
+                System.out.println(listeRevetement); //pour tester
         
             }
     } 

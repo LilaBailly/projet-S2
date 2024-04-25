@@ -11,8 +11,6 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) {
-    String nomfichier="catalogue revetement.txt";
-       Revetement.LectureRevetement(nomfichier);
         //Création d'un Bâtiment
         
         //Création d'un Niveau
@@ -73,6 +71,7 @@ public class Main {
         o.afficher();
         
         //Création d'un Revêtement*/
-        
+       String nomfichier="catalogue revetement.txt";
+       Revetement.LectureRevetement(nomfichier);
     }
 } 
