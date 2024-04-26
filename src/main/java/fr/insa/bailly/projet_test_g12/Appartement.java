@@ -41,6 +41,5 @@ public double surface() {
     return s ;
 }
 //afficher()
-//surface()
 //montantRevement()
 }
