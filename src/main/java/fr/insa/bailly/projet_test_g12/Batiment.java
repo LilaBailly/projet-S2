@@ -10,11 +10,23 @@ import java.util.ArrayList;
  * @author Elève
  */
 public class Batiment {
-   String idBatiment ;
-    ArrayList<Niveau> listeNiveau = new ArrayList<>();
-    //get et set
-    
-    public double surface() {
+   private String idBatiment ;
+   private ArrayList<Niveau> listeNiveau = new ArrayList<>();
+//get et set pour donner et utiliser les attributs
+public String getidBatiment(){
+    return idBatiment ;
+}
+public void setidBatiment(String idBatiment) {
+    this.idBatiment = idBatiment ;
+}
+public ArrayList<Niveau> getlisteNiveau(){
+    return listeNiveau ;
+}
+public void setidPiece(ArrayList<Niveau> listeNiveau) {
+    this.listeNiveau = listeNiveau ;
+}
+//procedure pour calculer la surface du batiment 
+   public double surface() {
         double s=0 ;
         for (int i=0; i<=listeNiveau.size();i++) {
             s=s+this.listeNiveau.get(i).surface() ;

@@ -21,18 +21,25 @@ public Appartement (int id, int niveauApp, ArrayList<Piece> listePiece) {
     this.listePiece = listePiece ;
 }
 
-//Série de get pour récuperer les valeurs protégées par "private"
+//get et set pour donner et utiliser les attributs
 public int getidAppartement(){
     return idAppartement ;
 }
-
+public void setidAppartement(int idAppartement){
+    this.idAppartement = idAppartement ;
+}
 public int getidNiveauAppartement(){
     return idNiveauAppartement ;
+}
+public void setidNiveauAppartement(int idNiveauAppartement){
+    this.idNiveauAppartement = idNiveauAppartement ;
 }
 public Niveau getniveauAppartement(){
     return niveauAppartement ;
 }
-//faire les set
+public void setniveauAppartement(Niveau niveauAppartement){
+    this.niveauAppartement = niveauAppartement ;
+}
 public double surface() {
     double s=0 ;
     for (int i=0; i<=listePiece.size(); i++) {

@@ -45,6 +45,7 @@ public String getusage(){
 public void setusage(String usage) {
     this.usage = usage ;
 }
+//procedure pour calculer la surface d'une pièce
 public double surface() {
     double s=0 ;
     return s ;
