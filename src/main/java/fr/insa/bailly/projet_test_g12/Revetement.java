@@ -6,8 +6,8 @@ package fr.insa.bailly.projet_test_g12;
 
 import java.util.ArrayList;
 import java.io.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+//import java.util.logging.Level;
+//import java.util.logging.Logger;
 
 /**
  *
@@ -15,12 +15,12 @@ import java.util.logging.Logger;
  */
 public class Revetement {
     
-int idRevetement ;
-String designation ;
-boolean pourMur ;
-boolean pourSol ;
-boolean pourPlafond ;
-double prixUnitaire ; 
+private int idRevetement ; //chercher si final ou private
+private String designation ;
+final boolean pourMur ;
+final boolean pourSol ;
+final boolean pourPlafond ;
+private double prixUnitaire ; 
     
 public static void LectureRevetement(String nomfichier) {
     //lire le doc, découper une ligne, avec cette ligne mettre dans revêtement
@@ -60,4 +60,22 @@ public static void LectureRevetement(String nomfichier) {
         this.prixUnitaire = Double.parseDouble(decoupe[6]) ; //conversion du String en double
     }
     //faire une procédure pour rechercher un revetement
+    public int getidRevetement () {
+        return this.idRevetement ;
+    }
+    public String getdesignation () {
+        return this.designation ;
+    }
+    public double getprixunitaire () {
+        return this.prixUnitaire ;
+    }
+    public boolean getpourMur () {
+        return this.pourMur ;
+    }
+    public boolean getpourSol () {
+        return this.pourSol ;
+    }
+    public boolean getpourPlafond () {
+        return this.pourPlafond ;
+    }
 }
