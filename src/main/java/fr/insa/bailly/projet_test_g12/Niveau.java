@@ -27,8 +27,14 @@ public int getidNiveau(){
 public double gethauteursousPlafond(){
     return hauteursousPlafond ;
 }
-    //afficher()
-//toString()
-//surface()
+
+public double surface() {
+    double s=0 ;
+        for (int i=0; i<=listeAppart.size();i++) {
+            s=s+this.listeAppart.get(i).surface() ;
+        }
+        return s ;
+}
+//afficher
 //montantRevement()
 }

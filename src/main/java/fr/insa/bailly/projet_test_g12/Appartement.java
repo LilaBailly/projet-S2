@@ -33,9 +33,14 @@ public Niveau getniveauAppartement(){
     return niveauAppartement ;
 }
 //faire les set
-//faire surface
-    //afficher()
-//toString()
+public double surface() {
+    double s=0 ;
+    for (int i=0; i<=listePiece.size(); i++) {
+        s=s+this.listePiece.get(i).surface() ;
+    }
+    return s ;
+}
+//afficher()
 //surface()
 //montantRevement()
 }

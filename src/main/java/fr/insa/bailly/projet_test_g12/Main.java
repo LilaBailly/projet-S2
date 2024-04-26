@@ -12,7 +12,13 @@ public class Main {
 
     public static void main(String[] args) {
         //Création d'un Bâtiment
+        String id ;
+        ArrayList<Niveau> listeNiveau ;
         
+        System.out.println("Donnez le nom du batiment") ;
+        id=Lire.S() ;
+        //initialiser listeNiveau en allant chercher la liste ou en la créant ?
+        Batiment b=new Batiment(id,listeNiveau) ;
         //Création d'un Niveau
         
         //Création d'un Appartement
@@ -20,7 +26,7 @@ public class Main {
         //Création d'une Pièce
         
         //Création d'un Mur
-        /*int idMur, porte, fenetre, repet, iddebut, idfin ;
+        int idMur, porte, fenetre, repet, iddebut, idfin ;
         Coin debut, fin ;
         ArrayList<Mur>ListeMurs ;
         ListeMurs = new ArrayList<>() ;
@@ -43,7 +49,7 @@ public class Main {
         m.afficher();
         ListeMurs.add(m);
         i=i+1;
-        } */
+        } 
         //Création d'un Sol
         
         //Création d'un Plafond
