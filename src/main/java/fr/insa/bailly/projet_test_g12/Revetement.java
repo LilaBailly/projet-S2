@@ -22,7 +22,7 @@ final boolean pourSol ;
 final boolean pourPlafond ;
 private double prixUnitaire ; 
     
-public static void LectureRevetement(String nomfichier) {
+public static void LectureRevetement() {
     //lire le doc, découper une ligne, avec cette ligne mettre dans revêtement
     try {
         ArrayList<Revetement> listeRevetement = new ArrayList<>();

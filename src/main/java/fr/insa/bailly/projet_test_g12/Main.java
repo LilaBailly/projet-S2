@@ -20,19 +20,42 @@ public class Main {
         //Création d'une Pièce
         
         //Création d'un Mur
+        /*int idMur, porte, fenetre, repet, iddebut, idfin ;
+        Coin debut, fin ;
+        ArrayList<Mur>ListeMurs ;
+        ListeMurs = new ArrayList<>() ;
         
+        System.out.println("Combien de murs à creer ?");
+        repet=Lire.i();
+        for(int i =1; i<=repet;){
+        System.out.println("Donner un identifiant d'un mur") ;
+        idMur=Lire.i() ;
+        System.out.println("Donner le coin de début du mur "+idMur) ;
+        iddebut=Lire.i() ;//faire méthode pour retrouver le coin
+        System.out.println("Donner le coin de fin du mur "+idMur) ;
+        idfin=Lire.i() ;//faire methode pour trouver le coin
+        System.out.println("Donner le nombre de portes du mur "+idMur) ;
+        porte=Lire.i() ;
+        System.out.println("Donner le nombre de fenetres du mur "+idMur) ;
+        fenetre=Lire.i() ;
+        // Appel du constructeur pour creer l'instance de Mur
+        Mur m = new Mur(idMur,debut,fin, porte, fenetre) ;
+        m.afficher();
+        ListeMurs.add(m);
+        i=i+1;
+        } */
         //Création d'un Sol
         
         //Création d'un Plafond
         
         // Création d'un coin 
-        /*int idCoin, n, m;
+        /*int idCoin, repet, m;
         double abscisse, ordonnee ;
         ArrayList<Coin>ListeCoins;
         ListeCoins = new ArrayList<>();
         System.out.println("Combien de coin ?");
-        n=Lire.i();
-        for(int i =1; i<=n;){
+        repet=Lire.i();
+        for(int i =1; i<=repet;){
         System.out.println("Donner un identifiant d'un coin") ;
         idCoin=Lire.i() ;
         System.out.println("Donner l'abscisse du coin "+idCoin) ;
@@ -45,7 +68,6 @@ public class Main {
         c.afficher();
         ListeCoins.add(c);
         i=i+1;
-        
         }
          // Création d'une liste de coin
          m=ListeCoins.size();
@@ -71,7 +93,6 @@ public class Main {
         o.afficher();
         
         //Création d'un Revêtement*/
-       String nomfichier="catalogue revetement.txt";
-       Revetement.LectureRevetement(nomfichier);
+          Revetement.LectureRevetement();
     }
 } 

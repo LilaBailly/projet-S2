@@ -28,7 +28,7 @@ public class Mur {
         this.nbrPorte = porte ;
         this.nbrFenetre = fenetre ;
     }
-    
+    //faire get et set
     public double Longueur(){
         return Math.sqrt(Math.pow(this.coinFin.getcx() - this.coinDebut.getcx(),2)
                 +Math.pow(this.coinFin.getcy() - this.coinDebut.getcy(),2)) ;//faire get coordonnée
