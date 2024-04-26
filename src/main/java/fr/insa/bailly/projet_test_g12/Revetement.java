@@ -78,4 +78,6 @@ public static void LectureRevetement(String nomfichier) {
     public boolean getpourPlafond () {
         return this.pourPlafond ;
     }
+//faire une procédure pour rechercher un revetement
+//faire les sets ?
 }
