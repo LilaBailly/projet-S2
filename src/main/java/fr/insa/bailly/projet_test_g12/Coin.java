@@ -11,9 +11,9 @@ package fr.insa.bailly.projet_test_g12;
 
 public class Coin {
     // Déclaration des attributs de la classe coin
-    int idCoin ;
-    double cx ;
-    double cy ;
+    private int idCoin ;
+    private double cx ;
+    private double cy ;
     
     //déclaration du constructeur
     Coin(int id, double x, double y) {
@@ -21,13 +21,23 @@ public class Coin {
         this.cx=x ;
         this.cy=y ;
     }
-    
+    public int getidCoin () {
+        return idCoin ;
+    }
+    public void setidCoin(int idCoin) {
+    this.idCoin = idCoin ;
+    }
     public double getcx () {
         return cx ;
     }
-    
+    public void setcx(double cx) {
+    this.cx = cx ;
+    }
     public double getcy () {
-        return cx ;
+        return cy ;
+    }
+    public void setcy(double cy) {
+    this.cy = cy ;
     }
     void afficher(){
             System.out.println("Identifiant :"+this.idCoin+" Abscisse :"+this.cx+" Ordonnée :"+this.cy);

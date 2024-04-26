@@ -55,13 +55,13 @@ public class Main {
         //Création d'un Plafond
         
         // Création d'un coin 
-        /*int idCoin, repet, m;
+        int idCoin, n, m;
         double abscisse, ordonnee ;
         ArrayList<Coin>ListeCoins;
         ListeCoins = new ArrayList<>();
         System.out.println("Combien de coin ?");
-        repet=Lire.i();
-        for(int i =1; i<=repet;){
+        n=Lire.i();
+        for(int i =1; i<=n;){
         System.out.println("Donner un identifiant d'un coin") ;
         idCoin=Lire.i() ;
         System.out.println("Donner l'abscisse du coin "+idCoin) ;
@@ -75,7 +75,7 @@ public class Main {
         ListeCoins.add(c);
         i=i+1;
         }
-         // Création d'une liste de coin
+         // Renvoie d'une liste de coin
          m=ListeCoins.size();
         System.out.println("nombre élément dans la liste de coin "+m);
         for(Coin elem: ListeCoins)
@@ -98,7 +98,7 @@ public class Main {
         o = new Ouverture(idOuverture, dimX, dimY);
         o.afficher();
         
-        //Création d'un Revêtement*/
+        //Création d'un Revêtement
           Revetement.LectureRevetement();
     }
 } 
