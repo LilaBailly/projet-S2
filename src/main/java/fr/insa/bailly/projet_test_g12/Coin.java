@@ -21,6 +21,7 @@ public class Coin {
         this.cx=x ;
         this.cy=y ;
     }
+    //get et set pour donner et utiliser les attributs
     public int getidCoin () {
         return idCoin ;
     }
@@ -39,8 +40,8 @@ public class Coin {
     public void setcy(double cy) {
     this.cy = cy ;
     }
+    //méthode pour afficher le coin
     void afficher(){
             System.out.println("Identifiant :"+this.idCoin+" Abscisse :"+this.cx+" Ordonnée :"+this.cy);
     }
 }
-//faire toString

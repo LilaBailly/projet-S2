@@ -10,16 +10,15 @@ import java.util.ArrayList ;
  */
 public class Mur {
     // Déclaration des attributs de la classe Mur
-    int idMur ;
-    Coin coinDebut ;
-    Coin coinFin ;
-    int nbrPorte ;
-    int nbrFenetre ;
-    double hauteur ;
-    double surface ;
-    ArrayList<Revetement> liste_rev_mur ;
-   //faire les get, set, private, et cout
-    
+    private int idMur ;
+    private Coin coinDebut ;
+    private Coin coinFin ;
+    private int nbrPorte ;
+    private int nbrFenetre ;
+    private double hauteur ;
+    private double surface ;
+    private ArrayList<Revetement> liste_rev_mur ;
+
     //déclaration du constructeur
     Mur(int id, Coin debut, Coin fin, int porte, int fenetre) {
         this.idMur = id ;

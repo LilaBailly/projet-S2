@@ -5,7 +5,7 @@
 package fr.insa.bailly.projet_test_g12;
 
 import java.util.ArrayList;
-import java.io.*;
+import java.io.* ;
 //import java.util.logging.Level;
 //import java.util.logging.Logger;
 
@@ -17,7 +17,7 @@ public class Revetement {
     
 private int idRevetement ; //chercher si final ou private
 private String designation ;
-boolean pourMur ;
+private boolean pourMur ;
 final boolean pourSol ;
 final boolean pourPlafond ;
 private double prixUnitaire ; 
@@ -49,8 +49,6 @@ public static void LectureRevetement() {
 
     //déclaration du constructeur
     Revetement(String ligne) {
-        //int id, String designation; boolean mur; boolean sol; boolean plafond; double prix
-        //découper la ligne et mettre les différents éléments
         String[] decoupe = ligne.split(";") ;
         this.idRevetement = Integer.parseInt(decoupe[1]) ; //conversion du String en int
         this.designation = decoupe[2] ;
@@ -59,7 +57,7 @@ public static void LectureRevetement() {
         this.pourPlafond = Boolean.parseBoolean(decoupe[5]) ; //conversion du String en Boolean
         this.prixUnitaire = Double.parseDouble(decoupe[6]) ; //conversion du String en double
     }
-    //faire une procédure pour rechercher un revetement
+    //get et set pour donner et utiliser les attributs
     public int getidRevetement () {
         return this.idRevetement ;
     }
@@ -79,5 +77,4 @@ public static void LectureRevetement() {
         return this.pourPlafond ;
     }
 //faire une procédure pour rechercher un revetement
-//faire les sets ?
 }
