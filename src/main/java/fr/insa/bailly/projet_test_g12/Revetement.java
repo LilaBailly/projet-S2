@@ -17,7 +17,7 @@ public class Revetement {
     
 private int idRevetement ; //chercher si final ou private
 private String designation ;
-final boolean pourMur ;
+boolean pourMur ;
 final boolean pourSol ;
 final boolean pourPlafond ;
 private double prixUnitaire ; 

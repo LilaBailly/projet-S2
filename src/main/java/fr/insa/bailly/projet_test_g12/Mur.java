@@ -39,7 +39,7 @@ public class Mur {
     }
     
     public boolean add_revetement (Revetement rev) {
-        if (rev.getpourMur==1){
+        if (rev.getpourMur()==true){
             this.liste_rev_mur.add(rev) ;
             return true;
         }
