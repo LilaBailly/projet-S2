@@ -8,6 +8,6 @@ package fr.insa.bailly.projet_test_g12;
  *
  * @author Elève
  */
-public class Immeuble extends Batiment {
-    listeNiveau
+//public class Immeuble extends Batiment {
+ //   listeNiveau
 }
