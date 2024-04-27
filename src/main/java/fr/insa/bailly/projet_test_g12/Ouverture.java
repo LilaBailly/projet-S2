@@ -48,3 +48,4 @@ public class Ouverture { //est ce qu'on fait une extention de classe avec fenetr
             System.out.println("Identifiant :"+this.idOuverture+" Dimension en x :"+this.dimx+" Dimension en y :"+this.dimy);
     }
 }
+//faire classes filles fenetre porte et tremis, (juste standard, pour dessin ajouter où)

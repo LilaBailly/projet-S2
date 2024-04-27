@@ -9,9 +9,8 @@ import java.util.ArrayList;
  * @author Elève
  */
 public final class Niveau {
-    private int hauteur ; //fixer la hauteur ici, quelle diff avec hauteur sous plafond ?
     private int idNiveau ;
-    private double hauteursousPlafond ;
+    private double hauteursousPlafond ; //int hauteur à voir
     private ArrayList<Appartement> listeAppart ;
 
 public Niveau (int id, double hauteurplafond, ArrayList<Appartement> listeAppart) {
@@ -41,7 +40,7 @@ public void setlisteAppart(ArrayList<Appartement> listeAppart){
 public double surface() {
     double s=0 ;
         for (int i=0; i<=listeAppart.size();i++) {
-            s=s+this.listeAppart.get(i).surface() ;
+            s=s+this.listeAppart.get(i).surface() ;//changer la méthodde pour avoir une diff entre les appart et les couloirs
         }
         return s ;
 }

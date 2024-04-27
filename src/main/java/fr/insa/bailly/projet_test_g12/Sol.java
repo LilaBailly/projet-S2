@@ -32,10 +32,10 @@ public boolean add_revetement (Revetement rev) {
     }
 
 //méthode pour calculer la surface d'un sol pour une pièce rectangulaire
-public double surface(){ //finir la méthode
-    surface = 
-    return surface
-}
+//public double surface(){ //finir la méthode
+  //  surface = 
+  //  return surface
+//}
 //get et set pour donner et utiliser les attributs
 public int getidSol(){
     return idSol ;
