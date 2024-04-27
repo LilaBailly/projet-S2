@@ -3,17 +3,44 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package fr.insa.bailly.projet_test_g12;
+import java.util.ArrayList;
 
 /**
  *
  * @author Elève
  */
 public class Plafond {
-    //idPlafond : int
-//listeCoins : List
-//listeRevetements: List
-    
-    //toString()
+private int idPlafond ;
+private ArrayList<Coin> listeCoin ;
+private ArrayList<Revetement> liste_rev_plafond ;
+
+//Déclaration du constructeur
+Plafond (int id, ArrayList<Coin> listeCoin, ArrayList<Revetement> liste_rev_plafond){
+    this.idPlafond = id ;
+    this.listeCoin = listeCoin ;
+    this.liste_rev_plafond = liste_rev_plafond ;
+} 
+
+//get et set pour donner et utiliser les attributs
+public int getidPlafond(){
+    return idPlafond ;
+}
+public void setidPlafond(int idPlafond) {
+    this.idPlafond = idPlafond ;
+}
+public ArrayList<Coin> getlisteCoin(){
+    return listeCoin ;
+}
+public void setlisteCoin(ArrayList<Coin> listeCoin) {
+    this.listeCoin = listeCoin ;
+}
+public ArrayList<Revetement> getlisteRevetement(){
+    return liste_rev_plafond ;
+}
+public void setlisteRevetement(ArrayList<Revetement> liste_rev_plafond) {
+    this.liste_rev_plafond = liste_rev_plafond ;
+}
+//toString()
 //surface()
 //montantRevetement()
 }
