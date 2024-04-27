@@ -49,12 +49,12 @@ public static void LectureRevetement() {
     //déclaration du constructeur
     Revetement(String ligne) {
         String[] decoupe = ligne.split(";") ;
-        this.idRevetement = Integer.parseInt(decoupe[1]) ; //conversion du String en int
-        this.designation = decoupe[2] ;
-        this.pourMur = Boolean.parseBoolean(decoupe[3]) ; //conversion du String en Boolean
-        this.pourSol = Boolean.parseBoolean(decoupe[4]) ; //conversion du String en Boolean
-        this.pourPlafond = Boolean.parseBoolean(decoupe[5]) ; //conversion du String en Boolean
-        this.prixUnitaire = Double.parseDouble(decoupe[6]) ; //conversion du String en double
+        this.idRevetement = Integer.parseInt(decoupe[0]) ; //conversion du String en int
+        this.designation = decoupe[1] ;
+        this.pourMur = Boolean.parseBoolean(decoupe[2]) ; //conversion du String en Boolean
+        this.pourSol = Boolean.parseBoolean(decoupe[3]) ; //conversion du String en Boolean
+        this.pourPlafond = Boolean.parseBoolean(decoupe[4]) ; //conversion du String en Boolean
+        this.prixUnitaire = Double.parseDouble(decoupe[5]) ; //conversion du String en double
     }
     //get et set pour donner et utiliser les attributs
     public int getidRevetement () {

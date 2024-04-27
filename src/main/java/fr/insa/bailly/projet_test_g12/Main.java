@@ -12,7 +12,7 @@ public class Main {
 
     public static void main(String[] args) {
         //Création d'un Bâtiment
-        String id ;
+        /*String id ;
         ArrayList<Niveau> listeNiveau ;
         
         System.out.println("Donnez le nom du batiment") ;
@@ -98,7 +98,7 @@ public class Main {
         o = new Ouverture(idOuverture, dimX, dimY);
         o.afficher();
         
-        //Création d'un Revêtement
+        //Création d'un Revêtement*/
           Revetement.LectureRevetement();
     }
 } 
