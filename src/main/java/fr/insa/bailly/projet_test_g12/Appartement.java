@@ -40,13 +40,13 @@ public Niveau getniveauAppartement(){
 public void setniveauAppartement(Niveau niveauAppartement){
     this.niveauAppartement = niveauAppartement ;
 }
-public double surface() {
+/*public double surface() {
     double s=0 ;
     for (int i=0; i<=listePiece.size(); i++) {
         s=s+this.listePiece.get(i).surface() ;
     }
     return s ;
-}
+}*/
 //afficher()
 //montantRevement()
 }

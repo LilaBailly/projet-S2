@@ -37,13 +37,13 @@ public ArrayList<Appartement> getlisteAppart(){
 public void setlisteAppart(ArrayList<Appartement> listeAppart){
     this.listeAppart = listeAppart ;
 }
-public double surface() {
+/*public double surface() {
     double s=0 ;
         for (int i=0; i<=listeAppart.size();i++) {
             s=s+this.listeAppart.get(i).surface() ;//changer la méthodde pour avoir une diff entre les appart et les couloirs
         }
         return s ;
-}
+}*/
 //afficher
 //montantRevement()
 }

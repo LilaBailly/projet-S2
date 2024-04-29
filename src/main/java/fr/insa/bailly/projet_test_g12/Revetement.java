@@ -26,15 +26,13 @@ public static void LectureRevetement() {
     try {
         ArrayList<Revetement> listeRevetement = new ArrayList<>();
         //création d'un buffered reader qui utilise un filereader pour lire le fichier
-        BufferedReader reader = new BufferedReader(new FileReader("catalogue revetement.txt"));//changer pour mettre nomfichier
-            String ligne = reader.readLine(); 
-            while (ligne != null) {
-                ligne.split("\n"); // découpe la ligne
-                Revetement Rev = new Revetement (ligne) ; //Création d'un nouveau revetement
-                listeRevetement.add(Rev); //ajout du revetement à la liste
-                System.out.println(listeRevetement); //pour tester
-        
-            }
+        BufferedReader reader = new BufferedReader(new FileReader("catalogue revetement.txt"));
+        while (reader.ready()) {
+            String ligne =reader.readLine() ;
+            Revetement Rev = new Revetement (ligne) ; //Création d'un nouveau revetement
+            listeRevetement.add(Rev); //ajout du revetement à la liste
+        }
+        System.out.println (listeRevetement.size()) ;
     } 
     
 

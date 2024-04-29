@@ -26,13 +26,13 @@ public void setidPiece(ArrayList<Niveau> listeNiveau) {
     this.listeNiveau = listeNiveau ;
 }
 //procedure pour calculer la surface du batiment 
-   public double surface() {
+  /* public double surface() {
         double s=0 ;
         for (int i=0; i<=listeNiveau.size();i++) {
             s=s+this.listeNiveau.get(i).surface() ;
         }
         return s ;
-}
+}*/
     
     //méthodes
     //afficher()
