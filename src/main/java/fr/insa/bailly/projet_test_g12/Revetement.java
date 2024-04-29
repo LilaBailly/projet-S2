@@ -23,30 +23,17 @@ private double prixUnitaire ;
 
 public static void LectureRevetement() {
     //lire le doc, découper une ligne, avec cette ligne mettre dans revêtement
-    try {
-        ArrayList<Revetement> liste_rev_mur = new ArrayList<>() ;
-        ArrayList<Revetement> liste_rev_sol = new ArrayList<>() ;
-        ArrayList<Revetement> liste_rev_plafond = new ArrayList<>();
+try {
+        ArrayList<Revetement> listeRevetement = new ArrayList<>();
         //création d'un buffered reader qui utilise un filereader pour lire le fichier
         BufferedReader reader = new BufferedReader(new FileReader("catalogue revetement.txt"));
         while (reader.ready()) {
             String ligne =reader.readLine() ;
             Revetement Rev = new Revetement (ligne) ; //Création d'un nouveau revetement
-            //ajout du revetement à la/aux listes auquel il appartient
-            if (Rev.getpourMur()==true){
-              liste_rev_mur.add(Rev) ;
-            }
-            else if (Rev.getpourSol()==true){
-              liste_rev_sol.add(Rev) ;
-            }
-            else if (Rev.getpourPlafond()==true){
-              liste_rev_plafond.add(Rev) ;
-            }
-            
+            listeRevetement.add(Rev); //ajout du revetement à la liste
         }
-System.out.println(liste_rev_mur.size());
-    }
-
+        System.out.println (listeRevetement.size()) ;
+    } 
     catch(FileNotFoundException err){
         System.out.println( "Erreur :le fichier n’existe pas!\n "+err);
     }
@@ -100,5 +87,18 @@ System.out.println(liste_rev_mur.size());
     public boolean getpourPlafond () {
         return this.pourPlafond ;
     }
-//faire une procédure pour rechercher un revetement
+
+//faire une procédure pour afficher les revetement d'un type, ou alros creer des listes si possible
 }
+        ArrayList<Revetement> liste_rev_mur = new ArrayList<>() ;
+        ArrayList<Revetement> liste_rev_sol = new ArrayList<>() ;
+        ArrayList<Revetement> liste_rev_plafond = new ArrayList<>();
+            if (Rev.getpourMur()==true){
+              liste_rev_mur.add(Rev) ;
+            }
+            else if (Rev.getpourSol()==true){
+              liste_rev_sol.add(Rev) ;
+            }
+            else if (Rev.getpourPlafond()==true){
+              liste_rev_plafond.add(Rev) ;
+            }
