@@ -27,7 +27,7 @@ public class Mur {
         this.coinFin = fin ;
         this.nbrPorte = porte ;
         this.nbrFenetre = fenetre ;
-        this.listerev = //méthode choix du revetement
+        //this.listerev = //méthode choix du revetement
     }
     //ajouter les revetements au constructeur et faire al méthode d'ajout
     public double Longueur(){

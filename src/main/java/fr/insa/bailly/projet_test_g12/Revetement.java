@@ -34,19 +34,18 @@ public static void LectureRevetement() {
             Revetement Rev = new Revetement (ligne) ; //Création d'un nouveau revetement
             //ajout du revetement à la/aux listes auquel il appartient
             if (Rev.getpourMur()==true){
-                liste_rev_mur.add(Rev) ;
+              liste_rev_mur.add(Rev) ;
             }
-            if (Rev.getpourSol()==true){
-                liste_rev_sol.add(Rev) ;
+            else if (Rev.getpourSol()==true){
+              liste_rev_sol.add(Rev) ;
             }
-            if (Rev.getpourPlafond()==true){
-                liste_rev_plafond.add(Rev) ;
+            else if (Rev.getpourPlafond()==true){
+              liste_rev_plafond.add(Rev) ;
             }
             
-        System.out.println (liste_rev_plafond.size()) ;
         }
+System.out.println(liste_rev_mur.size());
     }
-    
 
     catch(FileNotFoundException err){
         System.out.println( "Erreur :le fichier n’existe pas!\n "+err);
@@ -61,9 +60,24 @@ public static void LectureRevetement() {
         String[] decoupe = ligne.split(";") ;
         this.idRevetement = Integer.parseInt(decoupe[0]) ; //conversion du String en int
         this.designation = decoupe[1] ;
-        this.pourMur = Boolean.parseBoolean(decoupe[2]) ; //conversion du String en Boolean
-        this.pourSol = Boolean.parseBoolean(decoupe[3]) ; //conversion du String en Boolean
-        this.pourPlafond = Boolean.parseBoolean(decoupe[4]) ; //conversion du String en Boolean
+        if (Integer.parseInt(decoupe[2])==1){
+           this.pourMur = true ; 
+        }
+        else {
+            this.pourMur = false ;
+        }
+        if (Integer.parseInt(decoupe[3])==1){
+           this.pourSol = true ; 
+        }
+        else {
+            this.pourSol = false ;
+        }
+        if (Integer.parseInt(decoupe[4])==1){
+           this.pourPlafond = true ; 
+        }
+        else {
+            this.pourPlafond = false ;
+        }
         this.prixUnitaire = Double.parseDouble(decoupe[5]) ; //conversion du String en double
     }
     
