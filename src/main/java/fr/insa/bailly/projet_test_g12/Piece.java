@@ -15,6 +15,16 @@ private int plafond ;
 private ArrayList<Mur> listeMurs ;
 private String usage ;
 //get et set pour donner et utiliser les attributs
+public Piece(){
+    
+}
+public Piece(int idPiece, String usage, int sol,int plafond, ArrayList<Mur> listeMurs){
+    this.idPiece=idPiece;
+    this.usage=usage;
+    this.sol=sol;
+    this.plafond=plafond;
+    this.listeMurs=listeMurs;
+}
 public int getidPiece(){
     return idPiece ;
 }

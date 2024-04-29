@@ -17,16 +17,23 @@ public class Mur {
     private int nbrFenetre ;
     private double hauteur ;
     private double surface ;
-    private int nbrRevetement ;
-    private ArrayList<Revetement> listerev ;
-
+    private int nbrRev ;
+    private ArrayList<Revetement> listeRevetement ;
+    
+    public Mur(){
+        
+    }
     //déclaration du constructeur
-    Mur(int id, Coin debut, Coin fin, int porte, int fenetre, int nbrRevetement) {
+    public Mur(int id, Coin debut, Coin fin, int porte, int fenetre, int nbrRev) {
         this.idMur = id ;
         this.coinDebut = debut ;
         this.coinFin = fin ;
         this.nbrPorte = porte ;
         this.nbrFenetre = fenetre ;
+        this.nbrRev = nbrRev ;
+        for (int i=0; i<liste_rev_mur.size();i++){
+            
+        }
         //this.listerev = //méthode choix du revetement
     }
     //ajouter les revetements au constructeur et faire al méthode d'ajout
@@ -91,11 +98,15 @@ public class Mur {
     public void sethauteur(double hauteur) {
     this.hauteur = hauteur ;
     }
-    public int getnbrRevetement(){
-    return nbrRevetement ;
+    /*void afficher(){
+            System.out.println("Identifiant :"+this.idMur+" Coin de début :"+this.coinDebut+"Coin de fin :"+this.coinFin+"Nombre de fenetre :"+this.nbrFenetre+" Nombre de porte"+this.nbrPorte+" Surface :");
+    } 
+    ??procedure pour calculer le prix au fur et à mesure ??*/
+   
+    
+    @Override 
+    public String toString(){
+        return "Mur [idMur : "+idMur+", coinDebut : "+coinDebut+", coinFin : "+coinFin+", nbrPortes : "+nbrPorte+", nbrFenetre : "+nbrFenetre+"ListeRevetements : ]";
     }
-    public void setnbrRevetement(int nbrRevetement) {
-    this.nbrRevetement = nbrRevetement ;
-    }
-    //faire get liste rev ?
+    
 }

@@ -44,4 +44,8 @@ public class Coin {
     void afficher(){
             System.out.println("Identifiant :"+this.idCoin+" Abscisse :"+this.cx+" Ordonnée :"+this.cy);
     }
+    @Override 
+    public String toString(){
+        return "Coin [idCoin : "+idCoin+", cx : "+cx+", cy : "+cy+"]";
+    }
 }
