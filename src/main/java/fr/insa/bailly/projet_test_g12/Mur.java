@@ -18,9 +18,12 @@ public class Mur {
     private double hauteur ;
     private double surface ;
     private ArrayList<Revetement> liste_rev_mur ;
-
+    
+    public Mur(){
+        
+    }
     //déclaration du constructeur
-    Mur(int id, Coin debut, Coin fin, int porte, int fenetre) {
+    public Mur(int id, Coin debut, Coin fin, int porte, int fenetre) {
         this.idMur = id ;
         this.coinDebut = debut ;
         this.coinFin = fin ;
@@ -84,8 +87,15 @@ public class Mur {
     public void sethauteur(double hauteur) {
     this.hauteur = hauteur ;
     }
-    void afficher(){
+    /*void afficher(){
             System.out.println("Identifiant :"+this.idMur+" Coin de début :"+this.coinDebut+"Coin de fin :"+this.coinFin+"Nombre de fenetre :"+this.nbrFenetre+" Nombre de porte"+this.nbrPorte+" Surface :");
     } 
-    //??procedure pour calculer le prix au fur et à mesure ??
+    ??procedure pour calculer le prix au fur et à mesure ??*/
+   
+    
+    @Override 
+    public String toString(){
+        return "Mur [idMur : "+idMur+", coinDebut : "+coinDebut+", coinFin : "+coinFin+", nbrPortes : "+nbrPorte+", nbrFenetre : "+nbrFenetre+"ListeRevetements : ]";
+    }
+    
 }
