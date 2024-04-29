@@ -20,20 +20,32 @@ private boolean pourMur ;
 final boolean pourSol ;
 final boolean pourPlafond ;
 private double prixUnitaire ; 
-    
+
 public static void LectureRevetement() {
     //lire le doc, découper une ligne, avec cette ligne mettre dans revêtement
     try {
-        ArrayList<Revetement> listeRevetement = new ArrayList<>();
+        ArrayList<Revetement> liste_rev_mur = new ArrayList<>() ;
+        ArrayList<Revetement> liste_rev_sol = new ArrayList<>() ;
+        ArrayList<Revetement> liste_rev_plafond = new ArrayList<>();
         //création d'un buffered reader qui utilise un filereader pour lire le fichier
         BufferedReader reader = new BufferedReader(new FileReader("catalogue revetement.txt"));
         while (reader.ready()) {
             String ligne =reader.readLine() ;
             Revetement Rev = new Revetement (ligne) ; //Création d'un nouveau revetement
-            listeRevetement.add(Rev); //ajout du revetement à la liste
+            //ajout du revetement à la/aux listes auquel il appartient
+            if (Rev.getpourMur()==true){
+                liste_rev_mur.add(Rev) ;
+            }
+            if (Rev.getpourSol()==true){
+                liste_rev_sol.add(Rev) ;
+            }
+            if (Rev.getpourPlafond()==true){
+                liste_rev_plafond.add(Rev) ;
+            }
+            
+        System.out.println (liste_rev_plafond.size()) ;
         }
-        System.out.println (listeRevetement.size()) ;
-    } 
+    }
     
 
     catch(FileNotFoundException err){
@@ -54,6 +66,7 @@ public static void LectureRevetement() {
         this.pourPlafond = Boolean.parseBoolean(decoupe[4]) ; //conversion du String en Boolean
         this.prixUnitaire = Double.parseDouble(decoupe[5]) ; //conversion du String en double
     }
+    
     //get et set pour donner et utiliser les attributs
     public int getidRevetement () {
         return this.idRevetement ;
