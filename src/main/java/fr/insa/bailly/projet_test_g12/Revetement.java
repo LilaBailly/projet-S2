@@ -89,8 +89,25 @@ try {
     }
 
 //faire une procédure pour afficher les revetement d'un type, ou alros creer des listes si possible
+public ArrayList<Revetement> choixRevetement (int nbrrev, ArrayList listechoix) {
+    //afficher les revetements possibles
+    ArrayList<Revetement> listerev = new ArrayList<>() ;
+    if (nbrrev!=0){
+        for (int i=0;i<listechoix.size();i++){
+            System.out.println("Choisissez le revêtement "+i);
+            Revetement rev = RechercheRev(Lire.S()) ;// faire la procédure recherche
+            listerev.add(rev) ;
+        }        
+    }
+    else{
+        listerev=null ;
+    }
+
+    return listerev ;
 }
-        ArrayList<Revetement> liste_rev_mur = new ArrayList<>() ;
+
+}
+     /*   ArrayList<Revetement> liste_rev_mur = new ArrayList<>() ;
         ArrayList<Revetement> liste_rev_sol = new ArrayList<>() ;
         ArrayList<Revetement> liste_rev_plafond = new ArrayList<>();
             if (Rev.getpourMur()==true){
@@ -101,4 +118,4 @@ try {
             }
             else if (Rev.getpourPlafond()==true){
               liste_rev_plafond.add(Rev) ;
-            }
+            }*/
