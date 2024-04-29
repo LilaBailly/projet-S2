@@ -3,7 +3,8 @@
  */
 
 package fr.insa.bailly.projet_test_g12;
-import java.util.ArrayList;
+import java.util.*;
+import java.io.*;
 /**
  *
  * @author Elève
@@ -11,6 +12,55 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) {
+        String code="";
+        // Créationde coins
+        int reponse;
+        System.out.println("Création d'un coin : 1 = OUI et 0 = NON");
+        reponse=Lire.i();
+        if (reponse!=0&&reponse!=1){
+            System.out.println("Valeur incorrect; veuillez donner une valeur correct : 1 = OUI et 0 = NON");
+            reponse=Lire.i();
+        }
+        Coin c;
+        //Déclaraion de la ArrayList
+        ArrayList<Coin>ListeCoins;
+        // Initialisation de la liste
+        ListeCoins = new ArrayList<>();
+        // Boucle de saisie et d'ajout de Coins dans la liste
+        while(reponse!=0){
+            System.out.println("Identifiant: ");
+            int id=Lire.i();
+            System.out.println("Abcisse: ");
+            double a=Lire.d();
+            System.out.println("Ordonnée: ");
+            double o=Lire.d();
+            // Appel du constructeur pour créer une instance de coin
+            c=new Coin(id,a,o);
+            //System.out.println(c.toString());
+            ListeCoins.add(c);
+            System.out.println("Création d'un coin : 1 = OUI et 0 = NON");
+            reponse=Lire.i();
+        }// fin de la boucle While
+        code=code+ListeCoins.toString();
+        //Recherche d'un coin dans ListeCoins par son identifiant
+        System.out.println("Identifiant du Coin Recherché: ");
+        int idRech=Lire.i();
+        for (int i=0;i<ListeCoins.size();i++){
+            if (ListeCoins.get(i).getidCoin()==idRech)
+                ListeCoins.get(i).afficher();
+        }
+        try {
+  	  FileWriter myWriter = new FileWriter("Liste_Batiment.txt");
+  	  myWriter.write(code);
+  		  myWriter.close();
+  		  System.out.println("");
+   	  System.out.println("Fichier créer");
+  	 
+  	  }
+  	  catch (IOException e) {
+  		  System.out.println("An error occurred.");
+  		  e.printStackTrace();
+  	  }
         //Création d'un Bâtiment
         /*String id ;
         ArrayList<Niveau> listeNiveau ;
@@ -98,7 +148,7 @@ public class Main {
         o = new Ouverture(idOuverture, dimX, dimY);
         o.afficher();
         
-        //Création d'un Revêtement*/
-          Revetement.LectureRevetement();
+        //Création d'un Revêtement
+          Revetement.LectureRevetement();*/
     }
 } 
