@@ -73,14 +73,14 @@ public static ArrayList LectureRevetement() {
 return listeRev ;
 }
 
-//méthode pour choisir un revetement
+//méthode pour choisir un revetement, à finir
 public static ArrayList<Revetement> choixRevetement (int nbrrev, ArrayList<Revetement> listechoix) {
 //afficher les revetements possibles
 ArrayList<Revetement> listerev = new ArrayList<>() ;
 if (nbrrev!=0){
     for (int i=0;i<listechoix.size();i++){
         System.out.println("Choisissez le revêtement "+i+"en indiquant son indentifiant.");
-        Revetement rev = RechercheRev(Lire.S()) ;// faire la procédure recherche
+        Revetement rev = // faire selectionner un revetement
         listerev.add(rev) ;
     }        
 }
