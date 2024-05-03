@@ -40,6 +40,10 @@ public class Main {
             ListeCoins.add(c);
             System.out.println("Création d'un coin : 1 = OUI et 0 = NON");
             reponse=Lire.i();
+            if (reponse!=1){
+                System.out.println("Valeur incorrect; veuillez donner une valeur correct : 1 = OUI et 0 = NON");
+                reponse=Lire.i();
+            }
         }// fin de la boucle While
         code=code+ListeCoins.toString();
         //Recherche d'un coin dans ListeCoins par son identifiant
@@ -49,18 +53,24 @@ public class Main {
             if (ListeCoins.get(i).getidCoin()==idRech)
                 ListeCoins.get(i).afficher();
         }
+        
         try {
-  	  FileWriter myWriter = new FileWriter("Liste_Batiment.txt");
-  	  myWriter.write(code);
-  		  myWriter.close();
-  		  System.out.println("");
-   	  System.out.println("Fichier créer");
-  	 
-  	  }
-  	  catch (IOException e) {
-  		  System.out.println("An error occurred.");
-  		  e.printStackTrace();
-  	  }
+            // Création d'un fileWriter pour écrire dans un fichier
+            FileWriter fileWriter = new FileWriter("Liste_Batiment.txt", true);
+                
+            // Création d'un bufferedWriter qui utilise le fileWriter
+            BufferedWriter writer = new BufferedWriter(fileWriter);
+
+            // ajout d'un texte à notre fichier
+            writer.newLine();
+            writer.write(code);
+            // Retour à la ligne
+            
+            writer.close();
+		} 
+        catch (IOException e) {
+            e.printStackTrace();
+		}
         //Création d'un Bâtiment
         /*String id ;
         ArrayList<Niveau> listeNiveau ;
