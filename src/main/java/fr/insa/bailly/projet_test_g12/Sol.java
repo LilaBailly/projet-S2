@@ -11,31 +11,34 @@ import java.util.ArrayList;
 public class Sol {
 private int idSol ;
 private ArrayList<Coin> listeCoin ;
-private ArrayList<Revetement> liste_rev_sol ;
+private int nbrtremis ;
+private int nbrrev ;
+private ArrayList<Revetement> listeRevetement ;
 
 //déclaration du constructeur
-Sol(int id, ArrayList<Coin> listeCoin, ArrayList<Revetement> listeRevetement) {
+Sol(int id, ArrayList<Coin> listeCoin,int nbrtremis, int nbrrev) {
     this.idSol=id ;
     this.listeCoin = listeCoin ;
-    this.liste_rev_sol = listeRevetement ;
+    this.nbrtremis = nbrtremis ;
+    this.nbrrev = nbrrev ;
+    this.listeRevetement = this.listeRevetement = Revetement.choixRevetement (nbrrev, Revetement.getlisteRevetementSol ()) ;
+}
+
+//méthode pour calculer la surface d'un sol
+public double surface () {
+    double surface = 
+    return surface ;
+}
+//méthode pour calculer le cout d'un sol
+public double cout(){
+    double cout = 0 ;
+    double s = surface() ;
+    for (int i=0; i<listeRevetement.size(); i++){
+         cout = cout + s*listeRevetement.get(i).getprixunitaire() ;   
     }
-//méthode pour vérifier si le revetement est applicable sur un sol
-public boolean add_revetement (Revetement rev) {
-        if (rev.getpourSol()==true){
-            this.liste_rev_sol.add(rev) ;
-            return true;
-        }
-        else {
-            System.out.println("Revetement ne peut être mis sur un sol, choisir un autre") ;
-            return false ;
-        }
+return cout ;
     }
 
-//méthode pour calculer la surface d'un sol pour une pièce rectangulaire
-//public double surface(){ //finir la méthode
-  //  surface = 
-  //  return surface
-//}
 //get et set pour donner et utiliser les attributs
 public int getidSol(){
     return idSol ;
@@ -56,4 +59,3 @@ public void setlisteRevetement(ArrayList<Revetement> liste_rev_sol) {
     this.liste_rev_sol = liste_rev_sol ;
 }
 }
-    

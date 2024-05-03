@@ -20,30 +20,13 @@ private boolean pourMur ;
 final boolean pourSol ;
 final boolean pourPlafond ;
 private double prixUnitaire ; 
+private ArrayList<Revetement> listeRevetement = LectureRevetement();
+private ArrayList<Revetement> listeRevetementMur = listeRevetementMur();
+private ArrayList<Revetement> listeRevetementSol = listeRevetementSol();
+private ArrayList<Revetement> listeRevetementPlafond = listeRevetementPlafond ();
 
-public static void LectureRevetement() {
-    //lire le doc, découper une ligne, avec cette ligne mettre dans revêtement
-try {
-        ArrayList<Revetement> listeRevetement = new ArrayList<>();
-        //création d'un buffered reader qui utilise un filereader pour lire le fichier
-        BufferedReader reader = new BufferedReader(new FileReader("catalogue revetement.txt"));
-        while (reader.ready()) {
-            String ligne =reader.readLine() ;
-            Revetement Rev = new Revetement (ligne) ; //Création d'un nouveau revetement
-            listeRevetement.add(Rev); //ajout du revetement à la liste
-        }
-        System.out.println (listeRevetement.size()) ;
-    } 
-    catch(FileNotFoundException err){
-        System.out.println( "Erreur :le fichier n’existe pas!\n "+err);
-    }
-    catch (IOException e){
-        System.out.println(" Erreur :\n "+e);
-    }
-}
-
-    //déclaration du constructeur
-    Revetement(String ligne) {
+//déclaration du constructeur
+Revetement(String ligne) {
         String[] decoupe = ligne.split(";") ;
         this.idRevetement = Integer.parseInt(decoupe[0]) ; //conversion du String en int
         this.designation = decoupe[1] ;
@@ -67,8 +50,81 @@ try {
         }
         this.prixUnitaire = Double.parseDouble(decoupe[5]) ; //conversion du String en double
     }
-    
-    //get et set pour donner et utiliser les attributs
+
+//méthode pour lire le catalogue et creer une liste contenant tous les revetements
+public static ArrayList LectureRevetement() {
+    //lire le doc, découper une ligne, avec cette ligne mettre dans revêtement
+    ArrayList<Revetement> listeRev = new ArrayList<>();
+    try {
+        //création d'un buffered reader qui utilise un filereader pour lire le fichier
+        BufferedReader reader = new BufferedReader(new FileReader("catalogue revetement.txt"));
+        while (reader.ready()) {
+            String ligne =reader.readLine() ;
+            Revetement Rev = new Revetement (ligne) ; //Création d'un nouveau revetement
+            listeRev.add(Rev); //ajout du revetement à la liste
+        }
+    } 
+    catch(FileNotFoundException err){
+        System.out.println( "Erreur :le fichier n’existe pas!\n "+err);
+    }
+    catch (IOException e){
+        System.out.println(" Erreur :\n "+e);
+    }
+return listeRev ;
+}
+
+//méthode pour choisir un revetement
+public static ArrayList<Revetement> choixRevetement (int nbrrev, ArrayList<Revetement> listechoix) {
+//afficher les revetements possibles
+ArrayList<Revetement> listerev = new ArrayList<>() ;
+if (nbrrev!=0){
+    for (int i=0;i<listechoix.size();i++){
+        System.out.println("Choisissez le revêtement "+i+"en indiquant son indentifiant.");
+        Revetement rev = RechercheRev(Lire.S()) ;// faire la procédure recherche
+        listerev.add(rev) ;
+    }        
+}
+else{
+    listerev=null ;
+}
+return listerev ;
+}
+
+// permet la création d'une liste contenant seulement les revetements pour mur
+public ArrayList<Revetement> listeRevetementMur () {
+    ArrayList<Revetement> listeRevMur = new ArrayList<>() ;
+    for (int i=0; i<listeRevetement.size(); i++) {
+        Revetement Rev = listeRevetement.get(i) ;
+        if (Rev.getpourSol()==true){
+              listeRevMur.add(Rev) ;
+        }
+    }
+return listeRevMur ;
+}
+// permet la création d'une liste contenant seulement les revetements pour sol
+public ArrayList<Revetement> listeRevetementSol () {
+    ArrayList<Revetement> listeRevSol = new ArrayList<>() ;
+    for (int i=0; i<listeRevetement.size(); i++) {
+        Revetement Rev = listeRevetement.get(i) ;
+        if (Rev.getpourSol()==true){
+              listeRevSol.add(Rev) ;
+        }
+    }
+return listeRevSol ;
+}
+// permet la création d'une liste contenant seulement les revetements pour plafond
+public ArrayList<Revetement> listeRevetementPlafond () {
+    ArrayList<Revetement> listeRevPlafond = new ArrayList<>() ;
+    for (int i=0; i<listeRevetement.size(); i++) {
+        Revetement Rev = listeRevetement.get(i) ;
+        if (Rev.getpourSol()==true){
+              listeRevPlafond.add(Rev) ;
+        }
+    }
+return listeRevPlafond ;
+}
+
+//get pour utiliser les attributs
     public int getidRevetement () {
         return this.idRevetement ;
     }
@@ -87,35 +143,13 @@ try {
     public boolean getpourPlafond () {
         return this.pourPlafond ;
     }
-
-//faire une procédure pour afficher les revetement d'un type, ou alros creer des listes si possible
-public ArrayList<Revetement> choixRevetement (int nbrrev, ArrayList listechoix) {
-    //afficher les revetements possibles
-    ArrayList<Revetement> listerev = new ArrayList<>() ;
-    if (nbrrev!=0){
-        for (int i=0;i<listechoix.size();i++){
-            System.out.println("Choisissez le revêtement "+i);
-            Revetement rev = RechercheRev(Lire.S()) ;// faire la procédure recherche
-            listerev.add(rev) ;
-        }        
+    public static ArrayList<Revetement> getlisteRevetementMur (){
+        return listeRevetementMur ;
     }
-    else{
-        listerev=null ;
+    public static ArrayList<Revetement> getlisteRevetementSol (){
+        return listeRevetementSol ;
     }
-
-    return listerev ;
+    public static ArrayList<Revetement> getlisteRevetementPlafond (){
+        return listeRevetementPlafond ;
+    }
 }
-
-}
-     /*   ArrayList<Revetement> liste_rev_mur = new ArrayList<>() ;
-        ArrayList<Revetement> liste_rev_sol = new ArrayList<>() ;
-        ArrayList<Revetement> liste_rev_plafond = new ArrayList<>();
-            if (Rev.getpourMur()==true){
-              liste_rev_mur.add(Rev) ;
-            }
-            else if (Rev.getpourSol()==true){
-              liste_rev_sol.add(Rev) ;
-            }
-            else if (Rev.getpourPlafond()==true){
-              liste_rev_plafond.add(Rev) ;
-            }*/

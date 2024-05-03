@@ -12,7 +12,7 @@ import java.io.*;
 public class Main {
 
     public static void main(String[] args) {
-        String code="";
+    /*    String code="";
         // Créationde coins
         int reponse;
         System.out.println("Création d'un coin : 1 = OUI et 0 = NON");
@@ -156,9 +156,9 @@ public class Main {
         // Appel du constructeur pour créer une instance d'Ouverture
         Ouverture o;
         o = new Ouverture(idOuverture, dimX, dimY);
-        o.afficher();
+        o.afficher();*/
         
         //Création d'un Revêtement
-          Revetement.LectureRevetement();*/
+          Revetement.LectureRevetement();
     }
 } 
