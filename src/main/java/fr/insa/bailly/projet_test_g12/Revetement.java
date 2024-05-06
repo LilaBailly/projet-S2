@@ -21,9 +21,9 @@ final boolean pourSol ;
 final boolean pourPlafond ;
 private double prixUnitaire ; 
 private ArrayList<Revetement> listeRevetement = LectureRevetement();
-private ArrayList<Revetement> listeRevetementMur = listeRevetementMur();
-private ArrayList<Revetement> listeRevetementSol = listeRevetementSol();
-private ArrayList<Revetement> listeRevetementPlafond = listeRevetementPlafond ();
+ArrayList<Revetement> listeRevetementMur = listeRevetementMur();
+ArrayList<Revetement> listeRevetementSol = listeRevetementSol();
+ArrayList<Revetement> listeRevetementPlafond = listeRevetementPlafond ();
 
 //déclaration du constructeur
 Revetement(String ligne) {
@@ -74,12 +74,14 @@ return listeRev ;
 }
 
 //méthode pour choisir un revetement, à finir
-public static ArrayList<Revetement> choixRevetement (int nbrrev, ArrayList<Revetement> listechoix) {
-//afficher les revetements possibles
+public static ArrayList<Revetement> choixRevetementSol (int nbrrev) {
+for (int j=0 ; j<listeRevetementSol.size() ; j++) {
+    System.out.println() ;//afficher la liste des possibilités
+}
 ArrayList<Revetement> listerev = new ArrayList<>() ;
 if (nbrrev!=0){
     for (int i=0;i<nbrrev;i++){
-        System.out.println("Choisissez le revêtement "+i+"en indiquant son indentifiant.");
+        System.out.println("Choisissez le revêtement "+i+" pour votre sol en indiquant son indentifiant.");
         Revetement rev = // faire selectionner un revetement
         listerev.add(rev) ;
     }        
@@ -89,7 +91,7 @@ else{
 }
 return listerev ;
 }
-
+//à refaire pour Mur et Plafond
 // permet la création d'une liste contenant seulement les revetements pour mur
 public ArrayList<Revetement> listeRevetementMur () {
     ArrayList<Revetement> listeRevMur = new ArrayList<>() ;
@@ -143,8 +145,6 @@ return listeRevPlafond ;
     public boolean getpourPlafond () {
         return this.pourPlafond ;
     }
-    public ArrayList<Revetement> getlisteRevetementSol (){
-    return listeRevetementSol ;
-}
+
 
 }

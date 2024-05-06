@@ -47,5 +47,12 @@ public class Ouverture { //est ce qu'on fait une extention de classe avec fenetr
     void afficher(){
             System.out.println("Identifiant :"+this.idOuverture+" Dimension en x :"+this.dimx+" Dimension en y :"+this.dimy);
     }
+    public Ouverture typeOuverture (String type, int id) { //si pas standard, mettre autes para entrée
+        type = type.toLowerCase() ;
+        if (type=="porte") {
+            Ouverture ouv = new Ouverture(id,83,204) ;// peut demander les dimentions à l'utilisateur
+            return ouv ;
+        }
+    }
 }
 //faire classes filles fenetre porte et tremis, (juste standard, pour dessin ajouter où)
