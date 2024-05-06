@@ -143,5 +143,8 @@ return listeRevPlafond ;
     public boolean getpourPlafond () {
         return this.pourPlafond ;
     }
+    public ArrayList<Revetement> getlisteRevetementSol (){
+    return listeRevetementSol ;
+}
 
 }
