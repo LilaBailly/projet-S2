@@ -14,7 +14,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         String code="";
         Coin c;
-        int id;
+        int id, n=0;
         double a, o;
         //Déclaraion de la ArrayList
         ArrayList<Coin>ListeCoins;
@@ -43,13 +43,63 @@ public class Main {
             while (reader.ready()) {
                 String ligne =reader.readLine();
                 //méthode appelée pour identification du type
+                String[] tab = ligne.split(" ");
+                if (tab[0]=="Coin"){
+                    n=1;
+                }
+                if (tab[0]=="Porte"){
+                    n=2;
+                }
+                if (tab[0]=="Fenetre"){// fenetre avec ou sans accent ?? a définir
+                    n=3;
+                }
+                if (tab[0]=="Tremis"){
+                    n=4;
+                }
+                if (tab[0]=="Mur"){
+                    n=5;
+                }
+                if (tab[0]=="Piece"){
+                    n=6;
+                }
+                if (tab[0]=="Appartement"){
+                    n=7;
+                }
+                if (tab[0]=="Niveau"){
+                    n=8;
+                }
+                if (tab[0]=="Immeuble"){
+                    n=9;
+                }
                 //switch selon le type
+                switch (n){
+                    case 1 :
+                        id=Integer.parseInt(tab[4]);
+                        a=Double.parseDouble(tab[8]);
+                        o=Double.parseDouble(tab[12]);
+                        Coin ctxt= new Coin(id,a,o) ; //Création d'un nouveau revetement
+                        ListeCoins.add(ctxt); //ajout du revetement à la liste
+                        break;
+                    case 2 :
+                        // si pas fenetre standard rajouter longueur et largeur dans parenthese dans ouverture)
+                        break;
+                    case 3 :
+                        break;
+                    case 4 :
+                        break;
+                    case 5 :
+                        break;
+                    case 6 :
+                        break;
+                    case 7 :
+                        break;
+                    case 8 :
+                        break;
+                    case 9 :
+                        break;
+                }
                 //dans le cas où c'est un coin :
-                id=1;
-                a=2;
-                o=3;
-                Coin ctxt= new Coin(id,a,o) ; //Création d'un nouveau revetement
-                ListeCoins.add(ctxt); //ajout du revetement à la liste
+                
             }
         } 
         catch(FileNotFoundException err){
