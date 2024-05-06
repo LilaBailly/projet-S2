@@ -17,7 +17,7 @@ public class Main {
         int reponse;
         System.out.println("Création d'un coin : 1 = OUI et 0 = NON");
         reponse=Lire.i();
-        if (reponse!=0&&reponse!=1){
+        while (reponse!=0&&reponse!=1){
             System.out.println("Valeur incorrect; veuillez donner une valeur correct : 1 = OUI et 0 = NON");
             reponse=Lire.i();
         }
@@ -38,10 +38,10 @@ public class Main {
             c=new Coin(id,a,o);
             //System.out.println(c.toString());
             ListeCoins.add(c);
-            code=code+c.toString();
+            code=code+c.toString()+";\n";
             System.out.println("Création d'un coin : 1 = OUI et 0 = NON");
             reponse=Lire.i();
-            if (reponse!=1){
+            if (reponse!=0&&reponse!=1){
                 System.out.println("Valeur incorrect; veuillez donner une valeur correct : 1 = OUI et 0 = NON");
                 reponse=Lire.i();
             }
@@ -72,6 +72,36 @@ public class Main {
         catch (IOException e) {
             e.printStackTrace();
 		}
+        
+        System.out.println("Quel élément voulez vous créer ? (0:rien) (1:coin) (2:porte) (3:fenetre) (4:tremis) (5:mur) (6:piece) (7:appartement) (8:niveau) (9:immeuble)");
+        int rep=Lire.i();
+        while(rep!=0){
+            switch (rep){
+                case 0 :
+                    break;
+                case 1 :
+                    
+                    break;
+                case 2 :
+                    break;
+                case 3 :
+                    break;
+                case 4 :
+                    break;
+                case 5 :
+                    break;
+                case 6 :
+                    break;
+                case 7 :
+                    break;
+                case 8 :
+                    break;
+                case 9 :
+                    break;
+            }
+            System.out.println("Quel élément voulez vous créer ? (0:rien) (1:coin) (2:porte) (3:fenetre) (4:tremis) (5:mur) (6:piece) (7:appartement) (8:niveau) (9:immeuble)");
+            rep=Lire.i();
+        }
         //Création d'un Bâtiment
         /*String id ;
         ArrayList<Niveau> listeNiveau ;
@@ -160,6 +190,6 @@ public class Main {
         o.afficher();*/
         
         //Création d'un Revêtement
-          Revetement.LectureRevetement();
+         // Revetement.LectureRevetement();
     }
 } 
