@@ -12,7 +12,7 @@ import java.io.*;
 public class Main {
 
     public static void main(String[] args) {
-    /*    String code="";
+        String code="";
         // Créationde coins
         int reponse;
         System.out.println("Création d'un coin : 1 = OUI et 0 = NON");
@@ -38,6 +38,7 @@ public class Main {
             c=new Coin(id,a,o);
             //System.out.println(c.toString());
             ListeCoins.add(c);
+            code=code+c.toString();
             System.out.println("Création d'un coin : 1 = OUI et 0 = NON");
             reponse=Lire.i();
             if (reponse!=1){
@@ -45,7 +46,7 @@ public class Main {
                 reponse=Lire.i();
             }
         }// fin de la boucle While
-        code=code+ListeCoins.toString();
+        //code=code+ListeCoins.toString();
         //Recherche d'un coin dans ListeCoins par son identifiant
         System.out.println("Identifiant du Coin Recherché: ");
         int idRech=Lire.i();
@@ -56,7 +57,7 @@ public class Main {
         
         try {
             // Création d'un fileWriter pour écrire dans un fichier
-            FileWriter fileWriter = new FileWriter("Liste_Batiment.txt", true);
+            FileWriter fileWriter = new FileWriter("Liste_Batiment.txt", false);
                 
             // Création d'un bufferedWriter qui utilise le fileWriter
             BufferedWriter writer = new BufferedWriter(fileWriter);
