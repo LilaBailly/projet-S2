@@ -27,6 +27,7 @@ Sol(int id, ArrayList<Coin> listeCoin,int nbrtremis, int nbrrev) {
 //méthode pour calculer la surface d'un sol
 public double surface () {
     double surface = 
+    //surface = surface-nbrtremis*getprixtremis() ;
     return surface ;
 }
 //méthode pour calculer le cout d'un sol
@@ -53,9 +54,6 @@ public void setlisteCoin(ArrayList<Coin> listeCoin) {
     this.listeCoin = listeCoin ;
 }
 public ArrayList<Revetement> getlisteRevetement(){
-    return liste_rev_sol ;
-}
-public void setlisteRevetement(ArrayList<Revetement> liste_rev_sol) {
-    this.liste_rev_sol = liste_rev_sol ;
+    return listeRevetement ;
 }
 }

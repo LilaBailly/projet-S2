@@ -78,7 +78,7 @@ public static ArrayList<Revetement> choixRevetement (int nbrrev, ArrayList<Revet
 //afficher les revetements possibles
 ArrayList<Revetement> listerev = new ArrayList<>() ;
 if (nbrrev!=0){
-    for (int i=0;i<listechoix.size();i++){
+    for (int i=0;i<nbrrev;i++){
         System.out.println("Choisissez le revêtement "+i+"en indiquant son indentifiant.");
         Revetement rev = // faire selectionner un revetement
         listerev.add(rev) ;
@@ -143,13 +143,5 @@ return listeRevPlafond ;
     public boolean getpourPlafond () {
         return this.pourPlafond ;
     }
-    public static ArrayList<Revetement> getlisteRevetementMur (){
-        return listeRevetementMur ;
-    }
-    public static ArrayList<Revetement> getlisteRevetementSol (){
-        return listeRevetementSol ;
-    }
-    public static ArrayList<Revetement> getlisteRevetementPlafond (){
-        return listeRevetementPlafond ;
-    }
+
 }
