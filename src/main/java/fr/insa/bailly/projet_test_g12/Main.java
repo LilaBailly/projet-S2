@@ -11,50 +11,15 @@ import java.io.*;
  */
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         String code="";
-        // Créationde coins
-        int reponse;
-        System.out.println("Création d'un coin : 1 = OUI et 0 = NON");
-        reponse=Lire.i();
-        if (reponse!=0&&reponse!=1){
-            System.out.println("Valeur incorrect; veuillez donner une valeur correct : 1 = OUI et 0 = NON");
-            reponse=Lire.i();
-        }
         Coin c;
+        int id;
+        double a, o;
         //Déclaraion de la ArrayList
         ArrayList<Coin>ListeCoins;
         // Initialisation de la liste
         ListeCoins = new ArrayList<>();
-        // Boucle de saisie et d'ajout de Coins dans la liste
-        while(reponse!=0){
-            System.out.println("Identifiant: ");
-            int id=Lire.i();
-            System.out.println("Abcisse: ");
-            double a=Lire.d();
-            System.out.println("Ordonnée: ");
-            double o=Lire.d();
-            // Appel du constructeur pour créer une instance de coin
-            c=new Coin(id,a,o);
-            //System.out.println(c.toString());
-            ListeCoins.add(c);
-            code=code+c.toString();
-            System.out.println("Création d'un coin : 1 = OUI et 0 = NON");
-            reponse=Lire.i();
-            if (reponse!=1){
-                System.out.println("Valeur incorrect; veuillez donner une valeur correct : 1 = OUI et 0 = NON");
-                reponse=Lire.i();
-            }
-        }// fin de la boucle While
-        //code=code+ListeCoins.toString();
-        //Recherche d'un coin dans ListeCoins par son identifiant
-        System.out.println("Identifiant du Coin Recherché: ");
-        int idRech=Lire.i();
-        for (int i=0;i<ListeCoins.size();i++){
-            if (ListeCoins.get(i).getidCoin()==idRech)
-                ListeCoins.get(i).afficher();
-        }
-        
         try {
             // Création d'un fileWriter pour écrire dans un fichier
             FileWriter fileWriter = new FileWriter("Liste_Batiment.txt", false);
@@ -72,6 +37,100 @@ public class Main {
         catch (IOException e) {
             e.printStackTrace();
 		}
+        try {
+        //création d'un buffered reader qui utilise un filereader pour lire le fichier
+            BufferedReader reader = new BufferedReader(new FileReader("Liste_Batiment.txt"));
+            while (reader.ready()) {
+                String ligne =reader.readLine();
+                //méthode appelée pour identification du type
+                //switch selon le type
+                //dans le cas où c'est un coin :
+                id=1;
+                a=2;
+                o=3;
+                Coin ctxt= new Coin(id,a,o) ; //Création d'un nouveau revetement
+                ListeCoins.add(ctxt); //ajout du revetement à la liste
+            }
+        } 
+        catch(FileNotFoundException err){
+            System.out.println( "Erreur :le fichier n’existe pas!\n "+err);
+        }
+        // Créationde coins
+        int reponse;
+        System.out.println("Création d'un coin : 1 = OUI et 0 = NON");
+        reponse=Lire.i();
+        while (reponse!=0&&reponse!=1){
+            System.out.println("Valeur incorrect; veuillez donner une valeur correct : 1 = OUI et 0 = NON");
+            reponse=Lire.i();
+        }
+        // Boucle de saisie et d'ajout de Coins dans la liste
+        while(reponse!=0){
+            System.out.println("Identifiant: ");
+            id=Lire.i();
+            System.out.println("Abcisse: ");
+            a=Lire.d();
+            System.out.println("Ordonnée: ");
+            o=Lire.d();
+            // Appel du constructeur pour créer une instance de coin
+            c=new Coin(id,a,o);
+            //System.out.println(c.toString());
+            ListeCoins.add(c);
+            code=code+c.toString()+";\n";
+            System.out.println("Création d'un coin : 1 = OUI et 0 = NON");
+            reponse=Lire.i();
+            if (reponse!=0&&reponse!=1){
+                System.out.println("Valeur incorrect; veuillez donner une valeur correct : 1 = OUI et 0 = NON");
+                reponse=Lire.i();
+            }
+        }// fin de la boucle While
+        //Recherche d'un coin dans ListeCoins par son identifiant
+        System.out.println("Identifiant du Coin Recherché: ");
+        int idRech=Lire.i();
+        for (int i=0;i<ListeCoins.size();i++){
+            if (ListeCoins.get(i).getidCoin()==idRech)
+                ListeCoins.get(i).afficher();
+        }
+        
+        
+        
+        System.out.println("Quel élément voulez vous créer ? (0:rien) (1:coin) (2:porte) (3:fenetre) (4:tremis) (5:mur) (6:piece) (7:appartement) (8:niveau) (9:immeuble)");
+        int rep=Lire.i();
+        while(rep!=0){ // pas sure de ce qu'il faut mettre dans les parenthèse du while
+            switch (rep){
+                case 0 :
+                    break;
+                case 1 :
+                    System.out.println("Identifiant: ");
+                    id=Lire.i();
+                    System.out.println("Abcisse: ");
+                    a=Lire.d();
+                    System.out.println("Ordonnée: ");
+                    o=Lire.d();
+                    c=new Coin(id,a,o);
+                    ListeCoins.add(c);
+                    code=code+c.toString()+";\n";
+                    break;
+                case 2 :
+                    
+                    break;
+                case 3 :
+                    break;
+                case 4 :
+                    break;
+                case 5 :
+                    break;
+                case 6 :
+                    break;
+                case 7 :
+                    break;
+                case 8 :
+                    break;
+                case 9 :
+                    break;
+            }
+            System.out.println("Quel élément voulez vous créer ? (0:rien) (1:coin) (2:porte) (3:fenetre) (4:tremis) (5:mur) (6:piece) (7:appartement) (8:niveau) (9:immeuble)");
+            rep=Lire.i();
+        }
         //Création d'un Bâtiment
         /*String id ;
         ArrayList<Niveau> listeNiveau ;
@@ -160,6 +219,6 @@ public class Main {
         o.afficher();*/
         
         //Création d'un Revêtement
-          Revetement.LectureRevetement();
+         // Revetement.LectureRevetement();
     }
 } 
