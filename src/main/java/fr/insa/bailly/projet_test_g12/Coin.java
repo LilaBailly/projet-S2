@@ -46,6 +46,6 @@ public class Coin {
     }
     @Override 
     public String toString(){
-        return "Coin [idCoin : "+idCoin+", cx : "+cx+", cy : "+cy+"]";
+        return "Coin [ idCoin : "+idCoin+" , cx : "+cx+" , cy : "+cy+" ]";
     }
 }
