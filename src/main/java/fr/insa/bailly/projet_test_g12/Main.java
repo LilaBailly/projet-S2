@@ -14,10 +14,10 @@ public class Main {
     public static void main(String[] args) throws IOException {
         String code="";
         Coin c;
-        int id, idCoinD = 0, idCoinF = 0, n=0, idMur, idPorte, idFenetre, idTremis, idPiece, idAppartement, idNiveau, idImmeuble;
+        int id, idCoinD = 0, idCoinF = 0, idRecherche, idRech,exiCoinFin, exiCoinDeb, n=0, idMur, idPorte, idFenetre, idTremis, idPiece, idAppartement, idNiveau, idImmeuble;
         int nbrFenetre, nbrPorte, nbrRevetement;
-        double a, o, x, y;
-        Coin coinDebut = null, coinFin = null;
+        double a, o, x, y, ab, or;
+        Coin coinDebut = null, coinFin = null, coinD, coinF;
         //Déclaraion de la ArrayList
         ArrayList<Coin>ListeCoins;
         // Initialisation de la liste
@@ -38,23 +38,7 @@ public class Main {
         ListeNiveaux = new ArrayList<>();
         //ArrayList<Immeuble>ListeImmeubles;
         //ListeImmeuble = new ArrayList<>();
-        try {
-            // Création d'un fileWriter pour écrire dans un fichier
-            FileWriter fileWriter = new FileWriter("Liste_Batiment.txt", false);
-                
-            // Création d'un bufferedWriter qui utilise le fileWriter
-            BufferedWriter writer = new BufferedWriter(fileWriter);
-
-            // ajout d'un texte à notre fichier
-            writer.newLine();
-            writer.write(code);
-            // Retour à la ligne
-            
-            writer.close();
-		} 
-        catch (IOException e) {
-            e.printStackTrace();
-		}
+        
         try {
         //création d'un buffered reader qui utilise un filereader pour lire le fichier
             BufferedReader reader = new BufferedReader(new FileReader("Liste_Batiment.txt"));
@@ -62,31 +46,31 @@ public class Main {
                 String ligne =reader.readLine();
                 //méthode appelée pour identification du type
                 String[] tab = ligne.split(" ");
-                if (tab[0]=="Coin"){
+                if (true==ligne.startsWith("Coin")){
                     n=1;
                 }
-                if (tab[0]=="Porte"){
+                if(true==ligne.startsWith("Porte")){
                     n=2;
                 }
-                if (tab[0]=="Fenetre"){// fenetre avec ou sans accent ?? a définir
+                if (true==ligne.startsWith("Fenetre")){// fenetre avec ou sans accent ?? a définir
                     n=3;
                 }
-                if (tab[0]=="Tremis"){
+                if (true==ligne.startsWith("Tremis")){
                     n=4;
                 }
-                if (tab[0]=="Mur"){
+                if (true==ligne.startsWith("Mur")){
                     n=5;
                 }
-                if (tab[0]=="Piece"){
+                if (true==ligne.startsWith("Piece")){
                     n=6;
                 }
-                if (tab[0]=="Appartement"){
+                if (true==ligne.startsWith("Appartement")){
                     n=7;
                 }
-                if (tab[0]=="Niveau"){
+                if (true==ligne.startsWith("Niveau")){
                     n=8;
                 }
-                if (tab[0]=="Immeuble"){
+                if (true==ligne.startsWith("Immeuble")){
                     n=9;
                 }
                 //switch selon le type
@@ -109,11 +93,17 @@ public class Main {
                         break;
                     case 5 :// mur
                         idMur=Integer.parseInt(tab[4]);
-                        coinDebut=Coin.parseCoin(tab[8]);
-                        coinFin=Coin.parseCoin(tab[23]); //Valeur dans tab[] a verifier 
-                        nbrPorte=Integer.parseInt(tab[40]);//Valeur dans tab[] a verifier 
-                        nbrFenetre=Integer.parseInt(tab[44]);//Valeur dans tab[] a verifier 
-                        nbrRevetement=Integer.parseInt(tab[48]);//Valeur dans tab[] a verifier 
+                        idCoinD=Integer.parseInt(tab[12]);
+                        ab=Double.parseDouble(tab[16]);
+                        or=Double.parseDouble(tab[20]);
+                        coinD = new Coin(idCoinD,ab,or);
+                        idCoinF=Integer.parseInt(tab[29]);
+                        ab=Double.parseDouble(tab[33]);
+                        or=Double.parseDouble(tab[37]);
+                        coinF = new Coin(idCoinF,ab,or);
+                        nbrPorte=Integer.parseInt(tab[42]);//Valeur dans tab[] a verifier 
+                        nbrFenetre=Integer.parseInt(tab[46]);//Valeur dans tab[] a verifier 
+                        nbrRevetement=Integer.parseInt(tab[50]);//Valeur dans tab[] a verifier 
                         Mur murtxt = new Mur(idMur,coinDebut,coinFin,nbrPorte,nbrFenetre,nbrRevetement);
                         ListeMurs.add(murtxt);
                         break;
@@ -147,7 +137,7 @@ public class Main {
         }
         // Boucle de saisie et d'ajout de Coins dans la liste
         while(reponse!=0){
-            System.out.println("Identifiant: ");
+            System.out.println("Identifiant du coin: ");
             id=Lire.i();
             System.out.println("Abcisse: ");
             a=Lire.d();
@@ -167,7 +157,7 @@ public class Main {
         }// fin de la boucle While
         //Recherche d'un coin dans ListeCoins par son identifiant
         System.out.println("Identifiant du Coin Recherché: ");
-        int idRech=Lire.i();
+        idRech=Lire.i();
         for (int i=0;i<ListeCoins.size();i++){
             if (ListeCoins.get(i).getidCoin()==idRech)
                 ListeCoins.get(i).afficher();
@@ -179,28 +169,29 @@ public class Main {
             reponse=Lire.i();
         }
         while (reponse!=0){
-            System.out.println("Identifiant: ");
+            System.out.println("Identifiant du mur: ");
             idMur=Lire.i();
             System.out.println("Le coin de début existe-t-il déjà ? (1 = OUI et 0 = NON)");
-            int exiCoinDeb=Lire.i();
+            exiCoinDeb=Lire.i();
             while (exiCoinDeb!=0&&exiCoinDeb!=1){
                 System.out.println("Valeur incorrect; veuillez donner une valeur correct : 1 = OUI et 0 = NON");
                 exiCoinDeb=Lire.i();
             }
             if(exiCoinDeb==1){
-                System.out.println("Identifiant: ");
-                idRech=Lire.i();
+                System.out.println("Identifiant du coin de début recherché: ");
+                idRecherche=Lire.i();
                 for (int i=0;i<ListeCoins.size();i++){
-                    if (ListeCoins.get(i).getidCoin()==idRech)
+                    if (ListeCoins.get(i).getidCoin()==idRecherche){
                         idCoinD=ListeCoins.get(i).getidCoin();
                         x=ListeCoins.get(i).getcx();
                         y=ListeCoins.get(i).getcy();
                         coinDebut=new Coin(idCoinD,x,y);
+                    }
                 }
                 
             }
             else{
-                System.out.println("Identifiant: ");
+                System.out.println("Identifiant du coin de début: ");
                 idCoinD=Lire.i();
                 System.out.println("Abcisse: ");
                 x=Lire.d();
@@ -211,25 +202,26 @@ public class Main {
                 code=code+coinDebut.toString()+" , \n";
             }
             System.out.println("Le coin de fin existe-t-il déjà ? (1 = OUI et 0 = NON)");
-            int exiCoinFin=Lire.i();
+            exiCoinFin=Lire.i();
             while (exiCoinFin!=0&&exiCoinFin!=1){
                 System.out.println("Valeur incorrect; veuillez donner une valeur correct : 1 = OUI et 0 = NON");
                 exiCoinFin=Lire.i();
             }
             if(exiCoinFin==1){
-                System.out.println("Identifiant: ");
-                idRech=Lire.i();
+                System.out.println("Identifiant du coin de fin recherché: ");
+                idRecherche=Lire.i();
                 for (int i=0;i<ListeCoins.size();i++){
-                    if (ListeCoins.get(i).getidCoin()==idRech)
+                    if (ListeCoins.get(i).getidCoin()==idRecherche){
                         idCoinF=ListeCoins.get(i).getidCoin();
                         x=ListeCoins.get(i).getcx();
                         y=ListeCoins.get(i).getcy();
-                        coinDebut=new Coin(idCoinF,x,y);
+                        coinFin=new Coin(idCoinF,x,y);
+                    }
                 }
                 
             }
             else{
-                System.out.println("Identifiant: ");
+                System.out.println("Identifiant du coin de fin: ");
                 idCoinF=Lire.i();
                 System.out.println("Abcisse: ");
                 x=Lire.d();
@@ -248,8 +240,31 @@ public class Main {
             Mur M = new Mur(idMur,coinDebut,coinFin,nbrPorte,nbrFenetre,nbrRevetement);
             ListeMurs.add(M);
             code=code+M.toString()+" , \n";
+            System.out.println("Création d'un mur : 1 = OUI et 0 = NON");
+            reponse=Lire.i();
+            if (reponse!=0&&reponse!=1){
+                System.out.println("Valeur incorrect; veuillez donner une valeur correct : 1 = OUI et 0 = NON");
+                reponse=Lire.i();
+            }
                         
         }
+        try {
+            // Création d'un fileWriter pour écrire dans un fichier
+            FileWriter fileWriter = new FileWriter("Liste_Batiment.txt", true);
+                
+            // Création d'un bufferedWriter qui utilise le fileWriter
+            BufferedWriter writer = new BufferedWriter(fileWriter);
+
+            // ajout d'un texte à notre fichier
+            writer.newLine();
+            writer.write(code);
+            // Retour à la ligne
+            
+            writer.close();
+		} 
+        catch (IOException e) {
+            e.printStackTrace();
+	}
         
         System.out.println("Quel élément voulez vous créer ? (0:rien) (1:coin) (2:porte) (3:fenetre) (4:tremis) (5:mur) (6:piece) (7:appartement) (8:niveau) (9:immeuble)");
         int rep=Lire.i();

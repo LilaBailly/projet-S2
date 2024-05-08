@@ -11,9 +11,8 @@ package fr.insa.bailly.projet_test_g12;
 
 public class Coin {
 
-    static Coin parseCoin(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    
+    
     // Déclaration des attributs de la classe coin
     private int idCoin ;
     private double cx ;
@@ -46,7 +45,7 @@ public class Coin {
     }
     //méthode pour afficher le coin
     void afficher(){
-            System.out.println("Identifiant :"+this.idCoin+" Abscisse :"+this.cx+" Ordonnée :"+this.cy);
+            System.out.println("Identifiant : "+this.idCoin+", Abscisse : "+this.cx+", Ordonnée :"+this.cy);
     }
     @Override 
     public String toString(){

@@ -94,7 +94,7 @@ public class Mur {
     
     @Override 
     public String toString(){
-        return "Mur [ idMur : "+idMur+" , coinDebut : "+coinDebut+" , coinFin : "+coinFin+" , nbrPortes : "+nbrPorte+" , nbrFenetre : "+nbrFenetre+" , nbrRevetement : "+nbrRev+"]";
+        return "Mur [ idMur : "+idMur+" , coinDebut : "+coinDebut+" , coinFin : "+coinFin+" , nbrPortes : "+nbrPorte+" , nbrFenetre : "+nbrFenetre+" , nbrRevetement : "+nbrRev+" ]";
     }
     
 }

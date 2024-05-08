@@ -85,7 +85,7 @@ if (nbrrev!=0){
         System.out.println("Choisissez le revêtement "+i+" pour votre sol en indiquant son indentifiant.");
         int id = Lire.i() ;
         //ici, rechercher dans la liste le revetement et le renvoyer
-        listerev.add(rev) ;
+        //listerev.add(rev) ;
     }        
 }
 else{
@@ -149,6 +149,6 @@ return listeRevPlafond ;
     }
     
     public String Afficher(){
-        return "Revetement [idRevetement : "+idRevetement+", désignation : "+designation+", prix unitaire : "+prixUnitaire+" ]";
+        return "Revetement [ idRevetement : "+idRevetement+" , désignation : "+designation+" , prix unitaire : "+prixUnitaire+" ]";
     }
 }
