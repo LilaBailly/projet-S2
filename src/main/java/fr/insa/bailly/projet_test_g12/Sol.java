@@ -25,7 +25,7 @@ Sol(int id, ArrayList<Coin> listeCoin,int nbrtremis, int nbrrev) {
 }
 
 //méthode pour calculer la surface d'un sol
-public double surface () {
+/*public double surface () {
     double surface = 
     //surface = surface-nbrtremis*getprixtremis() ;
     return surface ;
@@ -38,7 +38,7 @@ public double cout(){
          cout = cout + s*listeRevetement.get(i).getprixunitaire() ;   
     }
 return cout ;
-    }
+    }*/
 
 //get et set pour donner et utiliser les attributs
 public int getidSol(){

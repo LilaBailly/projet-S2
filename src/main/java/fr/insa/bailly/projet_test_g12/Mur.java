@@ -18,7 +18,7 @@ public class Mur {
     private double hauteur ; 
     private double surface ;
     private int nbrRev ;
-    private ArrayList<Revetement> listeRevetement ;
+    //private ArrayList<Revetement> listeRevetement ;
     
     public Mur(){ //à quoi sert ce truc ?
         
@@ -31,7 +31,7 @@ public class Mur {
         this.nbrPorte = porte ;
         this.nbrFenetre = fenetre ;
         this.nbrRev = nbrRev ;
-        this.listeRevetement = Revetement.choixRevetement (nbrRev, Revetement.getlisteRevetementMur ()) ;   
+        //this.listeRevetement = Revetement.choixRevetement (nbrRev, Revetement.getlisteRevetementMur ()) ;   
         }
     
     public double Longueur(){
@@ -44,7 +44,7 @@ public class Mur {
         return surface ;
     }
     //méthode pour calculer le coût d'un mur
-    public double cout(){
+   /* public double cout(){
         double cout = 0 ;
         double s = surface() ;
         for (int i=0; i<listeRevetement.size(); i++){
@@ -52,7 +52,7 @@ public class Mur {
         }
        // cout = cout-nbrPorte*prixPorte()-nbrFenetre*getprixFenetre() ;
     return cout ;
-    }
+    }*/
     
     //get et set pour donner et utiliser les attributs
     public int getidMur(){

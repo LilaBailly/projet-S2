@@ -74,7 +74,7 @@ return listeRev ;
 }
 
 //méthode pour choisir un revetement, à finir
-public static ArrayList<Revetement> choixRevetementSol (int nbrrev) {
+/*public static ArrayList<Revetement> choixRevetementSol (int nbrrev) {
 for (int j=0 ; j<listeRevetementSol.size() ; j++) {
     System.out.println() ;//afficher la liste des possibilités
 }
@@ -90,7 +90,7 @@ else{
     listerev=null ;
 }
 return listerev ;
-}
+}*/
 //à refaire pour Mur et Plafond
 // permet la création d'une liste contenant seulement les revetements pour mur
 public ArrayList<Revetement> listeRevetementMur () {
