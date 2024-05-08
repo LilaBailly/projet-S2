@@ -12,6 +12,9 @@ import java.io.*;
 public class Main {
 
     public static void main(String[] args) throws IOException {
+        Ouverture ouv = new Ouverture ("porte", 1) ;
+        System.out.println(ouv.surface()) ;
+        /*
         String code="";
         Coin c;
         int id, n=0;
