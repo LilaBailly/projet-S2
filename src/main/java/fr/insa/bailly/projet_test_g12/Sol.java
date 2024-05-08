@@ -21,7 +21,7 @@ Sol(int id, ArrayList<Coin> listeCoin,int nbrtremis, int nbrrev) {
     this.listeCoin = listeCoin ;
     this.nbrtremis = nbrtremis ;
     this.nbrrev = nbrrev ;
-    this.listeRevetement = Revetement.choixRevetementSol (nbrrev) ;
+    //this.listeRevetement = Revetement.choixRevetementSol (nbrrev) ;
 }
 
 //méthode pour calculer la surface d'un sol
