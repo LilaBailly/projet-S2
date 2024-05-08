@@ -6,6 +6,7 @@ package fr.insa.bailly.projet_test_g12;
 
 import java.util.ArrayList;
 import java.io.* ;
+import java.lang.Object ;
 //import java.util.logging.Level;
 //import java.util.logging.Logger;
 /**
@@ -74,15 +75,16 @@ return listeRev ;
 }
 
 //méthode pour choisir un revetement, à finir
-/*public static ArrayList<Revetement> choixRevetementSol (int nbrrev) {
-for (int j=0 ; j<listeRevetementSol.size() ; j++) {
-    System.out.println() ;//afficher la liste des possibilités
-}
+public ArrayList<Revetement> choixRevetementSol (int nbrrev) {
 ArrayList<Revetement> listerev = new ArrayList<>() ;
 if (nbrrev!=0){
+    for (int j=0 ; j<listeRevetementSol.size() ; j++) {
+        listeRevetementSol.get(j).Afficher(); //afficher la liste des possibilités
+}
     for (int i=0;i<nbrrev;i++){
         System.out.println("Choisissez le revêtement "+i+" pour votre sol en indiquant son indentifiant.");
-        Revetement rev = // faire selectionner un revetement
+        int id = Lire.i() ;
+        //ici, rechercher dans la liste le revetement et le renvoyer
         listerev.add(rev) ;
     }        
 }
@@ -90,7 +92,7 @@ else{
     listerev=null ;
 }
 return listerev ;
-}*/
+}
 //à refaire pour Mur et Plafond
 // permet la création d'une liste contenant seulement les revetements pour mur
 public ArrayList<Revetement> listeRevetementMur () {
@@ -145,6 +147,8 @@ return listeRevPlafond ;
     public boolean getpourPlafond () {
         return this.pourPlafond ;
     }
-
-
+    
+    public String Afficher(){
+        return "Revetement [idRevetement : "+idRevetement+", désignation : "+designation+", prix unitaire : "+prixUnitaire+" ]";
+    }
 }
