@@ -10,6 +10,10 @@ package fr.insa.bailly.projet_test_g12;
  */
 
 public class Coin {
+
+    static Coin parseCoin(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     // Déclaration des attributs de la classe coin
     private int idCoin ;
     private double cx ;
