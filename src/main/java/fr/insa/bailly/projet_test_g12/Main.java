@@ -10,9 +10,9 @@ import java.io.*;
  * @author Elève
  */
 public class Main {
-    
+    static String code="";
     public static Coin creationCoin(){
-        String code="";
+        //String code="";
         int id;
         double a,o;
         ArrayList<Coin>ListeCoins;
@@ -34,7 +34,7 @@ public class Main {
     
     
     public static Mur creationMur(){
-        String code="";
+        //String code="";
         int idMur, exiCoinDeb, idRecherche, idCoinD, exiCoinFin,idCoinF,  nbrPorte, nbrFenetre, nbrRevetement ;
         double x,y;
         Coin coinDebut = null; 
@@ -112,7 +112,7 @@ public class Main {
     }
     
     public static Piece creationPiece(){
-        String code="";
+        //String code="";
         int reponse;
         int  idRecherche, idMur, idPiece;
         int nbFenetre, nbPorte, nbRevetement, nbrMur, sol, plafond;
@@ -174,7 +174,8 @@ public class Main {
     
     
     public static void main(String[] args) throws IOException {
-        String code="", Porte="porte", Fenetre="fenetre" , Tremis="tremis";
+        //String code="";
+        String Porte="porte", Fenetre="fenetre" , Tremis="tremis";
         int id, idCoinD = 0, idCoinF = 0, n=0, idMur, idPorte, idFenetre, idTremis, idPiece, idAppartement, idNiveau, idImmeuble;
         int nbrFenetre, nbrPorte,nbrRevetement;
         double a, o, x, y, ab, or;
@@ -280,16 +281,23 @@ public class Main {
                     }
                     case 6 -> {//piece
                         idPiece=Integer.parseInt(tab[4]);
-                        
+                        //Piece piecetxt = new Piece(idPiece, usage, sol, plafond, ListeMursPiece);
+                        //ListePieces.add(piecetxt);
                     }
                     case 7 -> {//appartement
                         idAppartement=Integer.parseInt(tab[4]);
+                        // Appartement appartementtxt = new Appartement();
+                        //ListeAppartements.add(appartementtxt);
                     }
                     case 8 -> {//niveau
                         idNiveau=Integer.parseInt(tab[4]);
+                        //Niveau niveautxt = new Niveau();
+                        //ListeNiveaux.add(niveautxt);
                     }
                     case 9 -> {//immeuble
                         idImmeuble=Integer.parseInt(tab[4]);
+                        //Immeuble immeubletxt = new Immeuble();
+                        //ListeImmeubles.add(immeubletxt);
                     }
                 }
                                                
