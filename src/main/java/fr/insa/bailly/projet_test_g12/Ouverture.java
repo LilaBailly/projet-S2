@@ -19,15 +19,15 @@ public class Ouverture { //est ce qu'on fait une extention de classe avec fenetr
         type = type.toLowerCase() ;
         this.idOuverture=id ;
         if (null != type) switch (type) {
-            case "Porte" -> {
+            case "porte" -> {
                 this.dimx = 0.83 ;
                 this.dimy = 2.04 ;// peut demander les dimentions à l'utilisateur
             }
-            case "Fenetre" -> {
+            case "fenetre" -> {
                 this.dimx = 0.8 ;
                 this.dimy = 0.95 ;
             }
-            case "Tremis" -> {
+            case "tremis" -> {
                 this.dimx = 0.9 ;
                 this.dimy = 1.9 ;
             }
