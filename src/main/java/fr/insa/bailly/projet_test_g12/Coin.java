@@ -45,7 +45,7 @@ public class Coin {
     }
     //méthode pour afficher le coin
     void afficher(){
-            System.out.println("Identifiant : "+this.idCoin+", Abscisse : "+this.cx+", Ordonnée :"+this.cy);
+            System.out.println("Identifiant : "+this.idCoin+" , Abscisse : "+this.cx+" , Ordonnée : "+this.cy);
     }
     @Override 
     public String toString(){

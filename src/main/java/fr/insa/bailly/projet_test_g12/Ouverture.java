@@ -19,15 +19,15 @@ public class Ouverture { //est ce qu'on fait une extention de classe avec fenetr
         type = type.toLowerCase() ;
         this.idOuverture=id ;
         if (null != type) switch (type) {
-            case "porte" -> {
+            case "Porte" -> {
                 this.dimx = 0.83 ;
                 this.dimy = 2.04 ;// peut demander les dimentions à l'utilisateur
             }
-            case "fenetre" -> {
+            case "Fenetre" -> {
                 this.dimx = 0.8 ;
                 this.dimy = 0.95 ;
             }
-            case "tremis" -> {
+            case "Tremis" -> {
                 this.dimx = 0.9 ;
                 this.dimy = 1.9 ;
             }
@@ -59,7 +59,17 @@ public class Ouverture { //est ce qu'on fait une extention de classe avec fenetr
     public double surface(){
         return dimx*dimy ;
     }
-    void afficher(){
-            System.out.println("Identifiant :"+this.idOuverture+" Dimension en x :"+this.dimx+" Dimension en y :"+this.dimy);
+    void afficherPorte(){
+            System.out.println("Porte [ Identifiant : "+this.idOuverture+" , Dimension en x : "+this.dimx+" , Dimension en y :"+this.dimy+" ]");
+    }
+    void afficherFenetre(){
+            System.out.println("Fenetre [ Identifiant : "+this.idOuverture+" , Dimension en x : "+this.dimx+" , Dimension en y :"+this.dimy+" ]");
+    }
+    void afficherTremis(){
+            System.out.println("Tremis [ Identifiant : "+this.idOuverture+" , Dimension en x : "+this.dimx+" , Dimension en y :"+this.dimy+" ]");
+    }
+    @Override 
+    public String toString(){
+        return "Ouverture [ Identifiant : "+idOuverture+" , Dimension en x : "+dimx+" , Dimension en y :"+dimy+" ]";
     }
 }
