@@ -123,7 +123,7 @@ public class Main {
         ListeMursPiece = new ArrayList<>();
         ArrayList<Piece>ListePieces;
         ListePieces = new ArrayList<>();
-        String usage="";
+        String usage;
         System.out.println("Identifiant pièce : ");
         idPiece=Lire.i();
         System.out.println("Usage de la pièce :");
@@ -175,8 +175,8 @@ public class Main {
     
     public static void main(String[] args) throws IOException {
         //String code="";
-        String Porte="porte", Fenetre="fenetre" , Tremis="tremis";
-        int id, idCoinD = 0, idCoinF = 0, n=0, idMur, idPorte, idFenetre, idTremis, idPiece, idAppartement, idNiveau, idImmeuble;
+        String Porte="", Fenetre="" , Tremis="";
+        int id, idCoinD , idCoinF , n=0, idMur, idPorte, idFenetre, idTremis, idPiece, idAppartement, idNiveau, idImmeuble;
         int nbrFenetre, nbrPorte,nbrRevetement;
         double a, o, x, y, ab, or;
         String usage="";
@@ -351,36 +351,32 @@ public class Main {
         }
         while(rep!=0){ // pas sure de ce qu'il faut mettre dans les parenthèse du while
             switch (rep){
-                case 0 :
-                    break;
-                case 1 :
-                    creationCoin();
-                    break;
-                case 2 :// porte
-                    
-                    break;
-                case 3 ://si pas fenetre standard rajouter longueur et largeur dans parenthese dans ouverture)
-                    
-                    break;
-                case 4 :// tremis
-                    
-                    break;
-                case 5 :// mur
+                case 0 -> {
+                }
+                case 1 -> creationCoin();
+                case 2 -> {
+                }
+                case 3 -> {
+                }
+                case 4 -> {
+                }
+                case 5 -> // mur
                     creationMur();
-                    break;
-                case 6 ://piece
+                case 6 -> //piece
                     creationPiece();
-                    break;
-                case 7 ://appartement
-                    
-                    break;
-                case 8 ://niveau
-                    
-                    break;
-                case 9 ://immeuble
-                    
-                    break;
+                case 7 -> {
+                }
+                case 8 -> {
+                }
+                case 9 -> {
+                }
             }
+            // porte
+            //si pas fenetre standard rajouter longueur et largeur dans parenthese dans ouverture)
+            // tremis
+            //appartement
+            //niveau
+            //immeuble
             System.out.println("Quel élément voulez vous créer ? (0:rien) (1:coin) (2:porte) (3:fenetre) (4:tremis) (5:mur) (6:piece) (7:appartement) (8:niveau) (9:immeuble)");
             rep=Lire.i();
             while (rep!=0&&rep!=1&&rep!=2&&rep!=3&&rep!=4&&rep!=5&&rep!=6&&rep!=7&&rep!=8&&rep!=9){
