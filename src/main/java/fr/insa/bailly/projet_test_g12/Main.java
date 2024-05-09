@@ -10,7 +10,7 @@ import java.io.*;
  * @author Elève
  */
 public class Main {
-    static String code="";
+    static String code=""; // pass sure de ça
     public static Coin creationCoin(){
         //String code="";
         int id;
