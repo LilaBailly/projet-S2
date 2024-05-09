@@ -85,6 +85,12 @@ public class Mur {
     public void setnbrFenetre(int nbrFenetre){
     this.nbrFenetre = nbrFenetre ;
     }
+    public int getnbrRev(){
+    return nbrRev;
+    }
+    public void setnbrRev(int nbrRev){
+    this.nbrRev = nbrRev ;
+    }
     public double gethauteur(){
     return hauteur ;
     }
