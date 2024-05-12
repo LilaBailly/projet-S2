@@ -10,52 +10,47 @@ import java.io.*;
  * @author Elève
  */
 public class Main {
-    
+    private ArrayList<Coin>ListeCoins= new ArrayList<>();
+    private ArrayList<Mur>ListeMurs= new ArrayList<>();
+    private ArrayList<Mur>ListeMursPiece= new ArrayList<>();
+    private ArrayList<Ouverture>ListePortes = new ArrayList<>();
+    private ArrayList<Ouverture>ListeFenetres = new ArrayList<>();
+    private ArrayList<Ouverture>ListeTremis = new ArrayList<>();
+    private ArrayList<Piece>ListePieces= new ArrayList<>();
+    private ArrayList<Appartement>ListeAppartements= new ArrayList<>();
+    private ArrayList<Niveau>ListeNiveaux= new ArrayList<>();
+    private String Porte = "", Fenetre = "", Tremis = "";
+
+    // Classe Resultat interne à Main
     public class Resultat {
-        private Coin creacoin;
+        private Object objet;
         private String code;
-        private Mur creamur;
-        private Piece creapiece;
 
-    public Resultat(Coin creacoin, String code) {
-        this.creacoin = creacoin;
-        this.code = code;
-    }
+        public Resultat(Object objet, String code) {
+            this.objet = objet;
+            this.code = code;
+        }
 
-    public Coin getCoin() {
-        return creacoin;
-    }
+        public Object getObjet() {
+            return objet;
+        }
 
-    public String getCode() {
-        return code;
-    }
-    public Resultat(Mur creamur, String code) {
-        this.creamur = creamur;
-        this.code = code;
+        public String getCode() {
+            return code;
+        }
     }
 
-    public Mur getMur() {
-        return creamur;
-    }
-    public Resultat(Piece creapiece, String code) {
-        this.creapiece = creapiece;
-        this.code = code;
+    public <T> Resultat creationObjet(ArrayList<T> liste, T objet, String code) {
+        liste.add(objet);
+        System.out.println(objet + " créé");
+        return new Resultat(objet, code);
     }
 
-    public Piece getPiece() {
-        return creapiece;
-    }
 
-    
-    }
-
-    public class ClasseCoin {
         public Resultat creationCoin(){
             String code="";
             int id;
             double a,o;
-            ArrayList<Coin>ListeCoins;
-            ListeCoins = new ArrayList<>();
             System.out.println("Identifiant du coin: ");
             id=Lire.i();
             for (int i=0;i<ListeCoins.size();i++){
@@ -71,131 +66,101 @@ public class Main {
             Coin creacoin=new Coin(id,a,o);
             ListeCoins.add(creacoin);
             System.out.println("Coin créé");
-            code=creacoin.toString()+code+" , \n";
-            return new Resultat(creacoin, code);
+            code=code+creacoin.toString()+" , \n";
+            return creationObjet(ListeCoins, creacoin, code);
         }
 
-    }
-    
-    
-    public class ClasseMur {
-        public Resultat creationMur(){
-            ClasseCoin classeCoin = new ClasseCoin();
-            Resultat resultatCoin = classeCoin.creationCoin();
-            Coin coin = resultatCoin.getCoin();
-            String code/*=resultatCoin.getCode()*/;
-            int idMur, exiCoinDeb, idRecherche, idCoinD, exiCoinFin,idCoinF,  nbrPorte, nbrFenetre, nbrRevetement ;
-            double x,y;
-            Coin coinDebut = null; 
-            Coin coinFin = null;
-            //Coin coinFin;
-            ArrayList<Coin>ListeCoins;
-            ListeCoins = new ArrayList<>();
-            ArrayList<Mur>ListeMurs;
-            ListeMurs = new ArrayList<>();
-            System.out.println("Identifiant du mur: ");
-            idMur=Lire.i();
-            for (int i=0;i<ListeMurs.size();i++){
-                if (ListeMurs.get(i).getidMur()==idMur){
-                    System.out.println("L'identifiant existe déja, donnez un nouvel identifiant pour le mur :");
-                    idMur=Lire.i();
-                }
-            }
-            // choix pour un coin de début déjà existant ou non
-            System.out.println("Le coin de début existe-t-il déjà ? (1 = OUI et 0 = NON)");
-            exiCoinDeb=Lire.i();
-            while (exiCoinDeb!=0&&exiCoinDeb!=1){
-                System.out.println("Valeur incorrect; veuillez donner une valeur correct : 1 = OUI et 0 = NON");
-                exiCoinDeb=Lire.i();
-            }
-            //coin début existe déjà
-            if(exiCoinDeb==1){
-                System.out.println("Identifiant du coin de début recherché: ");
-                idRecherche=Lire.i();
-                for (int i=0;i<ListeCoins.size();i++){
-                    if (ListeCoins.get(i).getidCoin()==idRecherche){
-                        idCoinD=ListeCoins.get(i).getidCoin();
-                        x=ListeCoins.get(i).getcx();
-                        y=ListeCoins.get(i).getcy();
-                        coinDebut=new Coin(idCoinD,x,y);
-                    }
-                }
-
-            }
-            // coin début n'existe pas
-            else{
-                classeCoin.creationCoin();
-                
-
-            }
-            // choix coin fin existant ou non
-            System.out.println("Le coin de fin existe-t-il déjà ? (1 = OUI et 0 = NON)");
-            exiCoinFin=Lire.i();
-            while (exiCoinFin!=0&&exiCoinFin!=1){
-                System.out.println("Valeur incorrect; veuillez donner une valeur correct : 1 = OUI et 0 = NON");
-                exiCoinFin=Lire.i();
-            }
-            // coin fin existe
-            if(exiCoinFin==1){
-                System.out.println("Identifiant du coin de fin recherché: ");
-                idRecherche=Lire.i();
-                for (int i=0;i<ListeCoins.size();i++){
-                    if (ListeCoins.get(i).getidCoin()==idRecherche){
-                        idCoinF=ListeCoins.get(i).getidCoin();
-                        x=ListeCoins.get(i).getcx();
-                        y=ListeCoins.get(i).getcy();
-                        coinFin = new Coin(idCoinF,x,y);
-                    }
-                }
-
-            }
-            // coin fin n'existe pas
-            else{
-                classeCoin.creationCoin();
-            }
-            System.out.println("Combien de porte y a-t-il ?");
-            nbrPorte=Lire.i();
-            System.out.println("Combien de fenêtre y a-t-il ?");
-            nbrFenetre=Lire.i();
-            System.out.println("Combien de revêtement y a-t-il ?");
-            nbrRevetement=Lire.i();
-            Mur creamur = new Mur(idMur,coinDebut,coinFin,nbrPorte,nbrFenetre,nbrRevetement);
-            ListeMurs.add(creamur);
-            System.out.println("Mur créé");
-            code=creamur.toString()+" , \n";
-            return new Resultat(creamur, code);
-        }
-    }
-    
-    public class ClassePiece{
-        public Resultat creationPiece(){
-        //ClasseCoin classeCoin = new ClasseCoin();
-        //Resultat resultatCoin = classeCoin.creationCoin();
-        //Coin coin = resultatCoin.getCoin();
-        //String code=resultatCoin.getCode();
-        ClasseMur classeMur = new ClasseMur();
-        Resultat resultatMur = classeMur.creationMur();
-        Mur mur1 = resultatMur.getMur();
+    public Resultat creationMur(){
         String code;
+        int idMur, exiCoinDeb, idRecherche, idCoinD, exiCoinFin,idCoinF,  nbrPorte, nbrFenetre, nbrRevetement ;
+        double x,y;
+        Coin coinDebut = null; 
+        Coin coinFin = null;
+        System.out.println("Identifiant du mur: ");
+        idMur=Lire.i();
+        for (int i=0;i<ListeMurs.size();i++){
+            if (ListeMurs.get(i).getidMur()==idMur){
+                System.out.println("L'identifiant existe déja, donnez un nouvel identifiant pour le mur :");
+                idMur=Lire.i();
+            }
+        }
+        // choix pour un coin de début déjà existant ou non
+        System.out.println("Le coin de début existe-t-il déjà ? (1 = OUI et 0 = NON)");
+        exiCoinDeb=Lire.i();
+        while (exiCoinDeb!=0&&exiCoinDeb!=1){
+            System.out.println("Valeur incorrect; veuillez donner une valeur correct : 1 = OUI et 0 = NON");
+            exiCoinDeb=Lire.i();
+        }
+        //coin début existe déjà
+        if(exiCoinDeb==1){
+            System.out.println("Identifiant du coin de début recherché: ");
+            idRecherche=Lire.i();
+            for (int i=0;i<ListeCoins.size();i++){
+                if (ListeCoins.get(i).getidCoin()==idRecherche){
+                    idCoinD=ListeCoins.get(i).getidCoin();
+                    x=ListeCoins.get(i).getcx();
+                    y=ListeCoins.get(i).getcy();
+                    coinDebut=new Coin(idCoinD,x,y);
+                }
+            }
+
+        }
+        // coin début n'existe pas
+        else{
+            creationCoin();
+        }    
+        // choix coin fin existant ou non
+        System.out.println("Le coin de fin existe-t-il déjà ? (1 = OUI et 0 = NON)");
+        exiCoinFin=Lire.i();
+        while (exiCoinFin!=0&&exiCoinFin!=1){
+            System.out.println("Valeur incorrect; veuillez donner une valeur correct : 1 = OUI et 0 = NON");
+            exiCoinFin=Lire.i();
+        }
+        // coin fin existe
+        if(exiCoinFin==1){
+            System.out.println("Identifiant du coin de fin recherché: ");
+            idRecherche=Lire.i();
+            for (int i=0;i<ListeCoins.size();i++){
+                if (ListeCoins.get(i).getidCoin()==idRecherche){
+                    idCoinF=ListeCoins.get(i).getidCoin();
+                    x=ListeCoins.get(i).getcx();
+                    y=ListeCoins.get(i).getcy();
+                    coinFin = new Coin(idCoinF,x,y);
+                }
+           }
+        }
+        // coin fin n'existe pas
+        else{
+            creationCoin();
+        }
+        System.out.println("Combien de porte y a-t-il ?");
+        nbrPorte=Lire.i();
+        System.out.println("Combien de fenêtre y a-t-il ?");
+        nbrFenetre=Lire.i();
+        System.out.println("Combien de revêtement y a-t-il ?");
+        nbrRevetement=Lire.i();
+        Mur creamur = new Mur(idMur,coinDebut,coinFin,nbrPorte,nbrFenetre,nbrRevetement);
+        ListeMurs.add(creamur);
+        System.out.println("Mur créé");
+        code=creamur.toString()+" , \n";
+        return creationObjet(ListeMurs, creamur,code);
+    }
+    
+    public Resultat creationPiece(){
+        String code;
+        Coin coinDebut, coinFin;
         int reponse;
         int  idRecherche, idMur, idPiece;
         int nbFenetre, nbPorte, nbRevetement, nbrMur, sol, plafond;
-        Coin coinDebut, coinFin;
-        ArrayList<Mur>ListeMurs;
-        ListeMurs = new ArrayList<>();
-        ArrayList<Mur>ListeMursPiece;
-        ListeMursPiece = new ArrayList<>();
-        ArrayList<Piece>ListePieces;
-        ListePieces = new ArrayList<>();
         String usage;
         System.out.println("Identifiant pièce : ");
         idPiece=Lire.i();
         for (int i=0;i<ListePieces.size();i++){
-                if (ListePieces.get(i).getidPiece()==idPiece){
-                    System.out.println("L'identifiant existe déja, donnez un nouvel identifiant pour la pièce :");
-                    idPiece=Lire.i();
-                }
+            if (ListePieces.get(i).getidPiece()==idPiece){
+                System.out.println("L'identifiant existe déja, donnez un nouvel identifiant pour la pièce :");
+                idPiece=Lire.i();
             }
+        }
         System.out.println("Usage de la pièce :");
         usage=Lire.S();
         System.out.println("Sol : ");
@@ -215,7 +180,6 @@ public class Main {
                 System.out.println("Valeur incorrect; veuillez donner une valeur correct : 1 = OUI et 0 = NON");
                 reponse=Lire.i();
             }
-            // mur existe déjà
             if(reponse==1){
                 System.out.println("Identifiant du mur recherché: ");
                 idRecherche=Lire.i();
@@ -234,30 +198,61 @@ public class Main {
             }
             //mur n'existe pas encore
             else{
-                classeMur.creationMur();
+                creationMur();
             }
-               
         }
         Piece creapiece = new Piece(idPiece, usage, sol, plafond, ListeMursPiece);
         ListePieces.add(creapiece);
         System.out.println("Piece créée");
         code=creapiece.toString()+" , \n";
-        return new Resultat(creapiece, code);
-    }
+        return creationObjet(ListePieces, creapiece,code);
     }
     
     
+    
+    
+    public void creerElement(int choix) {
+    switch (choix) {
+        case 1 -> creationCoin();
+        case 2 -> {//creationPorte();
+            }
+        case 3 -> {//creationFenetre();
+            }
+        case 4 -> {//creationTremis();
+            }
+        case 5 -> creationMur();
+        case 6 -> creationPiece();
+        case 7 -> {//creationAppartement();
+            }
+        case 8 -> {//creationNiveau();
+            }
+        case 9 -> {//creationImmeuble();
+            }
+        default -> System.out.println("Choix invalide.");
+    }
+        
+        
+        
+        
+        
+        
+        }
+    /**
+     *
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
         //création des instances des classes nécessaires
         Main mainInstance = new Main();
-        ClasseCoin classeCoin = mainInstance.new ClasseCoin();
+        /*ClasseCoin classeCoin = mainInstance.new ClasseCoin();
         ClasseMur classeMur = mainInstance.new ClasseMur();
         ClassePiece classePiece = mainInstance.new ClassePiece();
         // Appel des méthodes à travers les instances créées
         Resultat resultatCoin = classeCoin.creationCoin();
         Resultat resultatMur = classeMur.creationMur();
         Resultat resultatPiece = classePiece.creationPiece();
-        String code="";
+        */String code="";
         String Porte="", Fenetre="" , Tremis="";
         int id, idCoinD , idCoinF , n=0, idMur, idPorte, idFenetre, idTremis, idPiece, idAppartement, idNiveau, idImmeuble;
         int nbrFenetre, nbrPorte,nbrRevetement;
@@ -294,31 +289,31 @@ public class Main {
                 String ligne =reader.readLine();
                 //méthode appelée pour identification du type
                 String[] tab = ligne.split(" ");
-                if (true==ligne.startsWith("Coin")){
+                if (ligne.startsWith("Coin")){
                     n=1;
                 }
-                if(true==ligne.startsWith("Porte")){
+                if(ligne.startsWith("Porte")){
                     n=2;
                 }
-                if (true==ligne.startsWith("Fenetre")){// fenetre avec ou sans accent ?? a définir
+                if (ligne.startsWith("Fenetre")){// fenetre avec ou sans accent ?? a définir
                     n=3;
                 }
-                if (true==ligne.startsWith("Tremis")){
+                if (ligne.startsWith("Tremis")){
                     n=4;
                 }
-                if (true==ligne.startsWith("Mur")){
+                if (ligne.startsWith("Mur")){
                     n=5;
                 }
-                if (true==ligne.startsWith("Piece")){
+                if (ligne.startsWith("Piece")){
                     n=6;
                 }
-                if (true==ligne.startsWith("Appartement")){
+                if (ligne.startsWith("Appartement")){
                     n=7;
                 }
-                if (true==ligne.startsWith("Niveau")){
+                if (ligne.startsWith("Niveau")){
                     n=8;
                 }
-                if (true==ligne.startsWith("Immeuble")){
+                if (ligne.startsWith("Immeuble")){
                     n=9;
                 }
                 //switch selon le type
@@ -342,9 +337,15 @@ public class Main {
                         ListeFenetres.add(fenetretxt);
                     }
                     case 4 -> {// tremis
-                        idTremis=Integer.parseInt(tab[4]);
-                        Ouverture tremistxt = new Ouverture(Tremis,idTremis);
-                        ListeTremis.add(tremistxt);
+                        if(tab.length>=5){
+                            idTremis=Integer.parseInt(tab[4]);
+                            Ouverture tremistxt = new Ouverture(Tremis,idTremis);
+                            ListeTremis.add(tremistxt);
+                        }
+                        else {
+                            System.out.println("La ligne lue n'a pas assez d'éléments pour accéder à l'index 4.");
+                        }
+                        
                     }
                     case 5 -> {// mur
                         idMur=Integer.parseInt(tab[4]);
@@ -443,7 +444,32 @@ public class Main {
                 ListePieces.get(l).afficher();
             }
         }
-
+        
+        // Pour la liste de appartement
+        if (ListeAppartements.isEmpty()) {
+            System.out.println("La liste d'appartement est vide.");
+        } else {
+            for (int l = 0; l < ListeAppartements.size(); l++) {
+                ListeAppartements.get(l).afficher();
+            }
+        }
+        // Pour la liste de niveaux
+        if (ListeNiveaux.isEmpty()) {
+            System.out.println("La liste de niveaux est vide.");
+        } else {
+            for (int l = 0; l < ListeNiveaux.size(); l++) {
+                ListeNiveaux.get(l).afficher();
+            }
+        }/*
+        // Pour la liste d'immeubles
+        if (ListeImmeubles.isEmpty()) {
+            System.out.println("La liste d'immeubles est vide.");
+        } else {
+            for (int l = 0; l < ListeImmeubles.size(); l++) {
+                ListeImmeubles.get(l).afficher();
+            }
+        }*/
+        
         try {
             // Création d'un fileWriter pour écrire dans un fichier
             FileWriter fileWriter = new FileWriter("Liste_Batiment.txt", true);
@@ -463,47 +489,21 @@ public class Main {
 	}
         
         System.out.println("Quel élément voulez vous créer ? (0:rien) (1:coin) (2:porte) (3:fenetre) (4:tremis) (5:mur) (6:piece) (7:appartement) (8:niveau) (9:immeuble)");
-        int rep=Lire.i();
-        while (rep!=0&&rep!=1&&rep!=2&&rep!=3&&rep!=4&&rep!=5&&rep!=6&&rep!=7&&rep!=8&&rep!=9){
+        int choix=Lire.i();
+        while (choix!=0&&choix!=1&&choix!=2&&choix!=3&&choix!=4&&choix!=5&&choix!=6&&choix!=7&&choix!=8&&choix!=9){
             System.out.println("Valeur incorrect; veuillez donner une valeur correct");
-            rep=Lire.i();
+            choix=Lire.i();
         }
-        while(rep!=0){ // pas sure de ce qu'il faut mettre dans les parenthèse du while
-            switch (rep){
-                case 0 -> {
-                }
-                case 1 ->   classeCoin.creationCoin();
-                case 2 -> {// porte
-                }
-                case 3 -> {// fenetre
-                }
-                case 4 -> {// tremis
-                }
-                case 5 -> // mur
-                    classeMur.creationMur();
-                case 6 -> //piece
-                    classePiece.creationPiece();
-                case 7 -> {//appartement
-                }
-                case 8 -> {//niveau
-                }
-                case 9 -> { //immeuble
-                }
-            }
-            
-            //si pas fenetre
-           
-            System.out.println("Quel élément voulez vous créer ? (0:rien) (1:coin) (2:porte) (3:fenetre) (4:tremis) (5:mur) (6:piece) (7:appartement) (8:niveau) (9:immeuble)");
-            rep=Lire.i();
-            while (rep!=0&&rep!=1&&rep!=2&&rep!=3&&rep!=4&&rep!=5&&rep!=6&&rep!=7&&rep!=8&&rep!=9){
-                System.out.println("Valeur incorrect; veuillez donner une valeur correct");
-                rep=Lire.i();
-            }
-        }
+        do {
+            System.out.println("Quel élément voulez-vous créer ? (0: rien) (1: coin) (2: porte) (3: fenetre) (4: tremis) (5: mur) (6: piece) (7: appartement) (8: niveau) (9: immeuble)");
+            choix = Lire.i();
+            mainInstance.creerElement(choix);
+        } while (choix != 0);
         
         
     }
 }
+
         
         
         

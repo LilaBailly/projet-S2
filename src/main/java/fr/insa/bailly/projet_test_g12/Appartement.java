@@ -47,6 +47,14 @@ public void setniveauAppartement(Niveau niveauAppartement){
     }
     return s ;
 }*/
+void afficher(){
+            System.out.println("Appartement [ idAppartement : "+this.idAppartement+" , idNiveauAppartement : "+this.idNiveauAppartement+" , listePiece : "+this.listePiece+" ]");
+    }
+    @Override 
+    public String toString(){
+        return "Appartement [ idAppartement : "+idAppartement+" , idNiveauAppartement : "+idNiveauAppartement+" , listePiece : "+listePiece+" ]";
+    }
+
 //afficher()
 //montantRevement()
 }

@@ -13,7 +13,9 @@ public class Ouverture { //est ce qu'on fait une extention de classe avec fenetr
     private int idOuverture ;
     private double dimx ;
     private double dimy ;
-    
+    private double surfaceFenetre;
+    private double surfacePorte;
+    private double surfaceTremis;
     //déclaration du constructeur
     Ouverture (String type, int id) { //si pas standard, mettre autres para entrée
         type = type.toLowerCase() ;
@@ -22,14 +24,17 @@ public class Ouverture { //est ce qu'on fait une extention de classe avec fenetr
             case "porte" -> {
                 this.dimx = 0.83 ;
                 this.dimy = 2.04 ;// peut demander les dimentions à l'utilisateur
+                this.surfacePorte = this.dimx*this.dimy;
             }
             case "fenetre" -> {
                 this.dimx = 0.8 ;
                 this.dimy = 0.95 ;
+                this.surfaceFenetre = this.dimx*this.dimy;
             }
             case "tremis" -> {
                 this.dimx = 0.9 ;
                 this.dimy = 1.9 ;
+                this.surfaceTremis = this.dimx*this.dimy;
             }
             default -> {
             }
@@ -49,12 +54,29 @@ public class Ouverture { //est ce qu'on fait une extention de classe avec fenetr
         this.dimx = dimx ;
     }
     public double getdimy(){
-        return dimx ;
+        return dimy ;
     }
     public void setdimy (double dimy) {
         this.dimy = dimy ;
     }
-    
+    public double getsurfaceFenetre(){
+        return surfaceFenetre;
+    }
+    public void setsurfaceFenetre(double surfaceFenetre){
+        this.surfaceFenetre = surfaceFenetre;
+    }
+    public double getsurfacePorte(){
+        return surfacePorte;
+    }
+    public void setsurfacePorte(double surfacePorte){
+        this.surfacePorte = surfacePorte;
+    }
+    public double getsurfaceTremis(){
+        return surfaceTremis;
+    }
+    public void setsurfaceTremis(double surfaceTremis){
+        this.surfaceTremis = surfaceTremis;
+    }
     //méthode pour calculer la surface d'une ouverture
     public double surface(){
         return dimx*dimy ;
