@@ -19,8 +19,9 @@ public class Main {
     private ArrayList<Piece>ListePieces= new ArrayList<>();
     private ArrayList<Appartement>ListeAppartements= new ArrayList<>();
     private ArrayList<Niveau>ListeNiveaux= new ArrayList<>();
+    private ArrayList<Immeuble>ListeImmeubles= new ArrayList<>();
     private String Porte = "", Fenetre = "", Tremis = "";
-
+    
     // Classe Resultat interne à Main
     public class Resultat {
         private Object objet;
@@ -279,8 +280,8 @@ public class Main {
         ListeAppartements = new ArrayList<>();
         ArrayList<Niveau>ListeNiveaux;
         ListeNiveaux = new ArrayList<>();
-        //ArrayList<Immeuble>ListeImmeubles;
-        //ListeImmeuble = new ArrayList<>();
+        ArrayList<Immeuble>ListeImmeubles;
+        ListeImmeubles = new ArrayList<>();
         
         try {
         //création d'un buffered reader qui utilise un filereader pour lire le fichier
@@ -460,7 +461,7 @@ public class Main {
             for (int l = 0; l < ListeNiveaux.size(); l++) {
                 ListeNiveaux.get(l).afficher();
             }
-        }/*
+        }
         // Pour la liste d'immeubles
         if (ListeImmeubles.isEmpty()) {
             System.out.println("La liste d'immeubles est vide.");
@@ -468,7 +469,7 @@ public class Main {
             for (int l = 0; l < ListeImmeubles.size(); l++) {
                 ListeImmeubles.get(l).afficher();
             }
-        }*/
+        }
         
         try {
             // Création d'un fileWriter pour écrire dans un fichier

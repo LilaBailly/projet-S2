@@ -36,6 +36,9 @@ public class Immeuble extends Batiment {
         }
         return s;
     }*/
+    public void afficher(){
+            System.out.println("Immeuble [ idImmeuble : "+this.getidBatiment()+" , listeNiveaux : "+this.listeNiveaux+" ]");
+    }
     
     @Override
     public String toString(){
