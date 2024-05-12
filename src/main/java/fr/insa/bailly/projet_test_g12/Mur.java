@@ -97,12 +97,12 @@ public class Mur {
     public void sethauteur() {
     this.hauteur = 2.5 ; //à changer, mettre hauteur du niveau, provisoire pour une pièce
     } 
-    void afficher(){
-            System.out.println("Mur [ idMur : "+this.idMur+" , coinDebut : "+coinDebut+" , coinFin : "+coinFin+" , nbrPortes : "+this.nbrPorte+" , nbrFenetre : "+this.nbrFenetre+" , nbrRevetement : "+this.nbrRev+" ]");
+    void afficherMur(){
+            System.out.println("Mur [ idMur : "+this.idMur+" , coinDebut : "+getcoinDebut()+" , coinFin : "+getcoinFin()+" , nbrPortes : "+this.nbrPorte+" , nbrFenetre : "+this.nbrFenetre+" , nbrRevetement : "+this.nbrRev+" ]");
     }
     @Override 
     public String toString(){
-        return "Mur [ idMur : "+idMur+" , coinDebut : "+coinDebut+" , coinFin : "+coinFin+" , nbrPortes : "+nbrPorte+" , nbrFenetre : "+nbrFenetre+" , nbrRevetement : "+nbrRev+" ]";
+        return "Mur [ idMur : "+idMur+" , coinDebut : "+getcoinDebut()+" , coinFin : "+getcoinFin()+" , nbrPortes : "+nbrPorte+" , nbrFenetre : "+nbrFenetre+" , nbrRevetement : "+nbrRev+" ]";
     }
     
 }

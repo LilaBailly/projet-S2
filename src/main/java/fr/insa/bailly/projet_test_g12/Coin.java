@@ -44,7 +44,7 @@ public class Coin {
     this.cy = cy ;
     }
     //méthode pour afficher le coin
-    void afficher(){
+    void afficherCoin(){
             System.out.println("Identifiant : "+this.idCoin+" , Abscisse : "+this.cx+" , Ordonnée : "+this.cy);
     }
     @Override 

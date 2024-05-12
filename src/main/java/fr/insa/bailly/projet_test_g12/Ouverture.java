@@ -82,13 +82,13 @@ public class Ouverture { //est ce qu'on fait une extention de classe avec fenetr
         return dimx*dimy ;
     }
     void afficherPorte(){
-            System.out.println("Porte [ Identifiant : "+this.idOuverture+" , Dimension en x : "+this.dimx+" , Dimension en y :"+this.dimy+" ]");
+            System.out.println("Porte [ Identifiant : "+this.idOuverture+" , Dimension en x : 0.83 , Dimension en y : 2.04 ]");
     }
     void afficherFenetre(){
-            System.out.println("Fenetre [ Identifiant : "+this.idOuverture+" , Dimension en x : "+this.dimx+" , Dimension en y :"+this.dimy+" ]");
+            System.out.println("Fenetre [ Identifiant : "+this.idOuverture+" , Dimension en x : 0.8 , Dimension en y : 0.95 ]");
     }
     void afficherTremis(){
-            System.out.println("Tremis [ Identifiant : "+this.idOuverture+" , Dimension en x : "+this.dimx+" , Dimension en y :"+this.dimy+" ]");
+            System.out.println("Tremis [ Identifiant : "+this.idOuverture+" , Dimension en x : 0.9 , Dimension en y : 1.9 ]");
     }
     @Override 
     public String toString(){

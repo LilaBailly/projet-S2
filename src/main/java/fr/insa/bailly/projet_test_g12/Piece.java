@@ -57,7 +57,7 @@ public void setusage(String usage) {
 }
 //surface d'une pièce égale surface au sol
 
-void afficher(){
+void afficherPiece(){
             System.out.println("idPiece [ idPiece : "+this.idPiece+" , usage : "+this.usage+" , sol : "+this.sol+" , plafond : "+this.plafond+" , ListeMurs : "+listeMurs+" ]");
     }
     @Override 

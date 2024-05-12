@@ -96,20 +96,22 @@ public class Main {
         if(exiCoinDeb==1){
             System.out.println("Identifiant du coin de début recherché: ");
             idRecherche=Lire.i();
-            for (int i=0;i<ListeCoins.size();i++){
-                if (ListeCoins.get(i).getidCoin()==idRecherche){
-                    idCoinD=ListeCoins.get(i).getidCoin();
-                    x=ListeCoins.get(i).getcx();
-                    y=ListeCoins.get(i).getcy();
-                    coinDebut=new Coin(idCoinD,x,y);
+            for (Coin c : ListeCoins) {
+                if (c.getidCoin() == idRecherche) {
+                    coinDebut = c;
+                    break;
                 }
             }
-
-        }
-        // coin début n'existe pas
-        else{
+            if (coinDebut == null) {
+                // Si le coin de début n'est pas trouvé, affichez un message d'erreur ou gérez-le autrement
+                System.out.println("Le coin de début recherché n'a pas été trouvé.");
+            }
+        } 
+        else {
+            // Si le coin de début n'existe pas, créez-le
             creationCoin();
-        }    
+        }
+        
         // choix coin fin existant ou non
         System.out.println("Le coin de fin existe-t-il déjà ? (1 = OUI et 0 = NON)");
         exiCoinFin=Lire.i();
@@ -121,15 +123,17 @@ public class Main {
         if(exiCoinFin==1){
             System.out.println("Identifiant du coin de fin recherché: ");
             idRecherche=Lire.i();
-            for (int i=0;i<ListeCoins.size();i++){
-                if (ListeCoins.get(i).getidCoin()==idRecherche){
-                    idCoinF=ListeCoins.get(i).getidCoin();
-                    x=ListeCoins.get(i).getcx();
-                    y=ListeCoins.get(i).getcy();
-                    coinFin = new Coin(idCoinF,x,y);
+            for (Coin c : ListeCoins) {
+                if (c.getidCoin() == idRecherche) {
+                    coinFin = c;
+                    break;
                 }
-           }
-        }
+            }
+            if (coinFin == null) {
+                // Si le coin de début n'est pas trouvé, affichez un message d'erreur ou gérez-le autrement
+                System.out.println("Le coin de fin recherché n'a pas été trouvé.");
+            }
+        } 
         // coin fin n'existe pas
         else{
             creationCoin();
@@ -253,13 +257,14 @@ public class Main {
         Resultat resultatCoin = classeCoin.creationCoin();
         Resultat resultatMur = classeMur.creationMur();
         Resultat resultatPiece = classePiece.creationPiece();
-        */String code="";
+        */
+        String code="";
         String Porte="", Fenetre="" , Tremis="";
         int id, idCoinD , idCoinF , n=0, idMur, idPorte, idFenetre, idTremis, idPiece, idAppartement, idNiveau, idImmeuble;
         int nbrFenetre, nbrPorte,nbrRevetement;
         double a, o, x, y, ab, or;
         String usage="";
-        Coin coinDebut = null, coinFin = null, coinD, coinF;
+        Coin coinD, coinF;
         //Déclaraion des ArrayList
         ArrayList<Coin>ListeCoins;
         // Initialisation des listes
@@ -338,14 +343,20 @@ public class Main {
                         ListeFenetres.add(fenetretxt);
                     }
                     case 4 -> {// tremis
-                        if(tab.length>=5){
-                            idTremis=Integer.parseInt(tab[4]);
-                            Ouverture tremistxt = new Ouverture(Tremis,idTremis);
-                            ListeTremis.add(tremistxt);
-                        }
+                        if (tab.length >= 5) {
+                            try {
+                                idTremis = Integer.parseInt(tab[4]);
+                                Ouverture tremistxt = new Ouverture(Tremis, idTremis);
+                                ListeTremis.add(tremistxt);
+                            } catch (NumberFormatException e) {
+                                System.out.println("Erreur lors de la conversion d'une valeur en entier pour le tremis.");
+                                e.printStackTrace();
+                            }
+                        } 
                         else {
                             System.out.println("La ligne lue n'a pas assez d'éléments pour accéder à l'index 4.");
                         }
+                        break;
                         
                     }
                     case 5 -> {// mur
@@ -361,7 +372,7 @@ public class Main {
                         nbrPorte=Integer.parseInt(tab[42]);//Valeur dans tab[] a verifier
                         nbrFenetre=Integer.parseInt(tab[46]);//Valeur dans tab[] a verifier
                         nbrRevetement=Integer.parseInt(tab[50]);//Valeur dans tab[] a verifier 
-                        Mur murtxt = new Mur(idMur,coinDebut,coinFin,nbrPorte,nbrFenetre,nbrRevetement);
+                        Mur murtxt = new Mur(idMur,coinD,coinF,nbrPorte,nbrFenetre,nbrRevetement);
                         ListeMurs.add(murtxt);
                     }
                     case 6 -> {//piece
@@ -396,8 +407,8 @@ public class Main {
         if (ListeCoins.isEmpty()) {
             System.out.println("La liste de coins est vide.");
         } else {
-            for (int k = 0; k < ListeCoins.size(); k++) {
-                ListeCoins.get(k).afficher();
+            for (Coin coin : ListeCoins) {
+                coin.afficherCoin();
             }
         }
 
@@ -405,8 +416,8 @@ public class Main {
         if (ListePortes.isEmpty()) {
             System.out.println("La liste de portes est vide.");
         } else {
-            for (int k = 0; k < ListePortes.size(); k++) {
-                ListePortes.get(k).afficherPorte();
+            for (Ouverture porte : ListePortes) {
+                porte.afficherPorte();
             }
         }
 
@@ -414,8 +425,8 @@ public class Main {
         if (ListeFenetres.isEmpty()) {
             System.out.println("La liste de fenêtres est vide.");
         } else {
-            for (int k = 0; k < ListeFenetres.size(); k++) {
-                ListeFenetres.get(k).afficherFenetre();
+            for (Ouverture fenetre : ListeFenetres) {
+                fenetre.afficherFenetre();
             }
         }
 
@@ -423,8 +434,8 @@ public class Main {
         if (ListeTremis.isEmpty()) {
             System.out.println("La liste de tremis est vide.");
         } else {
-            for (int k = 0; k < ListeTremis.size(); k++) {
-                ListeTremis.get(k).afficherTremis();
+            for (Ouverture tremis : ListeTremis) {
+                tremis.afficherTremis();
             }
         }
 
@@ -432,8 +443,8 @@ public class Main {
         if (ListeMurs.isEmpty()) {
             System.out.println("La liste de murs est vide.");
         } else {
-            for (int l = 0; l < ListeMurs.size(); l++) {
-                ListeMurs.get(l).afficher();
+            for (Mur mur : ListeMurs) {
+                mur.afficherMur();
             }
         }
 
@@ -441,8 +452,8 @@ public class Main {
         if (ListePieces.isEmpty()) {
             System.out.println("La liste de pièces est vide.");
         } else {
-            for (int l = 0; l < ListePieces.size(); l++) {
-                ListePieces.get(l).afficher();
+            for (Piece piece : ListePieces) {
+                piece.afficherPiece();
             }
         }
         
@@ -450,24 +461,24 @@ public class Main {
         if (ListeAppartements.isEmpty()) {
             System.out.println("La liste d'appartement est vide.");
         } else {
-            for (int l = 0; l < ListeAppartements.size(); l++) {
-                ListeAppartements.get(l).afficher();
+            for (Appartement appartement : ListeAppartements) {
+                appartement.afficherAppartement();
             }
         }
         // Pour la liste de niveaux
         if (ListeNiveaux.isEmpty()) {
             System.out.println("La liste de niveaux est vide.");
         } else {
-            for (int l = 0; l < ListeNiveaux.size(); l++) {
-                ListeNiveaux.get(l).afficher();
+            for (Niveau niveau : ListeNiveaux) {
+                niveau.afficherNiveau();
             }
         }
         // Pour la liste d'immeubles
         if (ListeImmeubles.isEmpty()) {
             System.out.println("La liste d'immeubles est vide.");
         } else {
-            for (int l = 0; l < ListeImmeubles.size(); l++) {
-                ListeImmeubles.get(l).afficher();
+            for (Immeuble immeuble : ListeImmeubles) {
+                immeuble.afficherImmeuble();
             }
         }
         

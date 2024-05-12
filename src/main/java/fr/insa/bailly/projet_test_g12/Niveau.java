@@ -45,7 +45,7 @@ public void setlisteAppart(ArrayList<Appartement> listeAppart){
         return s ;
 }*/
 //afficher
-void afficher(){
+void afficherNiveau(){
             System.out.println("Niveau [ idNiveau : "+this.idNiveau+" , hauteursousPlafond : "+this.hauteursousPlafond+" , listeAppart : "+this.listeAppart+" ]");
     }
     @Override 
