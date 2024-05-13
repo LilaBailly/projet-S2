@@ -49,7 +49,7 @@ public class Main {
 
 
         public Resultat creationCoin(){
-            String code="";
+            String code;
             int id;
             double a,o;
             System.out.println("Identifiant du coin: ");
@@ -66,12 +66,12 @@ public class Main {
             o=Lire.d();
             Coin creacoin=new Coin(id,a,o);
             ListeCoins.add(creacoin);
-            code=code+creacoin.toString()+" , \n";
+            code=creacoin.toString()+" , \n";
             return creationObjet(ListeCoins, creacoin, code);
         }
     
     public Resultat creationMur(){
-        String code;
+        String code="";
         int idMur, exiCoinDeb, idRecherche, idCoinD, exiCoinFin,idCoinF,  nbrPorte, nbrFenetre, nbrRevetement ;
         double x,y;
         Coin coinDebut = null; //a modifier car problème plus tard dans un if
@@ -108,7 +108,9 @@ public class Main {
         } 
         else {
             // Si le coin de début n'existe pas, créez-le
-            creationCoin();
+            Resultat resCoin = creationCoin();
+            code += resCoin.getCode();
+            coinDebut = (Coin) resCoin.getObjet();
         }
         
         // choix coin fin existant ou non
@@ -135,7 +137,9 @@ public class Main {
         } 
         // coin fin n'existe pas
         else{
-            creationCoin();
+            Resultat resCoin = creationCoin(); // Création du coin
+            code += resCoin.getCode(); // Ajout du code du coin à la variable code
+            coinFin = (Coin) resCoin.getObjet();
         }
         System.out.println("Combien de porte y a-t-il ?");
         nbrPorte=Lire.i();
@@ -145,7 +149,7 @@ public class Main {
         nbrRevetement=Lire.i();
         Mur creamur = new Mur(idMur,coinDebut,coinFin,nbrPorte,nbrFenetre,nbrRevetement);
         ListeMurs.add(creamur);
-        code=creamur.toString()+" , \n";
+        code+=creamur.toString()+" , \n";
         return creationObjet(ListeMurs, creamur,code);
     }
     
@@ -296,28 +300,58 @@ public class Main {
     }
 
     
-    public void creerElement(int choix) {
+    public String creerElement(int choix) {
+        String code="";
     switch (choix) {
-        case 1 -> creationCoin();
-        case 2 -> creationPorte();
-        case 3 -> creationFenetre();
-        case 4 -> creationTremis();
-        case 5 -> creationMur();
-        case 6 -> creationPiece();
-        case 7 -> {//creationAppartement();
+        case 1 -> {
+            Resultat resultat = creationCoin();
+            code = resultat.getCode();
+            break;
+        }
+        case 2 ->{
+            Resultat resultat = creationPorte();
+            code = resultat.getCode();
+            break;
+        }
+        case 3 -> {
+            Resultat resultat = creationFenetre();
+            code = resultat.getCode();
+            break;
+        }
+        case 4 ->{
+            Resultat resultat = creationTremis();
+            code = resultat.getCode();
+            break;
+        }
+        case 5 ->{
+            Resultat resultat = creationMur();
+            code = resultat.getCode();
+            break;
+        }
+        case 6 -> {
+            Resultat resultat = creationPiece();
+            code = resultat.getCode();
+            break;
+        }
+        case 7 -> {
+           //Resultat resultat = creationAppartement();
+            //code = resultat.getCode();
+            //break;
             }
-        case 8 -> {//creationNiveau();
+        case 8 -> {
+            //Resultat resultat = creationNiveau();
+            //code = resultat.getCode();
+            //break;
             }
-        case 9 -> {//creationImmeuble();
+        case 9 -> {
+            //Resultat resultat = creationImmeuble();
+            //code = resultat.getCode();
+            //break;
             }
         default -> System.out.println("Choix invalide.");
     }
-        
-        
-        
-        
-        
-        
+     
+    return code;    
         }
     /**
      *
@@ -340,20 +374,43 @@ public class Main {
         String code="";
         String Porte="", Fenetre="" , Tremis="";
         int id, idCoinD , idCoinF , n=0, idMur, idPorte, idFenetre, idTremis, idPiece, idAppartement, idNiveau, idImmeuble;
-        int nbrFenetre, nbrPorte,nbrRevetement;
+        int nbrFenetre, nbrPorte,nbrRevetement, choix;
         double a, o, x, y, ab, or;
         String usage="";
         Coin coinD, coinF;
         
         
         try {
-        //création d'un buffered reader qui utilise un filereader pour lire le fichier
+            File tempFile = new File("temp.txt");
+            //création d'un buffered reader qui utilise un filereader pour lire le fichier
             BufferedReader reader = new BufferedReader(new FileReader("Liste_Batiment.txt"));
+            // Créer une liste pour stocker les lignes non vides
+            String nonEmptyLines = "", line;
+            while ((line = reader.readLine()) != null) {
+                // Vérifier si la ligne est vide
+                if (!line.trim().isEmpty()) {
+                    // Si la ligne n'est pas vide, l'ajouter à la liste
+                    nonEmptyLines += line + "\n";
+                }
+            }
+            reader.close();
+            // Écrire les lignes non vides dans le fichier temporaire
+            FileWriter fileWriter = new FileWriter(tempFile);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.write(nonEmptyLines);
+            bufferedWriter.close();
+            // Renommer le fichier temporaire en utilisant le nom du fichier d'origine
+            File originalFile = new File("Liste_Batiment.txt");
+            if (!tempFile.renameTo(originalFile)) {
+                System.out.println("Impossible de renommer le fichier temporaire.");
+            }
+            reader = new BufferedReader(new FileReader(originalFile));
             while (reader.ready()) {
-                String ligne =reader.readLine();
+                String ligne = reader.readLine();
                 //System.out.println("Ligne lue : " + ligne); 
                 //méthode appelée pour identification du type
-                String[] tab = ligne.split(" ");
+                
+                
                 if (ligne.startsWith("Coin")){
                     n=1;
                 }
@@ -381,83 +438,107 @@ public class Main {
                 if (ligne.startsWith("Immeuble")){
                     n=9;
                 }
-                //switch selon le type
-                switch (n){
-                    case 1 -> {//coin
-                        id=Integer.parseInt(tab[4]);
-                        a=Double.parseDouble(tab[8]);
-                        o=Double.parseDouble(tab[12]);
-                        Coin cointxt= new Coin(id,a,o) ;
-                        ListeCoins.add(cointxt);
-                        break;
-                    }
-                    case 2 ->{ // porte
-                        idPorte=Integer.parseInt(tab[4]);
-                        Ouverture portetxt = new Ouverture(Porte,idPorte);
-                        ListePortes.add(portetxt);
-                        break;
-                    }
+                String[] tab = ligne.split(" ");
+                if (tab.length>0){
+                    String type = tab[0];
+                
+                    //switch selon le type
+                    switch (type){
+                        case "Coin" -> {//coin
+                            if (tab.length >= 13) {
+                                id = Integer.parseInt(tab[4]);
+                                a = Double.parseDouble(tab[8]);
+                                o = Double.parseDouble(tab[12]);
+                                Coin cointxt = new Coin(id, a, o);
+                                ListeCoins.add(cointxt);
+                            }
+                            break;
+                        }
+                        case "Porte" ->{ // porte
+                            if (tab.length >= 7) {
+                                idPorte = Integer.parseInt(tab[4]);
+                                Ouverture portetxt = new Ouverture(Porte, idPorte);
+                                ListePortes.add(portetxt);
+                            }
+                            break;
+                        }
 
-                    case 3 -> {//si pas fenetre standard rajouter longueur et largeur dans parenthese dans ouverture)
-                        idFenetre=Integer.parseInt(tab[4]);
-                        Ouverture fenetretxt = new Ouverture(Fenetre,idFenetre);
-                        ListeFenetres.add(fenetretxt);
-                        break;
+                        case "Fenetre" -> {//si pas fenetre standard rajouter longueur et largeur dans parenthese dans ouverture)
+                            if (tab.length >= 7) {
+                                idFenetre = Integer.parseInt(tab[4]);
+                                Ouverture fenetretxt = new Ouverture(Fenetre, idFenetre);
+                                ListeFenetres.add(fenetretxt);
+                            }
+                            break;
+                        }
+                        case "Tremis" -> {// tremis
+                           if (tab.length >= 7) {
+                                idTremis = Integer.parseInt(tab[4]);
+                                Ouverture tremistxt = new Ouverture(Tremis, idTremis);
+                                ListeTremis.add(tremistxt);
+                            }  
+                            break;
+
+                        }
+                        case "Mur" -> {// mur
+                            if (tab.length >= 51) {
+                                idMur = Integer.parseInt(tab[4]);
+                                idCoinD = Integer.parseInt(tab[12]);
+                                ab = Double.parseDouble(tab[16]);
+                                or = Double.parseDouble(tab[20]);
+                                coinD = new Coin(idCoinD, ab, or);
+                                idCoinF = Integer.parseInt(tab[29]);
+                                ab = Double.parseDouble(tab[33]);
+                                or = Double.parseDouble(tab[37]);
+                                coinF = new Coin(idCoinF, ab, or);
+                                nbrPorte = Integer.parseInt(tab[42]);
+                                nbrFenetre = Integer.parseInt(tab[46]);
+                                nbrRevetement = Integer.parseInt(tab[50]);
+                                Mur murtxt = new Mur(idMur, coinD, coinF, nbrPorte, nbrFenetre, nbrRevetement);
+                                ListeMurs.add(murtxt);
+                            }
+                            break;
+                        }
+                        case "Piece" -> {//piece
+                            if (tab.length >= 51) {// plus que 51 index
+                                idPiece = Integer.parseInt(tab[4]);
+                                 //Piece piecetxt = new Piece(idPiece, usage, sol, plafond, ListeMursPiece);
+                                //ListePieces.add(piecetxt);
+                            }
+                            break;
+                        }
+                        case "Appartement" -> {//appartement
+                            if (tab.length >= 51) {// plus que 51 index
+                                idAppartement = Integer.parseInt(tab[4]);
+                                // Appartement appartementtxt = new Appartement();
+                                //ListeAppartements.add(appartementtxt);
+                            
+                            }
+                            break;
+                        }
+                        case "Niveau" -> {//niveau
+                            if (tab.length >= 51) {// plus que 51 index
+                            idNiveau = Integer.parseInt(tab[4]);
+                            //Niveau niveautxt = new Niveau();
+                            //ListeNiveaux.add(niveautxt);
+                            
+                            }
+                            break;
+                        }
+                        case "Immeuble" -> {//immeuble
+                            if (tab.length >= 51) {// plus que 51 index
+                                idImmeuble = Integer.parseInt(tab[4]);
+                                //Immeuble immeubletxt = new Immeuble();
+                                //ListeImmeubles.add(immeubletxt);
+                            }
+                            break;
+                        }
+                        default -> {
+                            // Gestion par défaut si le type n'est pas reconnu
+                            System.out.println("Le fichier est vide.");
+                        }
                     }
-                    case 4 -> {// tremis
-                        idTremis = Integer.parseInt(tab[4]);
-                        Ouverture tremistxt = new Ouverture(Tremis, idTremis);
-                        ListeTremis.add(tremistxt);   
-                        break;
-                        
-                    }
-                    case 5 -> {// mur
-                        idMur=Integer.parseInt(tab[4]);
-                        idCoinD=Integer.parseInt(tab[12]);
-                        ab=Double.parseDouble(tab[16]);
-                        or=Double.parseDouble(tab[20]);
-                        coinD = new Coin(idCoinD,ab,or);
-                        idCoinF=Integer.parseInt(tab[29]);
-                        ab=Double.parseDouble(tab[33]);
-                        or=Double.parseDouble(tab[37]);
-                        coinF = new Coin(idCoinF,ab,or);
-                        nbrPorte=Integer.parseInt(tab[42]);//Valeur dans tab[] a verifier
-                        nbrFenetre=Integer.parseInt(tab[46]);//Valeur dans tab[] a verifier
-                        nbrRevetement=Integer.parseInt(tab[50]);//Valeur dans tab[] a verifier 
-                        Mur murtxt = new Mur(idMur,coinD,coinF,nbrPorte,nbrFenetre,nbrRevetement);
-                        ListeMurs.add(murtxt);
-                        break;
-                    }
-                    case 6 -> {//piece
-                        idPiece=Integer.parseInt(tab[4]);
-                        //Piece piecetxt = new Piece(idPiece, usage, sol, plafond, ListeMursPiece);
-                        //ListePieces.add(piecetxt);
-                        //break;
-                    }
-                    case 7 -> {//appartement
-                        idAppartement=Integer.parseInt(tab[4]);
-                        // Appartement appartementtxt = new Appartement();
-                        //ListeAppartements.add(appartementtxt);
-                        //break;
-                    }
-                    case 8 -> {//niveau
-                        idNiveau=Integer.parseInt(tab[4]);
-                        //Niveau niveautxt = new Niveau();
-                        //ListeNiveaux.add(niveautxt);
-                        //break;
-                    }
-                    case 9 -> {//immeuble
-                        idImmeuble=Integer.parseInt(tab[4]);
-                        //Immeuble immeubletxt = new Immeuble();
-                        //ListeImmeubles.add(immeubletxt);
-                        //break;
-                    }
-                    default -> {
-                        // Gestion par défaut si le type n'est pas reconnu
-                        System.out.println("Le fichier est vide.");
-                    }
-                }
-                                               
+                }                               
                 
             }
         } 
@@ -545,20 +626,22 @@ public class Main {
         
         
         
-        System.out.println("Quel élément voulez vous créer ? (0:rien) (1:coin) (2:porte) (3:fenetre) (4:tremis) (5:mur) (6:piece) (7:appartement) (8:niveau) (9:immeuble)");
-        int choix=Lire.i();
-        while (choix!=0&&choix!=1&&choix!=2&&choix!=3&&choix!=4&&choix!=5&&choix!=6&&choix!=7&&choix!=8&&choix!=9){
-            System.out.println("Valeur incorrect; veuillez donner une valeur correct");
-            choix=Lire.i();
-        }
+        
         do {
             System.out.println("Quel élément voulez-vous créer ? (0: rien) (1: coin) (2: porte) (3: fenetre) (4: tremis) (5: mur) (6: piece) (7: appartement) (8: niveau) (9: immeuble)");
             choix = Lire.i();
+            while (choix!=0&&choix!=1&&choix!=2&&choix!=3&&choix!=4&&choix!=5&&choix!=6&&choix!=7&&choix!=8&&choix!=9){
+                System.out.println("Valeur incorrect; veuillez donner une valeur correct");
+                choix=Lire.i();
+            }
             if (choix != 0) {
-                mainInstance.creerElement(choix);
+                String elementCode = mainInstance.creerElement(choix);
+                code+=elementCode;
             }
         } while (choix != 0);
+        
         System.out.println("Contenu à écrire dans le fichier : " + code);
+        
         try {
             // Création d'un fileWriter pour écrire dans un fichier
             FileWriter fileWriter = new FileWriter("Liste_Batiment.txt", true);
@@ -567,8 +650,9 @@ public class Main {
             BufferedWriter writer = new BufferedWriter(fileWriter);
 
             // ajout d'un texte à notre fichier
-            writer.write(code);
             writer.newLine();
+            writer.write(code);
+            
             
             // Retour à la ligne
             
