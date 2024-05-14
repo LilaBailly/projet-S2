@@ -507,9 +507,9 @@ public class Main {
             break;
             }
         case 9 -> {
-            //Resultat resultat = creationImmeuble();
-            //code = resultat.getCode();
-            //break;
+            Resultat resultat = creationBatiment();
+            code = resultat.getCode();
+            break;
             }
         default -> System.out.println("Choix invalide.");
     }
@@ -791,7 +791,7 @@ public class Main {
         
         
         do {
-            System.out.println("Quel élément voulez-vous créer ? (0: rien) (1: coin) (2: porte) (3: fenetre) (4: tremis) (5: mur) (6: piece) (7: appartement) (8: niveau) (9: immeuble)");
+            System.out.println("Quel élément voulez-vous créer ? (0: rien) (1: coin) (2: porte) (3: fenetre) (4: tremis) (5: mur) (6: piece) (7: appartement) (8: niveau) (9: batiment)");
             choix = Lire.i();
             while (choix!=0&&choix!=1&&choix!=2&&choix!=3&&choix!=4&&choix!=5&&choix!=6&&choix!=7&&choix!=8&&choix!=9){
                 System.out.println("Valeur incorrect; veuillez donner une valeur correct");
