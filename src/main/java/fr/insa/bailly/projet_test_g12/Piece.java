@@ -58,11 +58,11 @@ public void setusage(String usage) {
 //surface d'une pièce égale surface au sol
 
 void afficherPiece(){
-            System.out.println("idPiece [ idPiece : "+this.idPiece+" , usage : "+this.usage+" , sol : "+this.sol+" , plafond : "+this.plafond+" , ListeMurs : "+listeMurs+" ]");
+            System.out.println(" Piece [ idPiece : "+this.idPiece+" , usage : "+this.usage+" , sol : "+this.sol+" , plafond : "+this.plafond+" , ListeMurs : "+listeMurs+" ]");
     }
     @Override 
     public String toString(){
-        return "idPiece [ idPiece : "+idPiece+" , usage : "+usage+" , sol : "+sol+" , plafond : "+plafond+" , ListeMurs : "+listeMurs+" ]";
+        return " Piece [ idPiece : "+idPiece+" , usage : "+usage+" , sol : "+sol+" , plafond : "+plafond+" , ListeMurs : "+listeMurs+" ]";
     }
 
 }

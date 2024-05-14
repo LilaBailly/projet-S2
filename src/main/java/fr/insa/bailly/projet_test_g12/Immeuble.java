@@ -21,6 +21,13 @@ public class Immeuble extends Batiment {
         this.listeNiveaux = listeNiveaux ;
     }
     
+    public int getidImmeuble(){
+        return idBatiment ;
+    }
+    public void setidImmeuble(int idBatiment) {
+        this.idBatiment = idBatiment ;
+    }
+    
     public ArrayList<Niveau> getListeNiveaux(){
         return listeNiveaux;
     }

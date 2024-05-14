@@ -20,6 +20,7 @@ public class Main {
     private ArrayList<Appartement>ListeAppartements= new ArrayList<>();
     private ArrayList<Niveau>ListeNiveaux= new ArrayList<>();
     private ArrayList<Immeuble>ListeImmeubles= new ArrayList<>();
+    private ArrayList<Batiment>ListeBatiments= new ArrayList<>();
     private String Porte = "", Fenetre = "", Tremis = "";
     
     // Classe Resultat interne à Main
@@ -73,7 +74,7 @@ public class Main {
     public Resultat creationMur(){
         String code="";
         int idMur, exiCoinDeb, idRecherche, idCoinD, exiCoinFin,idCoinF,  nbrPorte, nbrFenetre, nbrRevetement ;
-        double x,y;
+        //double x,y;
         Coin coinDebut = null; //a modifier car problème plus tard dans un if
         Coin coinFin = null; //a modifier car problème plus tard dans un if
         System.out.println("Identifiant du mur: ");
@@ -98,6 +99,7 @@ public class Main {
             for (Coin c : ListeCoins) {
                 if (c.getidCoin() == idRecherche) {
                     coinDebut = c;
+                    
                     break;
                 }
             }
@@ -206,7 +208,8 @@ public class Main {
             } 
             //mur n'existe pas encore
             else{
-                creationMur();
+                Resultat resMur = creationMur();
+                ListeMursPiece.add((Mur) resMur.getObjet());
                 
             }
         }
@@ -215,6 +218,166 @@ public class Main {
         code=creapiece.toString()+" , \n";
         return creationObjet(ListePieces, creapiece,code);
     }
+    
+    public Resultat creationAppartement(){
+        String code;
+        int idAppartement,idRecherche, niveauApp, nbrPieces, reponse;
+        Piece piece;
+        System.out.println("Identifiant appartement : ");
+        idAppartement=Lire.i();
+        for (int i=0;i<ListeAppartements.size();i++){
+            if (ListeAppartements.get(i).getidAppartement()==idAppartement){
+                System.out.println("L'identifiant existe déja, donnez un nouvel identifiant pour l'appartement :");
+                idAppartement=Lire.i();
+            }
+        }
+        System.out.println("Quel est le niveau de l'appartement ? ");
+        niveauApp=Lire.i();
+        System.out.println("Combien y a-t-il de pièces dans l'appartement "+idAppartement+" ?");
+        nbrPieces=Lire.i();
+        for (int j=0; j<nbrPieces; j++){
+            System.out.println("La pièce n°"+(j+1)+" existe-t-elle déjà ? (1 = OUI et 0 = NON)");
+            reponse=Lire.i();
+            while (reponse!=0&&reponse!=1){
+                System.out.println("Valeur incorrect; veuillez donner une valeur correct : 1 = OUI et 0 = NON");
+                reponse=Lire.i();
+            }
+            if(reponse==1){
+                System.out.println("Identifiant de la pièce recherchée: ");
+                idRecherche=Lire.i();
+                for (Piece p : ListePieces) {
+                    if (p.getidPiece() == idRecherche) {
+                        piece = p;
+                        ListePieces.add(piece);
+                        break;
+                    }
+                
+                    if (p == null) {
+                        // Si le mur  n'est pas trouvé, affichez un message d'erreur ou gérez-le autrement
+                        System.out.println("La pièce recherchée n'a pas été trouvée.");
+                    }
+                }
+            }
+            else{
+                Resultat resPiece = creationPiece();
+                ListePieces.add((Piece) resPiece.getObjet());
+                
+            }
+        }
+        Appartement creaappart = new Appartement(idAppartement,niveauApp, ListePieces);
+        code=creaappart.toString()+" , \n";
+        return creationObjet(ListeAppartements, creaappart,code);
+    }
+    
+    public Resultat creationNiveau(){
+        String code;
+        int idNiveau, nbrApparts,reponse,idRecherche;
+        double hauteur;
+        Appartement appart;
+        
+        System.out.println("Identifiant appartement : ");
+        idNiveau=Lire.i();
+        for (int i=0;i<ListeNiveaux.size();i++){
+            if (ListeNiveaux.get(i).getidNiveau()==idNiveau){
+                System.out.println("L'identifiant existe déja, donnez un nouvel identifiant pour le niveau :");
+                idNiveau=Lire.i();
+            }
+        }
+        System.out.println("hauteur : ");
+        hauteur=Lire.i();
+        System.out.println("Combien y a-t-il d'appartements dans le niveau "+idNiveau+" ?");
+        nbrApparts=Lire.i();
+        for (int j=0; j<nbrApparts; j++){
+            System.out.println("L'apaprtement n°"+(j+1)+" existe-t-il déjà ? (1 = OUI et 0 = NON)");
+            reponse=Lire.i();
+            while (reponse!=0&&reponse!=1){
+                System.out.println("Valeur incorrect; veuillez donner une valeur correct : 1 = OUI et 0 = NON");
+                reponse=Lire.i();
+            }
+            if(reponse==1){
+                System.out.println("Identifiant de l'appartement recherché: ");
+                idRecherche=Lire.i();
+                for (Appartement a : ListeAppartements) {
+                    if (a.getidAppartement() == idRecherche) {
+                        appart = a;
+                        ListeAppartements.add(appart);
+                        break;
+                    }
+                
+                    if (a == null) {
+                        // Si le mur  n'est pas trouvé, affichez un message d'erreur ou gérez-le autrement
+                        System.out.println("L'appartement recherché n'a pas été trouvé.");
+                    }
+                }
+            }
+            else{
+                Resultat resAppart = creationAppartement();
+                ListeAppartements.add((Appartement) resAppart.getObjet());
+                
+            }
+        }
+        
+        Niveau creaniveau = new Niveau(idNiveau,hauteur, ListeAppartements);
+        code=creaniveau.toString()+" , \n";
+        return creationObjet(ListeNiveaux, creaniveau,code);
+    }
+    
+    public Resultat creationBatiment(){
+        String code, idBat;
+        int  idImmeuble=1, idMaison,nbrNiveaux,reponse,idRecherche;
+        Niveau niveau;
+        System.out.println("Identifiant batiment : (nom du batiment immeuble/maison)");
+        idBat=Lire.S();
+        if (idBat.toLowerCase()=="immeuble"){
+            System.out.println("Identifiant de l'immeuble :");
+            idImmeuble=Lire.i();
+
+            for (int i=0;i<ListeNiveaux.size();i++){
+                if (ListeImmeubles.get(i).getidImmeuble()==idImmeuble){
+                    System.out.println("L'identifiant existe déja, donnez un nouvel identifiant pour le niveau :");
+                    idImmeuble=Lire.i();
+                }
+            }
+            System.out.println("Combien y a-t-il de niveaux dans l'immeuble : "+idBat+" ?");
+            nbrNiveaux=Lire.i();
+            for (int j=0; j<nbrNiveaux; j++){
+                System.out.println("Le niveau n°"+(j+1)+" existe-t-il déjà ? (1 = OUI et 0 = NON)");
+                reponse=Lire.i();
+                while (reponse!=0&&reponse!=1){
+                    System.out.println("Valeur incorrect; veuillez donner une valeur correct : 1 = OUI et 0 = NON");
+                    reponse=Lire.i();
+                }
+                if(reponse==1){
+                    System.out.println("Identifiant du niveau recherché: ");
+                    idRecherche=Lire.i();
+                    for (Niveau n : ListeNiveaux) {
+                        if (n.getidNiveau() == idRecherche) {
+                            niveau = n;
+                            ListeNiveaux.add(niveau);
+                            break;
+                        }
+
+                        if (n == null) {
+                            // Si le mur  n'est pas trouvé, affichez un message d'erreur ou gérez-le autrement
+                            System.out.println("Le niveau recherché n'a pas été trouvé.");
+                        }
+                    }
+                }
+                else{
+                    Resultat resNiveau = creationNiveau();
+                    ListeNiveaux.add((Niveau) resNiveau.getObjet());
+
+                }
+            }
+        }
+            Batiment creabat = new Immeuble(idImmeuble, ListeNiveaux);
+            code=creabat.toString()+" , \n";
+        
+        // meme chose pour maison
+        
+        return creationObjet(ListeBatiments, creabat,code);
+    }
+    
     public Resultat creationPorte(){
         String code, type="porte";
         int idPorte;
@@ -334,14 +497,14 @@ public class Main {
             break;
         }
         case 7 -> {
-           //Resultat resultat = creationAppartement();
-            //code = resultat.getCode();
-            //break;
+            Resultat resultat = creationAppartement();
+            code = resultat.getCode();
+            break;
             }
         case 8 -> {
-            //Resultat resultat = creationNiveau();
-            //code = resultat.getCode();
-            //break;
+            Resultat resultat = creationNiveau();
+            code = resultat.getCode();
+            break;
             }
         case 9 -> {
             //Resultat resultat = creationImmeuble();
@@ -376,7 +539,7 @@ public class Main {
         int id, idCoinD , idCoinF , n=0, idMur, idPorte, idFenetre, idTremis, idPiece, idAppartement, idNiveau, idImmeuble;
         int nbrFenetre, nbrPorte,nbrRevetement, choix;
         double a, o, x, y, ab, or;
-        String usage="";
+        //String usage="";
         Coin coinD, coinF;
         
         
