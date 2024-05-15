@@ -3,43 +3,46 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package fr.insa.bailly.projet_test_g12;
+
 import java.util.ArrayList;
+
 /**
  *
- * @author Elève
+ * @author becqu
  */
-public final class Niveau {
+public class NiveauMaison {
     private int idNiveau ;
     private double hauteursousPlafond ; //int hauteur à voir
     private ArrayList<Appartement> listeAppart ;
     private ArrayList<Piece> listePiece ;
     
-    public Niveau(){
+    public NiveauMaison(){
         
     }
-    public Niveau (int id, double hauteurplafond, ArrayList<Appartement> listeAppart) {
+    public NiveauMaison (int id, double hauteurplafond, ArrayList<Piece> listePiece){
         this.idNiveau = id ;
         this.hauteursousPlafond = hauteurplafond ;
-        this.listeAppart = listeAppart ;
+        this.listePiece = listePiece ;
     }
+    
     //get et set pour donner et utiliser les attributs
-    public int getidNiveau(){
+    public int getidNiveauMaison(){
         return idNiveau ;
     }
-    public void setidNiveau(int idNiveau){
+    public void setidNiveauMaison(int idNiveau){
         this.idNiveau = idNiveau ;
     }
     public double gethauteursousPlafond(){
         return hauteursousPlafond ;
     }
-    public void setidNiveau(double hauteursousPlafond){
+    public void setidNiveauMaison(double hauteursousPlafond){
         this.hauteursousPlafond = hauteursousPlafond ;
     }
-    public ArrayList<Appartement> getlisteAppart(){
-        return listeAppart ;
+    public ArrayList<Piece> getlistePiece(){
+        return listePiece ;
     }
-    public void setlisteAppart(ArrayList<Appartement> listeAppart){
-        this.listeAppart = listeAppart ;
+    public void setlistePiece(ArrayList<Piece> listePiece){
+        this.listePiece = listePiece ;
     }
     /*public double surface() {
         double s=0 ;
@@ -49,12 +52,12 @@ public final class Niveau {
             return s ;
     }*/
     //afficher
-    void afficherNiveau(){
-                System.out.println("Niveau [ idNiveau : "+this.idNiveau+" , hauteursousPlafond : "+this.hauteursousPlafond+" , listeAppart : "+this.listeAppart+" ]");
+    void afficherNiveauMaison(){
+                System.out.println("NiveauMaison [ idNiveauMaison : "+this.idNiveau+" , hauteursousPlafond : "+this.hauteursousPlafond+" , listePiece : "+this.listePiece+" ]");
         }
         @Override 
         public String toString(){
-            return "Niveau [ idNiveau : "+idNiveau+" , hauteursousPlafond : "+hauteursousPlafond+" , listeAppart : "+listeAppart+" ]";
+            return "NiveauMaison [ NiveauMaison : "+idNiveau+" , hauteursousPlafond : "+hauteursousPlafond+" , listePiece : "+listePiece+" ]";
         }
     //montantRevement()
-    }
+}
