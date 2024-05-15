@@ -16,6 +16,10 @@ public class Ouverture { //est ce qu'on fait une extention de classe avec fenetr
     private double surfaceFenetre;
     private double surfacePorte;
     private double surfaceTremis;
+    
+    public Ouverture(){
+        
+    }
     //déclaration du constructeur
     Ouverture (String type, int id) { //si pas standard, mettre autres para entrée
         type = type.toLowerCase() ;

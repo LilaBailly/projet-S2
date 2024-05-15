@@ -18,21 +18,37 @@ public class Mur {
     private double hauteur ; 
     private double surface ;
     private int nbrRev ;
-    //private ArrayList<Revetement> listeRevetement ;
+    private ArrayList<Revetement> listeRevetement ;
+    private Ouverture ouverture;
     
-    public Mur(){ //à quoi sert ce truc ?
+    public Mur(){
         
     }
+    /*
     //déclaration du constructeur
+    public Mur(int id, Coin debut, Coin fin, int porte, int fenetre, int nbrRev, ArrayList<Revetement> listeRevetement) {
+        this.idMur = id;
+        this.coinDebut = debut;
+        this.coinFin = fin;
+        this.nbrPorte = porte;
+        this.nbrFenetre = fenetre;
+        this.nbrRev = nbrRev;
+        this.listeRevetement = listeRevetement; // Assuming the list is passed as a parameter
+        this.hauteur = 2.5; // Default height value, can be changed later
+    }
+    */
     public Mur(int id, Coin debut, Coin fin, int porte, int fenetre, int nbrRev) {
-        this.idMur = id ;
-        this.coinDebut = debut ;
-        this.coinFin = fin ;
-        this.nbrPorte = porte ;
-        this.nbrFenetre = fenetre ;
-        this.nbrRev = nbrRev ;
-        //this.listeRevetement = Revetement.choixRevetement (nbrRev, Revetement.getlisteRevetementMur ()) ;   
-        }
+        this.idMur = id;
+        this.coinDebut = debut;
+        this.coinFin = fin;
+        this.nbrPorte = porte;
+        this.nbrFenetre = fenetre;
+        this.nbrRev = nbrRev;
+        Revetement revetement = new Revetement(); // Create an instance of Revetement
+        this.listeRevetement = revetement.choixRevetementMur(nbrRev); // Call instance method
+        this.hauteur = 2.5; // Default height value, can be changed later
+        this.ouverture = new Ouverture();
+    }
     
     public double Longueur(){
         return Math.sqrt(Math.pow(this.coinFin.getcx() - this.coinDebut.getcx(),2)
@@ -40,19 +56,19 @@ public class Mur {
     }
     //Calcul de la surface du mur
     public double surface (){
-        surface=this.Longueur()*hauteur ;
+        surface=this.Longueur()*this.hauteur ;
         return surface ;
     }
     //méthode pour calculer le coût d'un mur
-   /* public double cout(){
+    public double cout(){
         double cout = 0 ;
-        double s = surface() ;
-        for (int i=0; i<listeRevetement.size(); i++){
-         cout = cout + s*listeRevetement.get(i).getprixunitaire() ;   
+        double s = surface()-nbrPorte*ouverture.getsurfacePorte()-nbrFenetre*ouverture.getsurfaceFenetre() ;
+        for (Revetement revetement : listeRevetement){
+            cout += s * revetement.getprixunitaire();  
         }
-       // cout = cout-nbrPorte*prixPorte()-nbrFenetre*getprixFenetre() ;
+       
     return cout ;
-    }*/
+    }
     
     //get et set pour donner et utiliser les attributs
     public int getidMur(){
@@ -94,8 +110,8 @@ public class Mur {
     public double gethauteur(){
     return hauteur ;
     }
-    public void sethauteur() {
-    this.hauteur = 2.5 ; //à changer, mettre hauteur du niveau, provisoire pour une pièce
+    public void sethauteur(double hauteur) {
+    this.hauteur = hauteur ; //à changer, mettre hauteur du niveau, provisoire pour une pièce
     } 
     void afficherMur(){
             System.out.println(" Mur [ idMur : "+this.idMur+" , coinDebut : "+getcoinDebut()+" , coinFin : "+getcoinFin()+" , nbrPortes : "+this.nbrPorte+" , nbrFenetre : "+this.nbrFenetre+" , nbrRevetement : "+this.nbrRev+" ]");

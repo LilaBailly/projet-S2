@@ -11,7 +11,9 @@ package fr.insa.bailly.projet_test_g12;
 
 public class Coin {
 
-    
+    public Coin(){
+        
+    }
     
     // Déclaration des attributs de la classe coin
     private int idCoin ;
@@ -45,7 +47,7 @@ public class Coin {
     }
     //méthode pour afficher le coin
     void afficherCoin(){
-            System.out.println("Identifiant : "+this.idCoin+" , Abscisse : "+this.cx+" , Ordonnée : "+this.cy);
+            System.out.println(" Coin [ idCoin : "+this.idCoin+" , cx : "+this.cx+" , cy : "+this.cy+" ]");
     }
     @Override 
     public String toString(){

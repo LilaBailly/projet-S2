@@ -15,6 +15,9 @@ private ArrayList<Coin> listeCoin ;
 private ArrayList<Revetement> liste_rev_plafond ;
 private int nbrtremis ; //ajouter nbr tremis
 
+public Plafond(){
+    
+}
 //Déclaration du constructeur
 Plafond (int id, ArrayList<Coin> listeCoin, ArrayList<Revetement> liste_rev_plafond){
     this.idPlafond = id ;

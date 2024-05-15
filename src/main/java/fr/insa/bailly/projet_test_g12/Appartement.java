@@ -21,6 +21,9 @@ public Appartement (int id, int niveauApp, ArrayList<Piece> listePiece) {
     this.listePiece = listePiece ;
 }
 
+public Appartement(){
+    
+}
 //get et set pour donner et utiliser les attributs
 public int getidAppartement(){
     return idAppartement ;

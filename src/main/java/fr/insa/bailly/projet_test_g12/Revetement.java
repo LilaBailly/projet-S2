@@ -21,41 +21,30 @@ public class Revetement {
     final boolean pourSol ;
     final boolean pourPlafond ;
     private double prixUnitaire ; 
+    //les listes de revetements
     private ArrayList<Revetement> listeRevetement;
     private ArrayList<Revetement> listeRevetementMur;
     private ArrayList<Revetement> listeRevetementSol;
     private ArrayList<Revetement> listeRevetementPlafond;
+    
+    public Revetement(){
+        this.pourSol = false;
+        this.pourPlafond = false;
+    }
+
     //déclaration du constructeur
     public Revetement(String ligne) {
         String[] decoupe = ligne.split(";") ;
-        //Revetement nouveauRevetementMur = new Revetement(ligne);
-        //Revetement nouveauRevetementSol = new Revetement(ligne);
-        //Revetement nouveauRevetementPlafond = new Revetement(ligne);
-        this.listeRevetement = LectureRevetement();
-        this.listeRevetementMur = listeRevetementMur();
-        this.listeRevetementSol = listeRevetementSol();
-        this.listeRevetementPlafond = listeRevetementPlafond();
-        this.idRevetement = Integer.parseInt(decoupe[0]) ; //conversion du String en int
-        this.designation = decoupe[1] ;
+        
+       this.idRevetement = Integer.parseInt(decoupe[0]) ; //conversion du String en int
+        this.designation = decoupe[1];
+        this.pourMur = Integer.parseInt(decoupe[2]) == 1;
+        this.pourSol = Integer.parseInt(decoupe[3]) == 1;
+        this.pourPlafond = Integer.parseInt(decoupe[4]) == 1;
+        this.prixUnitaire = Double.parseDouble(decoupe[5]);
         if (Integer.parseInt(decoupe[2])==1){
-           this.pourMur = true ; 
+            this.prixUnitaire = Double.parseDouble(decoupe[5]) ; //conversion du String en double
         }
-        else {
-            this.pourMur = false ;
-        }
-        if (Integer.parseInt(decoupe[3])==1){
-           this.pourSol = true ; 
-        }
-        else {
-            this.pourSol = false ;
-        }
-        if (Integer.parseInt(decoupe[4])==1){
-           this.pourPlafond = true ;
-        }
-        else {
-            this.pourPlafond = false ;
-        }
-        this.prixUnitaire = Double.parseDouble(decoupe[5]) ; //conversion du String en double
     }
 
     //méthode pour lire le catalogue et creer une liste contenant tous les revetements
@@ -82,93 +71,65 @@ public class Revetement {
     }
 
     //méthode pour choisir un revetement, à finir
-    public ArrayList<Revetement> choixRevetementSol (int nbrrev) {
-        ArrayList<Revetement> listerevSol = new ArrayList<>() ;
-        if (nbrrev!=0){
-            for (int j=0 ; j<listeRevetementSol.size() ; j++) {
-                listeRevetementSol.get(j).Afficher(); //afficher la liste des possibilités
-            }
-            for (int i=0;i<nbrrev;i++){
+    public ArrayList<Revetement> choixRevetementSol (int nbrRev) {
+        ArrayList<Revetement> listeRevSolChoix = new ArrayList<>();
+        if (nbrRev!=0){
+            afficherRevetements(listeRevetementSol);
+            for (int i=0;i<nbrRev;i++){
                 System.out.println("Choisissez le revêtement "+i+" pour votre sol en indiquant son indentifiant.");
                 int idRevSol = Lire.i() ;
-                for (int y=0;y<listeRevetementSol.size() ; y++){
-                    if (idRevSol!=listeRevetementSol.get(y).getidRevetement()){
-                        System.out.println("identifiant incorrect, veuillez choisir un identifiant de la liste :");
-                        idRevSol = Lire.i() ;
-                    }
+                Revetement revChoisi = trouverRevetementParId(listeRevetementSol, idRevSol);
+                if (revChoisi != null) {
+                    listeRevSolChoix.add(revChoisi);
+                } else {
+                    System.out.println("Identifiant incorrect, veuillez choisir un identifiant de la liste.");
+                    i--; // Répéter la sélection pour ce tour
                 }
-                //ici, rechercher dans la liste le revetement et le renvoyer
-                for (int u=0;u<listeRevetementSol.size();u++){
-                    if (listeRevetementSol.get(u).getidRevetement()==idRevSol){
-                        System.out.println(listeRevetementSol.get(u));
-                        listerevSol.add(listeRevetementSol.get(u)) ;
-                    }
-                }  
+                 
             }      
         }
-        else{
-            listerevSol=null ;
-        }
-        return listerevSol ;
+       
+        return listeRevSolChoix ;
     }
-    public ArrayList<Revetement> choixRevetementMur (int nbrrev) {
-        ArrayList<Revetement> listerevMur = new ArrayList<>() ;
-        if (nbrrev!=0){
-            for (int j=0 ; j<listeRevetementMur.size() ; j++) {
-                listeRevetementMur.get(j).Afficher(); //afficher la liste des possibilités
-            }
-            for (int i=0;i<nbrrev;i++){
-                System.out.println("Choisissez le revêtement "+i+" pour votre mur en indiquant son indentifiant.");
-                int idRevMur = Lire.i() ;
-                for (int y=0;y<listeRevetementMur.size() ; y++){
-                    if (idRevMur!=listeRevetementMur.get(y).getidRevetement()){
-                        System.out.println("identifiant incorrect, veuillez choisir un identifiant de la liste :");
-                        idRevMur = Lire.i() ;
-                    }
+    
+    public ArrayList<Revetement> choixRevetementMur (int nbrRev) {
+        ArrayList<Revetement> listeRevMurChoix = new ArrayList<>();
+        if (nbrRev != 0) {
+            afficherRevetements(listeRevetementMur);
+            for (int i = 0; i < nbrRev; i++) {
+                System.out.println("Choisissez le revêtement " + i + " pour votre mur en indiquant son identifiant.");
+                int idRevMur = Lire.i();
+                Revetement revChoisi = trouverRevetementParId(listeRevetementMur, idRevMur);
+                if (revChoisi != null) {
+                    listeRevMurChoix.add(revChoisi);
+                } else {
+                    System.out.println("Identifiant incorrect, veuillez choisir un identifiant de la liste.");
+                    i--; // Répéter la sélection pour ce tour
                 }
-                //ici, rechercher dans la liste le revetement et le renvoyer
-                for (int u=0;u<listeRevetementMur.size();u++){
-                    if (listeRevetementMur.get(u).getidRevetement()==idRevMur){
-                        System.out.println(listeRevetementMur.get(u));
-                        listerevMur.add(listeRevetementMur.get(u)) ;
-                    }
-                }  
-            }        
+            }
         }
-        else{
-            listerevMur=null ;
-        }
-        return listerevMur ;
+        return listeRevMurChoix;
     }
-
-    public ArrayList<Revetement> choixRevetementPlafond (int nbrrev) {
-        ArrayList<Revetement> listerevPlafond = new ArrayList<>() ;
-        if (nbrrev!=0){
-            for (int j=0 ; j<listeRevetementPlafond.size() ; j++) {
-                listeRevetementPlafond.get(j).Afficher(); //afficher la liste des possibilités
-            }
-            for (int i=0;i<nbrrev;i++){
-                System.out.println("Choisissez le revêtement "+i+" pour votre Plafond en indiquant son indentifiant.");
-                int idRevPlafond = Lire.i() ;
-                for (int y=0;y<listeRevetementPlafond.size() ; y++){
-                    if (idRevPlafond!=listeRevetementPlafond.get(y).getidRevetement()){
-                        System.out.println("identifiant incorrect, veuillez choisir un identifiant de la liste :");
-                        idRevPlafond = Lire.i() ;
-                    }
+    
+    
+    
+    public ArrayList<Revetement> choixRevetementPlafond (int nbrRev) {
+        ArrayList<Revetement> listeRevPlafondChoix = new ArrayList<>();
+        if (nbrRev != 0) {
+            afficherRevetements(listeRevetementPlafond);
+            for (int i = 0; i < nbrRev; i++) {
+                System.out.println("Choisissez le revêtement " + i + " pour votre plafond en indiquant son identifiant.");
+                int idRevPlafond = Lire.i();
+                Revetement revChoisi = trouverRevetementParId(listeRevetementPlafond, idRevPlafond);
+                if (revChoisi != null) {
+                    listeRevPlafondChoix.add(revChoisi);
+                } else {
+                    System.out.println("Identifiant incorrect, veuillez choisir un identifiant de la liste.");
+                    i--; // Répéter la sélection pour ce tour
                 }
-                //ici, rechercher dans la liste le revetement et le renvoyer
-                for (int u=0;u<listeRevetementPlafond.size();u++){
-                    if (listeRevetementPlafond.get(u).getidRevetement()==idRevPlafond){
-                        System.out.println(listeRevetementPlafond.get(u));
-                        listerevPlafond.add(listeRevetementPlafond.get(u)) ;
-                    }
-                }  
-            }        
+            }
         }
-        else{
-            listerevPlafond=null ;
-        }
-        return listerevPlafond ;
+        return listeRevPlafondChoix;
     }
 /*
     // permet la création d'une liste contenant seulement les revetements pour mur
@@ -182,7 +143,22 @@ public class Revetement {
         }
     return listeRevMur ;
     }*/
-    
+    // Méthode pour afficher les revêtements
+    private void afficherRevetements(ArrayList<Revetement> listeRevetements) {
+        for (Revetement rev : listeRevetements) {
+            System.out.println(rev.Afficher());
+        }
+    }
+
+    // Méthode pour trouver un revêtement par son ID
+    private Revetement trouverRevetementParId(ArrayList<Revetement> listeRevetements, int idRevetement) {
+        for (Revetement rev : listeRevetements) {
+            if (rev.getidRevetement() == idRevetement) {
+                return rev;
+            }
+        }
+        return null;
+    }
     public ArrayList<Revetement> listeRevetementMur() {
         ArrayList<Revetement> listeRevMur = new ArrayList<>();
         for (Revetement rev : listeRevetement) {

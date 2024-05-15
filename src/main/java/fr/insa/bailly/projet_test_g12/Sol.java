@@ -15,6 +15,9 @@ private ArrayList<Ouverture> listeOuverture ;
 private int nbrtremis ;
 private int nbrrev ;
 private ArrayList<Revetement> listeRevetement ;
+public Sol(){
+    
+}
 
 //déclaration du constructeur
 Sol(int id, ArrayList<Coin> listeCoin,int nbrtremis, int nbrrev) {

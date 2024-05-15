@@ -44,7 +44,8 @@ public class Main {
 
     public <T> Resultat creationObjet(ArrayList<T> liste, T objet, String code) {
         liste.add(objet);
-        System.out.println(objet + " créé");
+        System.out.
+                println(objet + " créé");
         return new Resultat(objet, code);
     }
 
@@ -129,6 +130,7 @@ public class Main {
             for (Coin c : ListeCoins) {
                 if (c.getidCoin() == idRecherche) {
                     coinFin = c;
+                    
                     break;
                 }
             }
@@ -149,6 +151,7 @@ public class Main {
         nbrFenetre=Lire.i();
         System.out.println("Combien de revêtement y a-t-il ?");
         nbrRevetement=Lire.i();
+        //choixRevetementMur(nbrRevetement);
         Mur creamur = new Mur(idMur,coinDebut,coinFin,nbrPorte,nbrFenetre,nbrRevetement);
         ListeMurs.add(creamur);
         code+=creamur.toString()+" , \n";
@@ -177,6 +180,7 @@ public class Main {
         sol=Lire.i();
         System.out.println("Plafond : ");
         plafond=Lire.i();
+        //
         System.out.println("Combien y a-t-il de mur dans la pièce "+idPiece+" ?");
         nbrMur=Lire.i();
         while(nbrMur>4){
