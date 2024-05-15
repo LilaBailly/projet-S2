@@ -381,52 +381,7 @@ public class Main {
         
         return creationObjet(ListeBatiments, creabat,code);
     }
-    
-    public Resultat creationPorte(){
-        String code, type="porte";
-        int idPorte;
-        System.out.println("Identifiant porte : ");
-        idPorte=Lire.i();
-        for (int i=0;i<ListePortes.size();i++){
-            if (ListePortes.get(i).getidOuverture()==idPorte){
-                System.out.println("L'identifiant existe déja, donnez un nouvel identifiant pour la pièce :");
-                idPorte=Lire.i();
-            }
-        }
-        Ouverture creaporte = new Ouverture(type,idPorte);
-        code=creaporte.toString()+" , \n";
-        return creationObjet(ListePortes, creaporte,code);
-    }
-    public Resultat creationFenetre(){
-        String code, type="fenetre";
-        int idFenetre;
-        System.out.println("Identifiant fenètre : ");
-        idFenetre=Lire.i();
-        for (int i=0;i<ListeFenetres.size();i++){
-            if (ListeFenetres.get(i).getidOuverture()==idFenetre){
-                System.out.println("L'identifiant existe déja, donnez un nouvel identifiant pour la pièce :");
-                idFenetre=Lire.i();
-            }
-        }
-        Ouverture creafenetre = new Ouverture(type,idFenetre);
-        code=creafenetre.toString()+" , \n";
-        return creationObjet(ListeFenetres, creafenetre,code);
-    }
-    public Resultat creationTremis(){
-        String code, type="tremis";
-        int idTremis;
-        System.out.println("Identifiant Tremis : ");
-        idTremis=Lire.i();
-        for (int i=0;i<ListeTremis.size();i++){
-            if (ListeTremis.get(i).getidOuverture()==idTremis){
-                System.out.println("L'identifiant existe déja, donnez un nouvel identifiant pour la pièce :");
-                idTremis=Lire.i();
-            }
-        }
-        Ouverture creatremis = new Ouverture(type,idTremis);
-        code=creatremis.toString()+" , \n";
-        return creationObjet(ListeTremis, creatremis,code);
-    }
+   
     public ArrayList<Coin> getListeCoins() {
         return ListeCoins;
     }
@@ -476,41 +431,26 @@ public class Main {
             break;
         }
         case 2 ->{
-            Resultat resultat = creationPorte();
-            code = resultat.getCode();
-            break;
-        }
-        case 3 -> {
-            Resultat resultat = creationFenetre();
-            code = resultat.getCode();
-            break;
-        }
-        case 4 ->{
-            Resultat resultat = creationTremis();
-            code = resultat.getCode();
-            break;
-        }
-        case 5 ->{
             Resultat resultat = creationMur();
             code = resultat.getCode();
             break;
         }
-        case 6 -> {
+        case 3 -> {
             Resultat resultat = creationPiece();
             code = resultat.getCode();
             break;
         }
-        case 7 -> {
+        case 4 -> {
             Resultat resultat = creationAppartement();
             code = resultat.getCode();
             break;
             }
-        case 8 -> {
+        case 5 -> {
             Resultat resultat = creationNiveau();
             code = resultat.getCode();
             break;
             }
-        case 9 -> {
+        case 6 -> {
             Resultat resultat = creationBatiment();
             code = resultat.getCode();
             break;
@@ -520,11 +460,84 @@ public class Main {
      
     return code;    
         }
-    /**
-     *
-     * @param args
-     * @throws IOException
-     */
+    
+    public void ecrireFichier(String texte) {
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+        try {
+            fw = new FileWriter("Liste_Batiment.txt", true);
+            bw = new BufferedWriter(fw);
+            bw.write(texte);
+            bw.newLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bw != null) {
+                    bw.close();
+                }
+                if (fw != null) {
+                    fw.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void supprimerLigne(String path) {
+        File originalFile = new File(path);
+        File tempFile = new File("tempFile.txt");
+        BufferedReader reader = null;
+        BufferedWriter writer = null;
+
+        try {
+            reader = new BufferedReader(new FileReader(originalFile));
+            writer = new BufferedWriter(new FileWriter(tempFile));
+            String lineToRemove = "null , ";
+            String currentLine;
+
+            while ((currentLine = reader.readLine()) != null) {
+                if (!currentLine.equals(lineToRemove)) {
+                    writer.write(currentLine + System.getProperty("line.separator"));
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (writer != null) {
+                    writer.close();
+                }
+                if (reader != null) {
+                    reader.close();
+                }
+                if (originalFile.delete()) {
+                    if (!tempFile.renameTo(originalFile)) {
+                        System.out.println("Renaming the temp file failed.");
+                    }
+                } else {
+                    System.out.println("Failed to delete the original file.");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void lireFichier() {
+        try (BufferedReader br = new BufferedReader(new FileReader("Liste_Batiment.txt"))) {
+            String ligne;
+            while ((ligne = br.readLine()) != null) {
+                System.out.println(ligne);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Le fichier n'existe pas encore.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) throws IOException {
         //création des instances des classes nécessaires
         Main mainInstance = new Main();
@@ -545,6 +558,7 @@ public class Main {
         double a, o, x, y, ab, or;
         //String usage="";
         Coin coinD, coinF;
+        Main main = new Main();
         
         
         try {
@@ -581,29 +595,20 @@ public class Main {
                 if (ligne.startsWith("Coin")){
                     n=1;
                 }
-                if(ligne.startsWith("Porte")){
+                if (ligne.startsWith("Mur")){
                     n=2;
                 }
-                if (ligne.startsWith("Fenetre")){// fenetre avec ou sans accent ?? a définir
+                if (ligne.startsWith("Piece")){
                     n=3;
                 }
-                if (ligne.startsWith("Tremis")){
+                if (ligne.startsWith("Appartement")){
                     n=4;
                 }
-                if (ligne.startsWith("Mur")){
+                if (ligne.startsWith("Niveau")){
                     n=5;
                 }
-                if (ligne.startsWith("Piece")){
-                    n=6;
-                }
-                if (ligne.startsWith("Appartement")){
-                    n=7;
-                }
-                if (ligne.startsWith("Niveau")){
-                    n=8;
-                }
                 if (ligne.startsWith("Immeuble")){
-                    n=9;
+                    n=6;
                 }
                 String[] tab = ligne.split(" ");
                 if (tab.length>0){
@@ -620,32 +625,6 @@ public class Main {
                                 ListeCoins.add(cointxt);
                             }
                             break;
-                        }
-                        case "Porte" ->{ // porte
-                            if (tab.length >= 7) {
-                                idPorte = Integer.parseInt(tab[4]);
-                                Ouverture portetxt = new Ouverture(Porte, idPorte);
-                                ListePortes.add(portetxt);
-                            }
-                            break;
-                        }
-
-                        case "Fenetre" -> {//si pas fenetre standard rajouter longueur et largeur dans parenthese dans ouverture)
-                            if (tab.length >= 7) {
-                                idFenetre = Integer.parseInt(tab[4]);
-                                Ouverture fenetretxt = new Ouverture(Fenetre, idFenetre);
-                                ListeFenetres.add(fenetretxt);
-                            }
-                            break;
-                        }
-                        case "Tremis" -> {// tremis
-                           if (tab.length >= 7) {
-                                idTremis = Integer.parseInt(tab[4]);
-                                Ouverture tremistxt = new Ouverture(Tremis, idTremis);
-                                ListeTremis.add(tremistxt);
-                            }  
-                            break;
-
                         }
                         case "Mur" -> {// mur
                             if (tab.length >= 51) {
@@ -721,32 +700,7 @@ public class Main {
             }
         }
 
-        // Pour la liste de portes
-        if (ListePortes.isEmpty()) {
-            System.out.println("La liste de portes est vide.");
-        } else {
-            for (Ouverture porte : ListePortes) {
-                porte.afficherPorte();
-            }
-        }
-
-        // Pour la liste de fenêtres
-        if (ListeFenetres.isEmpty()) {
-            System.out.println("La liste de fenêtres est vide.");
-        } else {
-            for (Ouverture fenetre : ListeFenetres) {
-                fenetre.afficherFenetre();
-            }
-        }
-
-        // Pour la liste de tremis
-        if (ListeTremis.isEmpty()) {
-            System.out.println("La liste de tremis est vide.");
-        } else {
-            for (Ouverture tremis : ListeTremis) {
-                tremis.afficherTremis();
-            }
-        }
+        
 
         // Pour la liste de murs
         if (ListeMurs.isEmpty()) {
@@ -794,20 +748,59 @@ public class Main {
         
         
         
-        do {
-            System.out.println("Quel élément voulez-vous créer ? (0: rien) (1: coin) (2: porte) (3: fenetre) (4: tremis) (5: mur) (6: piece) (7: appartement) (8: niveau) (9: batiment)");
+        
+            System.out.println("***** MENU *****");
+            System.out.println("1- Créer un coin");
+            System.out.println("2- Créer un mur");
+            System.out.println("3- Créer une pièce");
+            System.out.println("4- Créer un appartement");
+            System.out.println("5- Créer un niveau");
+            System.out.println("6- Créer un batiment");
+            System.out.println("7- Lire le fichier");
+            System.out.println("8- Supprimer une ligne du fichier");
+            System.out.println("9- Quitter");
+            System.out.println("Faites votre choix : ");
             choix = Lire.i();
-            while (choix!=0&&choix!=1&&choix!=2&&choix!=3&&choix!=4&&choix!=5&&choix!=6&&choix!=7&&choix!=8&&choix!=9){
+            while (choix!=1&&choix!=2&&choix!=3&&choix!=4&&choix!=5&&choix!=6&&choix!=7&&choix!=8&&choix!=9){
                 System.out.println("Valeur incorrect; veuillez donner une valeur correct");
                 choix=Lire.i();
             }
-            if (choix != 0) {
-                String elementCode = mainInstance.creerElement(choix);
-                code+=elementCode;
+                    while (choix != 9) {
+            switch (choix) {
+                case 1:
+                    main.ecrireFichier(main.creationCoin().getCode());
+                    break;
+                case 2:
+                    main.ecrireFichier(main.creationMur().getCode());
+                    break;
+                case 3:
+                    main.ecrireFichier(main.creationPiece().getCode());
+                    break;
+                case 4:
+                    main.ecrireFichier(main.creationAppartement().getCode());
+                    break;
+                case 5:
+                    main.ecrireFichier(main.creationNiveau().getCode());
+                    break;
+                case 6:
+                    main.ecrireFichier(main.creationBatiment().getCode());
+                    break;
+                case 7:
+                    main.lireFichier();
+                    break;
+                case 8:
+                    main.supprimerLigne("Liste_Batiment.txt");
+                    break;
+                default:
+                    System.out.println("Choix invalide.");
             }
-        } while (choix != 0);
-        
-        System.out.println("Contenu à écrire dans le fichier : " + code);
+            System.out.println("Faites un autre choix : ");
+            choix = Lire.i();
+        }
+        System.out.println("Au revoir !");
+    
+
+       
         
         try {
             // Création d'un fileWriter pour écrire dans un fichier
