@@ -24,7 +24,7 @@ public class Mur {
     public Mur(){
         
     }
-    /*
+    
     //déclaration du constructeur
     public Mur(int id, Coin debut, Coin fin, int porte, int fenetre, int nbrRev, ArrayList<Revetement> listeRevetement) {
         this.idMur = id;
@@ -33,10 +33,11 @@ public class Mur {
         this.nbrPorte = porte;
         this.nbrFenetre = fenetre;
         this.nbrRev = nbrRev;
-        this.listeRevetement = listeRevetement; // Assuming the list is passed as a parameter
+        Revetement revetement = new Revetement(); // Create an instance of Revetement
+        this.listeRevetement = revetement.choixRevetementMur(nbrRev); // Call instance method
         this.hauteur = 2.5; // Default height value, can be changed later
     }
-    */
+    
     public Mur(int id, Coin debut, Coin fin, int porte, int fenetre, int nbrRev) {
         this.idMur = id;
         this.coinDebut = debut;
