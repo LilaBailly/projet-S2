@@ -150,6 +150,7 @@ public class Revetement {
                 }
             }
         }
+        
         return listeRevMurChoix;
     }
     
@@ -177,18 +178,7 @@ public class Revetement {
         }
         return listeRevPlafondChoix;
     }
-/*
-    // permet la création d'une liste contenant seulement les revetements pour mur
-    public ArrayList<Revetement> listeRevetementMur () {
-        ArrayList<Revetement> listeRevMur = new ArrayList<>() ;
-        for (int i=0; i<listeRevetement.size(); i++) {
-            Revetement Rev = listeRevetement.get(i) ;
-            if (Rev.getpourMur()==true){
-                  listeRevMur.add(Rev) ;
-            }
-        }
-    return listeRevMur ;
-    }*/
+
     // Méthode pour afficher les revêtements
     private void afficherRevetements(ArrayList<Revetement> listeRevetements) {
         if (listeRevetements != null) {
@@ -262,6 +252,11 @@ public class Revetement {
     }
     
     public String Afficher(){
-        return "Revetement [ idRevetement : "+idRevetement+" , désignation : "+designation+" , prix unitaire : "+prixUnitaire+" ]";
+        return " Revetement [ idRevetement : "+this.idRevetement+" , désignation : "+this.designation+" , prix unitaire : "+this.prixUnitaire+" ] ";
     }
+    @Override
+    public String toString(){
+        return " Revetement [ idRevetement : "+idRevetement+" , désignation : "+designation+" , prix unitaire : "+prixUnitaire+" ] ";
+    }
+    
 }

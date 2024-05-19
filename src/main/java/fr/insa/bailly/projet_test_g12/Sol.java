@@ -9,63 +9,66 @@ import java.util.ArrayList;
  * @author Elève
  */
 public class Sol {
-private int idSol ;
-private ArrayList<Coin> listeCoin ;
-private ArrayList<Ouverture> listeOuverture ;
-private int nbrtremis ;
-private int nbrrev ;
-private ArrayList<Revetement> listeRevetement ;
-public Sol(){
+    private int idSol ;
+    private ArrayList<Coin> listeCoin ;
+    private ArrayList<Ouverture> listeOuverture ;
+    private int nbrtremis ;
+    private int nbrrev ;
+    private ArrayList<Revetement> listeRevSol ;
+    private Piece piece;
     
-}
+    
+    public Sol(){
 
-//déclaration du constructeur
-Sol(int id, ArrayList<Coin> listeCoin,int nbrtremis, int nbrrev) {
-    this.idSol=id ;
-    this.listeCoin = listeCoin ;
-    this.nbrtremis = nbrtremis ;
-    this.nbrrev = nbrrev ;
-    //this.listeRevetement = Revetement.choixRevetementSol (nbrrev) ;
-}
-
-//méthode pour calculer la surface d'un sol
-public double surface () {
-    Coin coin1 = listeCoin.get(0);//modifier pour pas prendre le 1er element
-    Coin coin2 = listeCoin.get(1);//modifier pour pas prendre le 2eme element
-    Ouverture tremis = listeOuverture.get(1);
-    double longueur = Math.abs(coin2.getcx() - coin1.getcx());
-    double largeur = Math.abs(coin2.getcy() - coin1.getcy());
-    double surface = longueur * largeur;
-    surface = surface-nbrtremis*tremis.getsurfaceTremis() ;
-    return surface ;
-}
-//méthode pour calculer le cout d'un sol
-public double cout(){
-    double cout = 0 ;
-    double s = surface() ;
-    for (int i=0; i<listeRevetement.size(); i++){
-         cout = cout + s*listeRevetement.get(i).getprixunitaire() ;   
     }
-    return cout ;
-}
 
-//get et set pour donner et utiliser les attributs
-public int getidSol(){
-    return idSol ;
-}
-public void setidSol(int idSol) {
-    this.idSol = idSol ;
-}
-public ArrayList<Coin> getlisteCoin(){
-    return listeCoin ;
-}
-public void setlisteCoin(ArrayList<Coin> listeCoin) {
-    this.listeCoin = listeCoin ;
-}
-public ArrayList<Revetement> getlisteRevetement(){
-    return listeRevetement ;
-}
-// Getter et Setter pour nbrtremis
+    //déclaration du constructeur
+    public Sol(int id, ArrayList<Coin> listeCoin,int nbrtremis, ArrayList<Revetement> listeRevetement ) {
+        this.idSol=id ;
+        this.listeCoin = listeCoin ;
+        this.nbrtremis = nbrtremis ;
+        this.listeRevSol = listeRevetement ;
+    }
+
+    //méthode pour calculer la surface d'un sol
+    public double CalculerSurfaceSol() {
+        listeCoin.add(piece.getlisteMurs().getFirst().getcoinDebut());
+        Coin coin1 = listeCoin.get(1);
+        Coin coin2 = listeCoin.get(2);
+        Ouverture tremis = listeOuverture.get(1);
+        double longueur = Math.abs(coin2.getcx() - coin1.getcx());
+        double largeur = Math.abs(coin2.getcy() - coin1.getcy());
+        double surface = longueur * largeur;
+        surface = surface-nbrtremis*tremis.getsurfaceTremis() ;
+        return surface ;
+    }
+    //méthode pour calculer le cout d'un sol
+    public double cout(){
+        double cout = 0 ;
+        double s = CalculerSurfaceSol() ;
+        for (int i=0; i<listeRevSol.size(); i++){
+             cout = cout + s*listeRevSol.get(i).getprixunitaire() ;   
+        }
+        return cout ;
+    }
+
+    //get et set pour donner et utiliser les attributs
+    public int getidSol(){
+        return idSol ;
+    }
+    public void setidSol(int idSol) {
+        this.idSol = idSol ;
+    }
+    public ArrayList<Coin> getlisteCoin(){
+        return listeCoin ;
+    }
+    public void setlisteCoin(ArrayList<Coin> listeCoin) {
+        this.listeCoin = listeCoin ;
+    }
+    public ArrayList<Revetement> getlisteRevetementSol(){
+        return listeRevSol ;
+    }
+    // Getter et Setter pour nbrtremis
     public int getNbrTremis() {
         return nbrtremis;
     }
@@ -74,12 +77,4 @@ public ArrayList<Revetement> getlisteRevetement(){
         this.nbrtremis = nbrtremis;
     }
 
-    // Getter et Setter pour nbrrev
-    public int getNbrRev() {
-        return nbrrev;
-    }
-
-    public void setNbrRev(int nbrrev) {
-        this.nbrrev = nbrrev;
-    }
 }

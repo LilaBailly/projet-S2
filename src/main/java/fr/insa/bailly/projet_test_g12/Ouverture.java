@@ -26,13 +26,13 @@ public class Ouverture { //est ce qu'on fait une extention de classe avec fenetr
         this.idOuverture=id ;
         if (null != type) switch (type) {
             case "porte" -> {
-                this.dimx = 0.83 ;
-                this.dimy = 2.04 ;// peut demander les dimentions à l'utilisateur
+                this.dimx = 0.90 ;
+                this.dimy = 2.10 ;
                 this.surfacePorte = this.dimx*this.dimy;
             }
             case "fenetre" -> {
-                this.dimx = 0.8 ;
-                this.dimy = 0.95 ;
+                this.dimx = 1.20 ;
+                this.dimy = 1.20 ;
                 this.surfaceFenetre = this.dimx*this.dimy;
             }
             case "tremis" -> {
@@ -86,10 +86,10 @@ public class Ouverture { //est ce qu'on fait une extention de classe avec fenetr
         return dimx*dimy ;
     }
     void afficherPorte(){
-            System.out.println("Porte [ Identifiant : "+this.idOuverture+" , Dimension en x : 0.83 , Dimension en y : 2.04 ]");
+            System.out.println("Porte [ Identifiant : "+this.idOuverture+" , Dimension en x : 0.90 , Dimension en y : 2.10 ]");
     }
     void afficherFenetre(){
-            System.out.println("Fenetre [ Identifiant : "+this.idOuverture+" , Dimension en x : 0.8 , Dimension en y : 0.95 ]");
+            System.out.println("Fenetre [ Identifiant : "+this.idOuverture+" , Dimension en x : 0.90 , Dimension en y : 0.90 ]");
     }
     void afficherTremis(){
             System.out.println("Tremis [ Identifiant : "+this.idOuverture+" , Dimension en x : 0.9 , Dimension en y : 1.9 ]");

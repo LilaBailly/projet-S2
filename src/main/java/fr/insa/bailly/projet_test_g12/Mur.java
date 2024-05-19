@@ -18,7 +18,7 @@ public class Mur {
     private double hauteur ; 
     private double surface ;
     private int nbrRev ;
-    private ArrayList<Revetement> listeRevetement ;
+    private ArrayList<Revetement> ListeRevMur ;
     private Ouverture ouverture;
     
     public Mur(){
@@ -33,93 +33,85 @@ public class Mur {
         this.nbrPorte = porte;
         this.nbrFenetre = fenetre;
         this.nbrRev = nbrRev;
-        Revetement revetement = new Revetement(); // Create an instance of Revetement
-        this.listeRevetement = revetement.choixRevetementMur(nbrRev); // Call instance method
-        this.hauteur = 2.5; // Default height value, can be changed later
+        Revetement revetement = new Revetement(); 
+        this.ListeRevMur = listeRevetement; 
+        this.hauteur = 2.5; 
     }
     
-    public Mur(int id, Coin debut, Coin fin, int porte, int fenetre, int nbrRev) {
-        this.idMur = id;
-        this.coinDebut = debut;
-        this.coinFin = fin;
-        this.nbrPorte = porte;
-        this.nbrFenetre = fenetre;
-        this.nbrRev = nbrRev;
-        Revetement revetement = new Revetement(); // Create an instance of Revetement
-        this.listeRevetement = revetement.choixRevetementMur(nbrRev); // Call instance method
-        this.hauteur = 2.5; // Default height value, can be changed later
-        this.ouverture = new Ouverture();
-    }
     
     public double Longueur(){
         return Math.sqrt(Math.pow(this.coinFin.getcx() - this.coinDebut.getcx(),2)
                 +Math.pow(this.coinFin.getcy() - this.coinDebut.getcy(),2)) ;//faire get coordonnée
     }
     //Calcul de la surface du mur
-    public double surface (){
+    public double CalculerSurfaceMur (){
         surface=this.Longueur()*this.hauteur ;
         return surface ;
     }
     //méthode pour calculer le coût d'un mur
     public double cout(){
         double cout = 0 ;
-        double s = surface()-nbrPorte*ouverture.getsurfacePorte()-nbrFenetre*ouverture.getsurfaceFenetre() ;
-        for (Revetement revetement : listeRevetement){
+        double s = CalculerSurfaceMur()-nbrPorte*ouverture.getsurfacePorte()-nbrFenetre*ouverture.getsurfaceFenetre() ;
+        for (Revetement revetement : ListeRevMur){
             cout += s * revetement.getprixunitaire();  
         }
        
-    return cout ;
+        return cout ;
     }
     
     //get et set pour donner et utiliser les attributs
+    
     public int getidMur(){
-    return idMur ;
+        return idMur ;
     }
     public void setidMur(int idMur) {
-    this.idMur = idMur ;
+        this.idMur = idMur ;
     }
     public Coin getcoinDebut(){
-    return coinDebut ;
+        return coinDebut ;
     }
     public void setcoinDebut(Coin coinDebut) {
-    this.coinDebut = coinDebut ;
+        this.coinDebut = coinDebut ;
     }
     public Coin getcoinFin(){
-    return coinFin ;
+        return coinFin ;
     }
     public void setcoinFin(Coin coinFin) {
-    this.coinFin = coinFin ;
+        this.coinFin = coinFin ;
     }
     public int getnbrPorte(){
-    return nbrPorte ;
+        return nbrPorte ;
     }
     public void setnbrPorte(int nbrPorte) {
-    this.nbrPorte = nbrPorte ;
+        this.nbrPorte = nbrPorte ;
     }
     public int getnbrFenetre(){
-    return nbrFenetre ;
+        return nbrFenetre ;
     }
     public void setnbrFenetre(int nbrFenetre){
-    this.nbrFenetre = nbrFenetre ;
+        this.nbrFenetre = nbrFenetre ;
     }
     public int getnbrRev(){
-    return nbrRev;
+        return nbrRev;
     }
     public void setnbrRev(int nbrRev){
-    this.nbrRev = nbrRev ;
+        this.nbrRev = nbrRev ;
     }
     public double gethauteur(){
-    return hauteur ;
+        return hauteur ;
     }
     public void sethauteur(double hauteur) {
-    this.hauteur = hauteur ; //à changer, mettre hauteur du niveau, provisoire pour une pièce
+        this.hauteur = hauteur ; //à changer, mettre hauteur du niveau, provisoire pour une pièce
     } 
+    public ArrayList<Revetement> getlisteRevetementMur() {
+        return ListeRevMur;
+    }
     void afficherMur(){
-            System.out.println(" Mur [ idMur : "+this.idMur+" , coinDebut : "+getcoinDebut()+" , coinFin : "+getcoinFin()+" , nbrPortes : "+this.nbrPorte+" , nbrFenetre : "+this.nbrFenetre+" , nbrRevetement : "+this.nbrRev+" ]");
+            System.out.println(" Mur [ idMur : "+this.idMur+" , coinDebut : "+getcoinDebut()+" , coinFin : "+getcoinFin()+" , nbrPortes : "+this.nbrPorte+" , nbrFenetre : "+this.nbrFenetre+" , nbrRevetement : "+this.nbrRev+" , ListeRevetement : "+this.ListeRevMur+" ]");
     }
     @Override 
     public String toString(){
-        return " Mur [ idMur : "+idMur+" , coinDebut : "+getcoinDebut()+" , coinFin : "+getcoinFin()+" , nbrPortes : "+nbrPorte+" , nbrFenetre : "+nbrFenetre+" , nbrRevetement : "+nbrRev+" ]";
+        return " Mur [ idMur : "+idMur+" , coinDebut : "+getcoinDebut()+" , coinFin : "+getcoinFin()+" , nbrPortes : "+nbrPorte+" , nbrFenetre : "+nbrFenetre+" , nbrRevetement : "+nbrRev+" , ListeRevetement : "+this.ListeRevMur+" ]";
     }
     
 }
