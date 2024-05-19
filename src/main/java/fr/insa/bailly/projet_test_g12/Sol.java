@@ -68,6 +68,7 @@ public class Sol {
     public ArrayList<Revetement> getlisteRevetementSol(){
         return listeRevSol ;
     }
+    
     // Getter et Setter pour nbrtremis
     public int getNbrTremis() {
         return nbrtremis;
@@ -75,6 +76,14 @@ public class Sol {
 
     public void setNbrTremis(int nbrtremis) {
         this.nbrtremis = nbrtremis;
+    }
+    
+    void afficherSol(){
+            System.out.println(" Sol [ idSol : "+this.idSol+" , ListeCoins : "+this.listeCoin+" , ListeRevetements : "+this.listeRevSol+" ]");
+    }
+    @Override 
+    public String toString(){
+        return " Sol [ idSol : "+idSol+" , ListeCoins : "+listeCoin+" , ListeRevetements : "+listeRevSol+" ]";
     }
 
 }

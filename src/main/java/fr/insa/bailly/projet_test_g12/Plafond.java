@@ -65,7 +65,11 @@ public class Plafond {
     public void setlisteRevetement(ArrayList<Revetement> liste_rev_plafond) {
         this.listeRevPlafond = liste_rev_plafond ;
     }
-    //toString()
-    //surface()
-    //montantRevetement()
+    void afficherPlafond(){
+            System.out.println(" Plafond [ idPlafond : "+this.idPlafond+" , ListeCoins : "+this.listeCoin+" , ListeRevetements : "+this.listeRevPlafond+" ]");
+    }
+    @Override 
+    public String toString(){
+        return " Plafond [ idPlafond : "+idPlafond+" , ListeCoins : "+listeCoin+" , ListeRevetements : "+listeRevPlafond+" ]";
+    }
 }

@@ -98,6 +98,7 @@ public class Main {
         Coin coinFin = null; //a modifier car problème plus tard dans un if
         System.out.println("Identifiant du mur: ");
         idMur=Lire.i();
+        ArrayList<Revetement>ListeRev = new ArrayList<>();
         // Vérifie si l'identifiant du mur existe déjà
         for (int i=0;i<ListeMurs.size();i++){
             if (ListeMurs.get(i).getidMur()==idMur){
@@ -201,25 +202,27 @@ public class Main {
         usage=Lire.S();
         System.out.println("identifiant Sol : ");
         idSol = Lire.i();
+        System.out.println(idSol);
         for (int i=0;i<ListeSols.size();i++){
             if (ListeSols.get(i).getidSol()==idSol){
                 System.out.println("L'identifiant existe déja, donnez un nouvel identifiant pour le sol :");
                 idSol=Lire.i();
             }
         }
-        System.out.println("Combien de revetemnt pour le sol ?");
+        System.out.println("Combien de revetement pour le sol ?");
         nbrRevSol=Lire.i();
         ListeRevSol = revetement.choixRevetementSol(nbrRevSol);
         
         System.out.println("identifiant plafond : ");
         idPlafond = Lire.i();
+        System.out.println(idPlafond);
         for (int i=0;i<ListePlafonds.size();i++){
             if (ListePlafonds.get(i).getidPlafond()==idPlafond){
                 System.out.println("L'identifiant existe déja, donnez un nouvel identifiant pour le sol :");
                 idPlafond=Lire.i();
             }
         }
-        System.out.println("Combien de revetemnt pour le plafond ?");
+        System.out.println("Combien de revetement pour le plafond ?");
         nbrRevPlafond=Lire.i();
         ListeRevPlafond = revetement.choixRevetementPlafond(nbrRevPlafond);
         
@@ -257,17 +260,20 @@ public class Main {
             //mur n'existe pas encore
             else{
                 Resultat resMur = creationMur();
-                ListeCoinsP.add((Coin) resMur.getObjet());
-                ListeMursPiece.add((Mur) resMur.getObjet());
+                Mur nouveauMur = (Mur) resMur.getObjet();
+                ListeCoinsP.add(nouveauMur.getcoinDebut());
+                ListeCoinsP.add(nouveauMur.getcoinFin());
+                ListeMursPiece.add(nouveauMur);
                 
             }
         }
         
         Sol Sol = new Sol(idSol,ListeCoinsP,0,ListeRevSol);
         ListeSols.add(Sol);
+        Sol.afficherSol();
         Plafond Plafond = new Plafond(idPlafond,ListeCoinsP,ListeRevPlafond);
         ListePlafonds.add(Plafond);
-        
+        Plafond.afficherPlafond();
         Piece creapiece = new Piece(idPiece, usage, idSol, idPlafond, ListeMursPiece);
         ListePieces.add(creapiece);
         code=creapiece.toString()+" \n";
@@ -684,7 +690,179 @@ public class Main {
     
     // calcul cout 
     
+   
+    private static <T> void afficherListe(String messageVide, ArrayList<T> liste) {
+        if (liste.isEmpty()) {
+            System.out.println(messageVide);
+        } else {
+            for (T item : liste) {
+                System.out.println(item.toString()); // Suppose que chaque classe a une méthode toString
+            }
+        }
+    }
+    private static void afficherMenu() {
+        System.out.println("***** MENU *****");
+        System.out.println("1- Créer un coin");
+        System.out.println("2- Créer un mur");
+        System.out.println("3- Créer une pièce");
+        System.out.println("4- Créer un appartement");
+        System.out.println("5- Créer un niveau");
+        System.out.println("6- Créer un niveau maison");
+        System.out.println("7- Créer un bâtiment (immeuble ou maison");
+        System.out.println("8- Lire le fichier");
+        System.out.println("9- Supprimer une ligne du fichier");
+        System.out.println("10- Quitter");
+        System.out.println("Faites votre choix : ");
+    }
     
+  
+    public static void main(String[] args) throws IOException {
+        //création des instances des classes nécessaires
+        Main main = new Main();
+        ArrayList<Coin> ListeCoins = main.getListeCoins();
+        ArrayList<Mur>ListeMurs = main.getListeMurs();
+        ArrayList<Mur>ListeMursPiece = main.getListeMursPiece();
+        ArrayList<Piece>ListePieces = main.getListePieces();
+        ArrayList<Appartement>ListeAppartements = main.getListeAppartements();
+        ArrayList<Niveau>ListeNiveaux = main.getListeNiveaux();
+        ArrayList<Immeuble>ListeImmeubles = main.getListeImmeubles();
+        String code="";
+        int choix;
+        supprimerLignesVides("Liste_Batiment.txt");        
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("Liste_Batiment.txt"));
+            String ligne;
+            while ((ligne = reader.readLine()) != null) {
+                if (!ligne.trim().isEmpty()) { // Vérifier si la ligne n'est pas vide
+                    //String[] tab = ligne.split(" ");
+                    System.out.println(ligne);
+                    /*switch (tab[0]) {
+                        case "Coin" -> main.parseCoin(tab);
+                        case "Mur" -> main.parseMur(tab);
+                        case "Piece" -> main.parsePiece(tab);
+                        case "Appartement" -> main.parseAppartement(tab);
+                        case "Niveau" -> main.parseNiveau(tab);
+                        case "NiveauMaison" -> main.parseNiveauMaison(tab);
+                        case "Immeuble" -> main.parseImmeuble(tab);
+                        case "Maison" -> main.parseMaison(tab);
+                        default -> System.out.println("Ligne non reconnue: " + ligne);
+                    }*/
+                }
+            }
+            reader.close();
+        } catch (FileNotFoundException err) {
+            System.out.println("Erreur : le fichier n’existe pas!\n " + err);
+        }
+        // Afficher les listes
+        /*afficherListe("La liste de coins est vide.", ListeCoins);
+        afficherListe("La liste de murs est vide.", ListeMurs);
+        afficherListe("La liste de pièces est vide.", ListePieces);
+        afficherListe("La liste d'appartements est vide.", ListeAppartements);
+        afficherListe("La liste de niveaux est vide.", ListeNiveaux);
+        afficherListe("La liste d'immeubles est vide.", ListeImmeubles);*/
+
+        afficherMenu();
+        choix = Lire.i();
+        while (choix < 1 || choix > 10) {
+            System.out.println("Valeur incorrecte; veuillez donner une valeur correcte.");
+            choix = Lire.i();
+        }
+        while (choix != 10) {
+            switch (choix) {
+                case 1 -> main.ecrireFichier(main.creationCoin().getCode());
+                case 2 -> main.ecrireFichier(main.creationMur().getCode());
+                case 3 -> main.ecrireFichier(main.creationPiece().getCode());
+                case 4 -> main.ecrireFichier(main.creationAppartement().getCode());
+                case 5 -> main.ecrireFichier(main.creationNiveau().getCode());
+                case 6 -> main.ecrireFichier(main.creationNiveauMaison().getCode());
+                case 7 -> main.ecrireFichier(main.creationBatiment().getCode());
+                case 8 -> main.lireFichier();
+                case 9 -> main.supprimerLigne("Liste_Batiment.txt");
+                default -> System.out.println("Choix invalide.");
+            }
+            System.out.println("Faites un autre choix : ");
+            choix = Lire.i();
+        }
+        
+        for (Piece piece : ListePieces) {
+            // Parcourez les murs de la pièce
+            for (Mur mur : piece.getlisteMurs()) {
+                // Parcourez les revêtements du mur
+                for (Revetement revetement : mur.getlisteRevetementMur()) {
+                    // Vérifiez si le revêtement existe déjà dans les résultats
+                    boolean revetementExiste = false;
+                    for (ResultatRevetement resultat : main.resultats) {
+                        if (resultat.getRevetement().equals(revetement)) {
+                            resultat.addToSurfaceTotale(mur.CalculerSurfaceMur());
+                            resultat.addToPrixTotal(mur.cout());
+                            revetementExiste = true;
+                            break;
+                        }
+                    }
+                    // Si le revêtement n'existe pas encore dans les résultats, ajoutez-le
+                    if (!revetementExiste) {
+                        ResultatRevetement nouveauResultat = new ResultatRevetement(revetement);
+                        nouveauResultat.addToSurfaceTotale(mur.CalculerSurfaceMur());
+                        nouveauResultat.addToPrixTotal(mur.cout());
+                        main.resultats.add(nouveauResultat);
+                    }
+                }
+            }
+
+            // Parcourez les revêtements du sol de la pièce
+            for (Revetement revetement : piece.getSol().getlisteRevetementSol()) {
+                boolean revetementExiste = false;
+                for (ResultatRevetement resultat : main.resultats) {
+                    if (resultat.getRevetement().equals(revetement)) {
+                        resultat.addToSurfaceTotale(piece.getSol().CalculerSurfaceSol());
+                        resultat.addToPrixTotal(piece.getSol().cout());
+                        revetementExiste = true;
+                        break;
+                    }
+                }
+                if (!revetementExiste) {
+                    ResultatRevetement nouveauResultat = new ResultatRevetement(revetement);
+                    nouveauResultat.addToSurfaceTotale(piece.getSol().CalculerSurfaceSol());
+                    nouveauResultat.addToPrixTotal(piece.getSol().cout());
+                    main.resultats.add(nouveauResultat);
+                }
+            }
+
+            // Vérifiez le revêtement du plafond
+            for (Revetement revetement : piece.getPlafond().getlisteRevetementPlafond()) {
+                boolean revetementExiste = false;
+                for (ResultatRevetement resultat : main.resultats) {
+                    if (resultat.getRevetement().equals(revetement)) {
+                        resultat.addToSurfaceTotale(piece.getPlafond().CalculerSurfacePlafond());
+                        resultat.addToPrixTotal(piece.getPlafond().cout());
+                        revetementExiste = true;
+                        break;
+                    }
+                }
+                if (!revetementExiste) {
+                    ResultatRevetement nouveauResultat = new ResultatRevetement(revetement);
+                    nouveauResultat.addToSurfaceTotale(piece.getPlafond().CalculerSurfacePlafond());
+                    nouveauResultat.addToPrixTotal(piece.getPlafond().cout());
+                    main.resultats.add(nouveauResultat);
+                }
+            }
+        }
+
+        // Affichez les résultats
+        for (ResultatRevetement resultat : main.resultats) {
+            System.out.println("Revetement: " + resultat.getRevetement().getdesignation());
+            System.out.println("Surface totale: " + resultat.getSurfaceTotale());
+            System.out.println("Prix total: " + resultat.getPrixTotal());
+            System.out.println();
+        }
+    
+        
+        System.out.println("Au revoir !");
+        
+    }
+}
+
+ 
     /*
     private Coin parseCoinData(String[] tab, int IndexDebut) {
         int id = Integer.parseInt(tab[IndexDebut]);
@@ -863,173 +1041,3 @@ public class Main {
             ListeMaisons.add(maison);
         }
     }*/
-    private static <T> void afficherListe(String messageVide, ArrayList<T> liste) {
-        if (liste.isEmpty()) {
-            System.out.println(messageVide);
-        } else {
-            for (T item : liste) {
-                System.out.println(item.toString()); // Suppose que chaque classe a une méthode toString
-            }
-        }
-    }
-    private static void afficherMenu() {
-        System.out.println("***** MENU *****");
-        System.out.println("1- Créer un coin");
-        System.out.println("2- Créer un mur");
-        System.out.println("3- Créer une pièce");
-        System.out.println("4- Créer un appartement");
-        System.out.println("5- Créer un niveau");
-        System.out.println("6- Créer un niveau maison");
-        System.out.println("7- Créer un bâtiment (immeuble ou maison");
-        System.out.println("8- Lire le fichier");
-        System.out.println("9- Supprimer une ligne du fichier");
-        System.out.println("10- Quitter");
-        System.out.println("Faites votre choix : ");
-    }
-    
-  
-    public static void main(String[] args) throws IOException {
-        //création des instances des classes nécessaires
-        Main main = new Main();
-        ArrayList<Coin> ListeCoins = main.getListeCoins();
-        ArrayList<Mur>ListeMurs = main.getListeMurs();
-        ArrayList<Mur>ListeMursPiece = main.getListeMursPiece();
-        ArrayList<Piece>ListePieces = main.getListePieces();
-        ArrayList<Appartement>ListeAppartements = main.getListeAppartements();
-        ArrayList<Niveau>ListeNiveaux = main.getListeNiveaux();
-        ArrayList<Immeuble>ListeImmeubles = main.getListeImmeubles();
-        String code="";
-        int choix;
-        supprimerLignesVides("Liste_Batiment.txt");        
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader("Liste_Batiment.txt"));
-            String ligne;
-            while ((ligne = reader.readLine()) != null) {
-                if (!ligne.trim().isEmpty()) { // Vérifier si la ligne n'est pas vide
-                    String[] tab = ligne.split(" ");
-                    System.out.println(ligne);
-                    /*switch (tab[0]) {
-                        case "Coin" -> main.parseCoin(tab);
-                        case "Mur" -> main.parseMur(tab);
-                        case "Piece" -> main.parsePiece(tab);
-                        case "Appartement" -> main.parseAppartement(tab);
-                        case "Niveau" -> main.parseNiveau(tab);
-                        case "NiveauMaison" -> main.parseNiveauMaison(tab);
-                        case "Immeuble" -> main.parseImmeuble(tab);
-                        case "Maison" -> main.parseMaison(tab);
-                        default -> System.out.println("Ligne non reconnue: " + ligne);
-                    }*/
-                }
-            }
-            reader.close();
-        } catch (FileNotFoundException err) {
-            System.out.println("Erreur : le fichier n’existe pas!\n " + err);
-        }
-        // Afficher les listes
-        afficherListe("La liste de coins est vide.", ListeCoins);
-        /*afficherListe("La liste de murs est vide.", ListeMurs);
-        afficherListe("La liste de pièces est vide.", ListePieces);
-        afficherListe("La liste d'appartements est vide.", ListeAppartements);
-        afficherListe("La liste de niveaux est vide.", ListeNiveaux);
-        afficherListe("La liste d'immeubles est vide.", ListeImmeubles);*/
-
-        afficherMenu();
-        choix = Lire.i();
-        while (choix < 1 || choix > 10) {
-            System.out.println("Valeur incorrecte; veuillez donner une valeur correcte.");
-            choix = Lire.i();
-        }
-        while (choix != 10) {
-            switch (choix) {
-                case 1 -> main.ecrireFichier(main.creationCoin().getCode());
-                case 2 -> main.ecrireFichier(main.creationMur().getCode());
-                case 3 -> main.ecrireFichier(main.creationPiece().getCode());
-                case 4 -> main.ecrireFichier(main.creationAppartement().getCode());
-                case 5 -> main.ecrireFichier(main.creationNiveau().getCode());
-                case 6 -> main.ecrireFichier(main.creationNiveauMaison().getCode());
-                case 7 -> main.ecrireFichier(main.creationBatiment().getCode());
-                case 8 -> main.lireFichier();
-                case 9 -> main.supprimerLigne("Liste_Batiment.txt");
-                default -> System.out.println("Choix invalide.");
-            }
-            System.out.println("Faites un autre choix : ");
-            choix = Lire.i();
-        }
-        
-        for (Piece piece : ListePieces) {
-            // Parcourez les murs de la pièce
-            for (Mur mur : piece.getlisteMurs()) {
-                // Parcourez les revêtements du mur
-                for (Revetement revetement : mur.getlisteRevetementMur()) {
-                    // Vérifiez si le revêtement existe déjà dans les résultats
-                    boolean revetementExiste = false;
-                    for (ResultatRevetement resultat : main.resultats) {
-                        if (resultat.getRevetement().equals(revetement)) {
-                            resultat.addToSurfaceTotale(mur.CalculerSurfaceMur());
-                            resultat.addToPrixTotal(mur.cout());
-                            revetementExiste = true;
-                            break;
-                        }
-                    }
-                    // Si le revêtement n'existe pas encore dans les résultats, ajoutez-le
-                    if (!revetementExiste) {
-                        ResultatRevetement nouveauResultat = new ResultatRevetement(revetement);
-                        nouveauResultat.addToSurfaceTotale(mur.CalculerSurfaceMur());
-                        nouveauResultat.addToPrixTotal(mur.cout());
-                        main.resultats.add(nouveauResultat);
-                    }
-                }
-            }
-
-            // Parcourez les revêtements du sol de la pièce
-            for (Revetement revetement : piece.getSol().getlisteRevetementSol()) {
-                boolean revetementExiste = false;
-                for (ResultatRevetement resultat : main.resultats) {
-                    if (resultat.getRevetement().equals(revetement)) {
-                        resultat.addToSurfaceTotale(piece.getSol().CalculerSurfaceSol());
-                        resultat.addToPrixTotal(piece.getSol().cout());
-                        revetementExiste = true;
-                        break;
-                    }
-                }
-                if (!revetementExiste) {
-                    ResultatRevetement nouveauResultat = new ResultatRevetement(revetement);
-                    nouveauResultat.addToSurfaceTotale(piece.getSol().CalculerSurfaceSol());
-                    nouveauResultat.addToPrixTotal(piece.getSol().cout());
-                    main.resultats.add(nouveauResultat);
-                }
-            }
-
-            // Vérifiez le revêtement du plafond
-            for (Revetement revetement : piece.getPlafond().getlisteRevetementPlafond()) {
-                boolean revetementExiste = false;
-                for (ResultatRevetement resultat : main.resultats) {
-                    if (resultat.getRevetement().equals(revetement)) {
-                        resultat.addToSurfaceTotale(piece.getPlafond().CalculerSurfacePlafond());
-                        resultat.addToPrixTotal(piece.getPlafond().cout());
-                        revetementExiste = true;
-                        break;
-                    }
-                }
-                if (!revetementExiste) {
-                    ResultatRevetement nouveauResultat = new ResultatRevetement(revetement);
-                    nouveauResultat.addToSurfaceTotale(piece.getPlafond().CalculerSurfacePlafond());
-                    nouveauResultat.addToPrixTotal(piece.getPlafond().cout());
-                    main.resultats.add(nouveauResultat);
-                }
-            }
-        }
-
-        // Affichez les résultats
-        for (ResultatRevetement resultat : main.resultats) {
-            System.out.println("Revetement: " + resultat.getRevetement().getdesignation());
-            System.out.println("Surface totale: " + resultat.getSurfaceTotale());
-            System.out.println("Prix total: " + resultat.getPrixTotal());
-            System.out.println();
-        }
-    
-        
-        System.out.println("Au revoir !");
-        
-    }
-}
