@@ -32,14 +32,29 @@ public class Sol {
 
     //méthode pour calculer la surface d'un sol
     public double CalculerSurfaceSol() {
-        listeCoin.add(piece.getlisteMurs().getFirst().getcoinDebut());
-        Coin coin1 = listeCoin.get(1);
+        double surface = 0 ;
+        Coin coin1 = this.listeCoin.getFirst() ;
         Coin coin2 = listeCoin.get(2);
+        double x1 = coin1.getcx() ;
+        double y1 = coin1.getcy() ;
+        double x2 = coin1.getcx() ;
+        double y2 = coin1.getcy() ;
+        int i = 2 ;
         Ouverture tremis = listeOuverture.get(1);
-        double longueur = Math.abs(coin2.getcx() - coin1.getcx());
-        double largeur = Math.abs(coin2.getcy() - coin1.getcy());
-        double surface = longueur * largeur;
-        surface = surface-nbrtremis*tremis.getsurfaceTremis() ;
+        if (i<=4){
+            while (x2== x1 || y2== y1) {
+                i+=1 ;
+                coin2 = this.listeCoin.get(i) ;
+            } 
+            double longueur = Math.abs(coin2.getcx() - coin1.getcx());
+            double largeur = Math.abs(coin2.getcy() - coin1.getcy());
+            surface = longueur * largeur;
+            surface = surface-nbrtremis*tremis.getsurfaceTremis() ;
+        }
+        else {
+            System.out.println("Auncun coin de la liste ne permet de calculer la surface, revoir leur coordonnées") ;
+            System.out.println("Veillez recommencer et ne pas tenir compte de la surface nulle renovoyée") ;
+        }
         return surface ;
     }
     //méthode pour calculer le cout d'un sol
