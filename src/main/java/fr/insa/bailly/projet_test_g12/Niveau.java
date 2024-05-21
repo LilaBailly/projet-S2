@@ -50,11 +50,18 @@ public final class Niveau {
     }*/
     //afficher
     void afficherNiveau(){
-                System.out.println("Niveau [ idNiveau : "+this.idNiveau+" , hauteursousPlafond : "+this.hauteursousPlafond+" , listeAppart : "+this.listeAppart+" ]");
-        }
-        @Override 
-        public String toString(){
-            return "Niveau [ idNiveau : "+idNiveau+" , hauteursousPlafond : "+hauteursousPlafond+" , listeAppart : "+listeAppart+" ]";
-        }
-    //montantRevement()
+        System.out.println(this.toString() + " ");
     }
+    @Override 
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(idNiveau).append(" ; ");
+        sb.append(hauteursousPlafond).append(" ; ");
+        for (Appartement appart : listeAppart) {
+            sb.append(appart.getidAppartement()).append(" ; ");
+        }
+        
+        return sb.toString();
+    }
+    
+}

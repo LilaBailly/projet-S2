@@ -95,11 +95,21 @@ public class Sol {
         return listeRevSol;
     }
     void afficherSol(){
-            System.out.println(" Sol [ idSol : "+this.idSol+" , ListeCoins : "+this.listeCoin+" , ListeRevetements : "+this.listeRevSol+" ]");
+        System.out.println(this.toString() + " ");
     }
     @Override 
-    public String toString(){
-        return " Sol [ idSol : "+idSol+" , ListeCoins : "+listeCoin+" , ListeRevetements : "+listeRevSol+" ]";
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(idSol).append(" ; ");
+        for (Coin coin : listeCoin) {
+            sb.append(coin.getidCoin()).append(" ; ");
+        }
+        // Ajouter les identifiants des revêtements
+        for (Revetement rev : listeRevSol) {
+            sb.append(rev.getidRevetement()).append(" ; ");
+        }
+
+        return sb.toString();
     }
 
 }

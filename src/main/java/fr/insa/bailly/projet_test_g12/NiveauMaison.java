@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @author becqu
  */
 public class NiveauMaison {
-    private int idNiveau ;
+    private int idNiveauMaison ;
     private double hauteursousPlafond ; //int hauteur à voir
     private ArrayList<Appartement> listeAppart ;
     private ArrayList<Piece> listePiece ;
@@ -20,17 +20,17 @@ public class NiveauMaison {
         
     }
     public NiveauMaison (int id, double hauteurplafond, ArrayList<Piece> listePiece){
-        this.idNiveau = id ;
+        this.idNiveauMaison = id ;
         this.hauteursousPlafond = hauteurplafond ;
         this.listePiece = listePiece ;
     }
     
     //get et set pour donner et utiliser les attributs
     public int getidNiveauMaison(){
-        return idNiveau ;
+        return idNiveauMaison ;
     }
     public void setidNiveauMaison(int idNiveau){
-        this.idNiveau = idNiveau ;
+        this.idNiveauMaison = idNiveau ;
     }
     public double gethauteursousPlafond(){
         return hauteursousPlafond ;
@@ -53,11 +53,17 @@ public class NiveauMaison {
     }*/
     //afficher
     void afficherNiveauMaison(){
-                System.out.println("NiveauMaison [ idNiveauMaison : "+this.idNiveau+" , hauteursousPlafond : "+this.hauteursousPlafond+" , listePiece : "+this.listePiece+" ]");
+        System.out.println(this.toString() + " ");
+    }
+    @Override 
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(idNiveauMaison).append(" ; ");
+        for (Piece piece : listePiece) {
+            sb.append(piece.getidPiece()).append(" ; ");
         }
-        @Override 
-        public String toString(){
-            return "NiveauMaison [ NiveauMaison : "+idNiveau+" , hauteursousPlafond : "+hauteursousPlafond+" , listePiece : "+listePiece+" ]";
-        }
-    //montantRevement()
+        
+        return sb.toString();
+    }
+    
 }

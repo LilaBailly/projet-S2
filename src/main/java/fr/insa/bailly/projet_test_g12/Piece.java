@@ -120,11 +120,21 @@ public class Piece {
     //surface d'une pièce égale surface au sol
 
     void afficherPiece(){
-            System.out.println(" Piece [ idPiece : "+this.idPiece+" , usage : "+this.usage+" , sol : "+this.sol+" , plafond : "+this.plafond+" , ListeMurs : "+listeMurs+" ]");
+        System.out.println(this.toString() + " ");
     }
     @Override 
-    public String toString(){
-        return " Piece [ idPiece : "+idPiece+" , usage : "+usage+" , sol : "+sol+" , plafond : "+plafond+" , ListeMurs : "+listeMurs+" ]";
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(idPiece).append(" ; ")
+          .append(sol.getidSol()).append(" ; ")
+          .append(plafond.getidPlafond()).append(" ; ");
+
+        // Ajouter les identifiants des revêtements
+        for (Mur mur : listeMurs) {
+            sb.append(mur.getidMur()).append(" ; ");
+        }
+
+        return sb.toString();
     }
 
 }

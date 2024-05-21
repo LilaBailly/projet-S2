@@ -256,7 +256,14 @@ public class Revetement {
     }
     @Override
     public String toString(){
-        return " Revetement [ idRevetement : "+idRevetement+" , désignation : "+designation+" , prix unitaire : "+prixUnitaire+" ] ";
+        StringBuilder sb = new StringBuilder();
+
+        // Ajouter les identifiants des revêtements
+        for (Revetement rev : listeRevetement) {
+            sb.append(rev.getidRevetement()).append(" ; ");
+        }
+
+        return sb.toString();
     }
     
 }

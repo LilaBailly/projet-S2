@@ -58,15 +58,19 @@ public class Appartement {
     return s ;
 }*/
     public void afficherAppartement(){
-            System.out.println("Appartement [ idAppartement : "+this.idAppartement+" , idNiveauAppartement : "+this.idNiveauAppartement+" , listePiece : "+this.listePiece+" ]");
+        System.out.println(this.toString() + " ");
     }
     @Override 
     public String toString(){
-        return "Appartement [ idAppartement : "+idAppartement+" , idNiveauAppartement : "+idNiveauAppartement+" , listePiece : "+listePiece+" ]";
+        StringBuilder sb = new StringBuilder();
+        sb.append(idAppartement).append(" ; ");
+        sb.append(idNiveauAppartement).append(" ; ");
+        for (Piece piece : listePiece) {
+            sb.append(piece.getidPiece()).append(" ; ");
+        }
+        
+        return sb.toString();
     }
-
-//afficher()
-//montantRevement()
 
   
 }
