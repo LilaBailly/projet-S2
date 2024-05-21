@@ -47,10 +47,10 @@ public class Coin {
     }
     //méthode pour afficher le coin
     void afficherCoin(){
-            System.out.println(" Coin [ idCoin : "+this.idCoin+" , cx : "+this.cx+" , cy : "+this.cy+" ]");
+            System.out.println(this.idCoin+" ; "+this.cx+" ; "+this.cy);
     }
     @Override 
     public String toString(){
-        return "Coin [ idCoin : "+idCoin+" , cx : "+cx+" , cy : "+cy+" ]";
+        return idCoin+" ; "+cx+" ; "+cy;
     }
 }
