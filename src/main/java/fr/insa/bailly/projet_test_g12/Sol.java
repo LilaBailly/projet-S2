@@ -22,7 +22,7 @@ public class Sol {
     }
 
     //déclaration du constructeur
-    public Sol(int id, ArrayList<Coin> listeCoin,int nbrtremis, ArrayList<Revetement> listeRevetement ) {
+    public Sol(int id, ArrayList<Coin> listeCoin,ArrayList<Revetement> listeRevetement, int nbrtremis ) {
         this.idSol=id ;
         this.listeCoin = listeCoin ;
         this.nbrtremis = nbrtremis ;

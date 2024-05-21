@@ -186,8 +186,7 @@ public class Main {
     public Resultat creationPiece(){
         String code;
         int reponse;
-        int  idRecherche, idPiece;
-        int  idSol, idPlafond, nbrRevSol, nbrRevPlafond;
+        int  idRecherche, idPiece, idSol, idPlafond, nbrRevSol, nbrRevPlafond, nbrTremisSol, nbrTremisPlafond;
         ArrayList<Mur> ListeMursPiece = new ArrayList<>();
         Mur mur;
         String usage;
@@ -213,6 +212,8 @@ public class Main {
         System.out.println("Combien de revetement pour le sol ?");
         nbrRevSol=Lire.i();
         ListeRevSol = revetement.choixRevetementSol(nbrRevSol);
+        System.out.println("Combien de tremis pour le sol ?");
+        nbrTremisSol=Lire.i();
         
         System.out.println("identifiant plafond : ");
         idPlafond = Lire.i();
@@ -226,7 +227,8 @@ public class Main {
         System.out.println("Combien de revetement pour le plafond ?");
         nbrRevPlafond=Lire.i();
         ListeRevPlafond = revetement.choixRevetementPlafond(nbrRevPlafond);
-        
+        System.out.println("Combien de tremis pour le plafond ?");
+        nbrTremisPlafond=Lire.i();
         
         for (int j=0; j<4; j++){
             System.out.println("Le mur n°"+(j+1)+" existe-t-il déjà ? (1 = OUI et 0 = NON)");
@@ -264,10 +266,10 @@ public class Main {
             }
         }
         
-        Sol Sol = new Sol(idSol,ListeCoinsP,0,ListeRevSol);
+        Sol Sol = new Sol(idSol,ListeCoinsP,ListeRevSol,nbrTremisSol);
         ListeSols.add(Sol);
         Sol.afficherSol();
-        Plafond Plafond = new Plafond(idPlafond,ListeCoinsP,ListeRevPlafond);
+        Plafond Plafond = new Plafond(idPlafond,ListeCoinsP,ListeRevPlafond,nbrTremisPlafond);
         ListePlafonds.add(Plafond);
         Plafond.afficherPlafond();
         Piece creapiece = new Piece(idPiece, usage, Sol, Plafond, ListeMursPiece);
