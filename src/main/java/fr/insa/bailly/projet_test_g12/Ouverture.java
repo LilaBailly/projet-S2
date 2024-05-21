@@ -10,7 +10,6 @@ package fr.insa.bailly.projet_test_g12;
  */
 public class Ouverture { //est ce qu'on fait une extention de classe avec fenetre,tremis et porte ?
     // Déclaration des attributs de la classe coin
-    private int idOuverture ;
     private double dimx ;
     private double dimy ;
     private double surfaceFenetre;
@@ -21,9 +20,8 @@ public class Ouverture { //est ce qu'on fait une extention de classe avec fenetr
         
     }
     //déclaration du constructeur
-    Ouverture (String type, int id) { //si pas standard, mettre autres para entrée
+    Ouverture (String type) { //si pas standard, mettre autres para entrée
         type = type.toLowerCase() ;
-        this.idOuverture=id ;
         if (null != type) switch (type) {
             case "porte" -> {
                 this.dimx = 0.90 ;
@@ -45,12 +43,6 @@ public class Ouverture { //est ce qu'on fait une extention de classe avec fenetr
         }
     }
     //get et set pour donner et utiliser les attributs
-    public int getidOuverture(){
-        return idOuverture ;
-    }
-    public void setidOuverture (int idOuverture) {
-        this.idOuverture = idOuverture ;
-    }
     public double getdimx(){
         return dimx ;
     }
@@ -86,16 +78,16 @@ public class Ouverture { //est ce qu'on fait une extention de classe avec fenetr
         return dimx*dimy ;
     }
     void afficherPorte(){
-            System.out.println("Porte [ Identifiant : "+this.idOuverture+" , Dimension en x : 0.90 , Dimension en y : 2.10 ]");
+            System.out.println("Porte [ Dimension en x : 0.90 , Dimension en y : 2.10 ]");
     }
     void afficherFenetre(){
-            System.out.println("Fenetre [ Identifiant : "+this.idOuverture+" , Dimension en x : 0.90 , Dimension en y : 0.90 ]");
+            System.out.println("Fenetre [ Dimension en x : 0.90 , Dimension en y : 0.90 ]");
     }
     void afficherTremis(){
-            System.out.println("Tremis [ Identifiant : "+this.idOuverture+" , Dimension en x : 0.9 , Dimension en y : 1.9 ]");
+            System.out.println("Tremis [ Dimension en x : 0.9 , Dimension en y : 1.9 ]");
     }
     @Override 
     public String toString(){
-        return "Ouverture [ Identifiant : "+idOuverture+" , Dimension en x : "+dimx+" , Dimension en y :"+dimy+" ]";
+        return "Ouverture [ Dimension en x : "+dimx+" , Dimension en y :"+dimy+" ]";
     }
 }
