@@ -43,7 +43,7 @@ public class Sol {
         return surface ;
     }
     //méthode pour calculer le cout d'un sol
-    public double cout(){
+    public double coutSol(){
         double cout = 0 ;
         double s = CalculerSurfaceSol() ;
         for (int i=0; i<listeRevSol.size(); i++){
@@ -77,7 +77,9 @@ public class Sol {
     public void setNbrTremis(int nbrtremis) {
         this.nbrtremis = nbrtremis;
     }
-    
+    public ArrayList<Revetement> getlisteRevSol() {
+        return listeRevSol;
+    }
     void afficherSol(){
             System.out.println(" Sol [ idSol : "+this.idSol+" , ListeCoins : "+this.listeCoin+" , ListeRevetements : "+this.listeRevSol+" ]");
     }

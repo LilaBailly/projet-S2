@@ -64,19 +64,19 @@ public class Ouverture { //est ce qu'on fait une extention de classe avec fenetr
         this.dimy = dimy ;
     }
     public double getsurfaceFenetre(){
-        return this.surfaceFenetre;
+        return surfaceFenetre;
     }
     public void setsurfaceFenetre(double surfaceFenetre){
         this.surfaceFenetre = surfaceFenetre;
     }
     public double getsurfacePorte(){
-        return this.surfacePorte;
+        return surfacePorte;
     }
     public void setsurfacePorte(double surfacePorte){
         this.surfacePorte = surfacePorte;
     }
     public double getsurfaceTremis(){
-        return this.surfaceTremis;
+        return surfaceTremis;
     }
     public void setsurfaceTremis(double surfaceTremis){
         this.surfaceTremis = surfaceTremis;

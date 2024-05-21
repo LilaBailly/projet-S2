@@ -38,7 +38,7 @@ public class Plafond {
         return surface ;
         
     }
-    public double cout(){
+    public double coutPlafond(){
         double cout = 0 ;
         double s = CalculerSurfacePlafond() ;
         for (int i=0; i<listeRevPlafond.size(); i++){

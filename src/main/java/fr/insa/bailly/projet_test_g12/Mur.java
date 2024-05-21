@@ -49,7 +49,7 @@ public class Mur {
         return surface ;
     }
     //méthode pour calculer le coût d'un mur
-    public double cout(){
+    public double coutMur(){
         double cout = 0 ;
         double s = CalculerSurfaceMur()-nbrPorte*ouverture.getsurfacePorte()-nbrFenetre*ouverture.getsurfaceFenetre() ;
         for (Revetement revetement : ListeRevMur){
