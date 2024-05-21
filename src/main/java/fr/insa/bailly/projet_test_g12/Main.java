@@ -188,7 +188,7 @@ public class Main {
         int reponse;
         int  idRecherche, idPiece;
         int  nbrMur,idSol, idPlafond, nbrRevSol, nbrRevPlafond;
-        
+        ArrayList<Mur> ListeMursPiece = new ArrayList<>();
         Mur mur;
         String usage;
         System.out.println("Identifiant pièce : ");
@@ -227,13 +227,8 @@ public class Main {
         nbrRevPlafond=Lire.i();
         ListeRevPlafond = revetement.choixRevetementPlafond(nbrRevPlafond);
         
-        System.out.println("Combien y a-t-il de mur dans la pièce "+idPiece+" ?");
-        nbrMur=Lire.i();
-        while(nbrMur>4){
-            System.out.println("La pièce comporte trop de murs, veuillez donner un chiffre inférieur ou égale à 4 : ");
-            nbrMur=Lire.i();
-        }
-        for (int j=0; j<nbrMur; j++){
+        
+        for (int j=0; j<4; j++){
             System.out.println("Le mur n°"+(j+1)+" existe-t-il déjà ? (1 = OUI et 0 = NON)");
             reponse=Lire.i();
             while (reponse!=0&&reponse!=1){

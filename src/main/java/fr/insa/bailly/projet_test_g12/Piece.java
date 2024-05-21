@@ -74,48 +74,6 @@ public class Piece {
         return resultats;
     }
 
-    public double calculerSurfacePiece() {
-        double surface = 0;
-        if (sol != null) {
-            surface += sol.CalculerSurfaceSol();
-        }
-        if (plafond != null) {
-            surface += plafond.CalculerSurfacePlafond();
-        }
-        for (Mur mur : listeMurs) {
-            surface += mur.CalculerSurfaceMur();
-        }
-        return surface;
-    }
-
-    public double calculerCoutTotalParRevetement() {
-        double coutTotal = 0;
-        if (sol != null) {
-            coutTotal += sol.coutSol();
-        }
-        if (plafond != null) {
-            coutTotal += plafond.coutPlafond();
-        }
-        for (Mur mur : listeMurs) {
-            coutTotal += mur.coutMur();
-        }
-        return coutTotal;
-    }
-    
-    
-    
-    public double CalculerSurfacePiece() {
-        double surface = 0;
-        // Calcul de la surface du sol
-        surface += sol.CalculerSurfaceSol();
-        // Calcul de la surface du plafond
-        surface += plafond.CalculerSurfacePlafond();
-        // Calcul de la surface de chaque mur et addition à la surface totale
-        for (Mur mur : listeMurs) {
-            surface += mur.CalculerSurfaceMur();
-        }
-        return surface;
-    }
     public double CalculerCoutTotalParRevetement() {
         double coutTotal = 0;
         // Calcul du coût total par revêtement pour le sol
