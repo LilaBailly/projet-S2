@@ -47,7 +47,7 @@ public class Plafond {
             surface = surface-nbrtremis*tremis.getsurfaceTremis() ;
         }
         else {
-            System.out.println("Auncun coin de la liste ne permet de calculer la surface, revoir leur coordonnées") ;
+            System.out.println("Aucun coin de la liste ne permet de calculer la surface, revoir leur coordonnées") ;
             System.out.println("Veillez recommencer et ne pas tenir compte de la surface nulle renovoyée") ;
         }
         return surface ;
