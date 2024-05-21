@@ -84,6 +84,6 @@ public class Plafond {
     }
     @Override 
     public String toString(){
-        return " Plafond [ idPlafond : "+idPlafond+" , ListeCoins : "+listeCoin+" , ListeRevetements : "+listeRevPlafond+" ]";
-    }
+        return idPlafond+" ; "+ ListeCoins , ListeRevetements : "+listeRevPlafond+" ]";
+    }idCoin+" ; "+cx+" ; "+cy;
 }
