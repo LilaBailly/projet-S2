@@ -95,8 +95,8 @@ public class Main {
     public Resultat creationMur(){
         String code="";
         int idMur, exiCoinDeb, idRecherche,  exiCoinFin, nbrPorte, nbrFenetre, nbrRevetement ;
-        Coin coinDebut = null; //a modifier car problème plus tard dans un if
-        Coin coinFin = null; //a modifier car problème plus tard dans un if
+        Coin coinDebut = null; 
+        Coin coinFin = null; 
         System.out.println("Identifiant du mur: ");
         idMur=Lire.i();
         ArrayList<Revetement>ListeRev = new ArrayList<>();
@@ -130,7 +130,7 @@ public class Main {
             }
         } 
         else {
-            // Si le coin de début n'existe pas, créez-le
+            // Si le coin de début n'existe pas
             Resultat resCoin = creationCoin();
             code += resCoin.getCode();
             coinDebut = (Coin) resCoin.getObjet();
@@ -155,16 +155,16 @@ public class Main {
                 }
             }
             if (coinFin == null) {
-                // Si le coin de début n'est pas trouvé, affichez un message d'erreur
+                // Si le coin de début n'est pas trouvé, affiche un message d'erreur
                 System.out.println("Le coin de fin recherché n'a pas été trouvé.");
             }
         } 
         // coin fin n'existe pas
         else{
-            Resultat resCoin = creationCoin(); // Création du coin
-            code += resCoin.getCode(); // Ajout du code du coin à la variable code
+            Resultat resCoin = creationCoin(); 
+            code += resCoin.getCode();
             coinFin = (Coin) resCoin.getObjet();
-        }
+        }// a modifier pour comparer les deux...
         if (coinDebut != null && coinFin != null) {
             coinFin.setcy(coinDebut.getcy());
         }
@@ -187,7 +187,7 @@ public class Main {
         String code;
         int reponse;
         int  idRecherche, idPiece;
-        int  nbrMur,idSol, idPlafond, nbrRevSol, nbrRevPlafond;
+        int  idSol, idPlafond, nbrRevSol, nbrRevPlafond;
         ArrayList<Mur> ListeMursPiece = new ArrayList<>();
         Mur mur;
         String usage;
@@ -248,7 +248,7 @@ public class Main {
                     }
                 
                     if (m == null) {
-                        // Si le mur  n'est pas trouvé, affichez un message d'erreur ou gérez-le autrement
+                        // Si le mur  n'est pas trouvé, affiche un message d'erreur 
                         System.out.println("Le mur recherché n'a pas été trouvé.");
                     }
                 }
@@ -310,7 +310,7 @@ public class Main {
                     }
                 
                     if (p == null) {
-                        // Si le mur  n'est pas trouvé, affichez un message d'erreur ou gérez-le autrement
+                        // Si le mur  n'est pas trouvé, affiche un message d'erreur 
                         System.out.println("La pièce recherchée n'a pas été trouvée.");
                     }
                 }
@@ -359,7 +359,7 @@ public class Main {
                     }
                 
                     if (p == null) {
-                        // Si le mur  n'est pas trouvé, affichez un message d'erreur ou gérez-le autrement
+                        // Si le mur  n'est pas trouvé, affiche un message d'erreur 
                         System.out.println("La pièce recherchée n'a pas été trouvée.");
                     }
                 }
@@ -410,7 +410,7 @@ public class Main {
                     }
                 
                     if (a == null) {
-                        // Si le mur  n'est pas trouvé, affichez un message d'erreur ou gérez-le autrement
+                        // Si le mur  n'est pas trouvé, affiche un message d'erreur
                         System.out.println("L'appartement recherché n'a pas été trouvé.");
                     }
                 }
@@ -430,7 +430,7 @@ public class Main {
     public Resultat creationBatiment(){
         Batiment creabat = new Batiment();
         String code, idBat = null;
-        int typeBatiment,idBatiment, idImmeuble=1, idMaison,nbrNiveaux,reponse,idRecherche;
+        int typeBatiment,idBatiment,nbrNiveaux,reponse,idRecherche;
         Niveau niveau;
         System.out.println("Quel type de bâtiment souhaitez-vous créer ? (1 = Immeuble et 0 = Maison)");
         typeBatiment = Lire.i();
@@ -468,7 +468,7 @@ public class Main {
                         }
 
                         if (n == null) {
-                            // Si le mur  n'est pas trouvé, affichez un message d'erreur ou gérez-le autrement
+                            // Si le mur  n'est pas trouvé, affiche un message d'erreur 
                             System.out.println("Le niveau recherché n'a pas été trouvé.");
                         }
                     }
@@ -684,15 +684,12 @@ public class Main {
         }
     }
     
-    // calcul cout 
-    
-   
     private static <T> void afficherListe(String messageVide, ArrayList<T> liste) {
         if (liste.isEmpty()) {
             System.out.println(messageVide);
         } else {
             for (T item : liste) {
-                System.out.println(item.toString()); // Suppose que chaque classe a une méthode toString
+                System.out.println(item.toString()); 
             }
         }
     }
@@ -729,14 +726,13 @@ public class Main {
         Main main = new Main();
         ArrayList<Coin> ListeCoins = main.getListeCoins();
         ArrayList<Mur>ListeMurs = main.getListeMurs();
-        ArrayList<Mur>ListeMursPiece = main.getListeMursPiece();
         ArrayList<Piece>ListePieces = main.getListePieces();
         ArrayList<Appartement>ListeAppartements = main.getListeAppartements();
         ArrayList<Niveau>ListeNiveaux = main.getListeNiveaux();
         ArrayList<Immeuble>ListeImmeubles = main.getListeImmeubles();
-        String code="";
+
         int choix;
-        Batiment batiment = new Batiment(main.ListeNiveaux);
+        Batiment batiment = new Batiment();
         supprimerLignesVides("Liste_Batiment.txt");        
         try {
             BufferedReader reader = new BufferedReader(new FileReader("Liste_Batiment.txt"));

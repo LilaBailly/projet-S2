@@ -12,13 +12,12 @@ import java.util.ArrayList;
 public class Batiment {
    private String idBatiment ;
    private ArrayList<Niveau> listeNiveau = new ArrayList<>();
+   private ArrayList<NiveauMaison> listeNiveauMaison = new ArrayList<>();
 //get et set pour donner et utiliser les attributs
    public Batiment(){
     
     } 
-   public Batiment(ArrayList<Niveau> listeNiveau){
-       
-   }
+   
    public String getidBatiment(){
         return idBatiment ;
     }
