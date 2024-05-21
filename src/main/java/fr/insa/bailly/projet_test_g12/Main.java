@@ -176,7 +176,7 @@ public class Main {
         nbrRevetement=Lire.i();
         
         ListeRevMur = revetement.choixRevetementMur(nbrRevetement);
-        Mur creamur = new Mur(idMur,coinDebut,coinFin,nbrPorte,nbrFenetre,nbrRevetement,ListeRevMur);
+        Mur creamur = new Mur(idMur,coinDebut,coinFin,nbrPorte,nbrFenetre,ListeRevMur);
         ListeMurs.add(creamur);
         code+=creamur.toString()+" \n";
         return creationObjet(ListeMurs, creamur,code);
@@ -272,7 +272,7 @@ public class Main {
         Plafond Plafond = new Plafond(idPlafond,ListeCoinsP,ListeRevPlafond,nbrTremisPlafond);
         ListePlafonds.add(Plafond);
         Plafond.afficherPlafond();
-        Piece creapiece = new Piece(idPiece, usage, Sol, Plafond, ListeMursPiece);
+        Piece creapiece = new Piece(idPiece, usage, idSol, idPlafond, ListeMursPiece);
         ListePieces.add(creapiece);
         code=creapiece.toString()+" \n";
         return creationObjet(ListePieces, creapiece,code);
@@ -576,7 +576,7 @@ public class Main {
         FileWriter fw = null;
         BufferedWriter bw = null;
         try {
-            fw = new FileWriter("Liste_Batiment.txt", true);
+            fw = new FileWriter("Liste_Batiment.txt", false);
             bw = new BufferedWriter(fw);
             bw.write(texte);
             bw.newLine();
