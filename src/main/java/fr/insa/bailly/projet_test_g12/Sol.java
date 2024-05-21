@@ -11,7 +11,6 @@ import java.util.ArrayList;
 public class Sol {
     private int idSol ;
     private ArrayList<Coin> listeCoin ;
-    private ArrayList<Ouverture> listeOuverture ;
     private int nbrtremis ;
     private int nbrrev ;
     private ArrayList<Revetement> listeRevSol ;
@@ -40,7 +39,7 @@ public class Sol {
         double x2 = coin1.getcx() ;
         double y2 = coin1.getcy() ;
         int i = 2 ;
-        Ouverture tremis = listeOuverture.get(1);
+        Ouverture tremis = new Ouverture("tremis") ;
         if (i<=4){
             while (x2== x1 || y2== y1) {
                 i+=1 ;
