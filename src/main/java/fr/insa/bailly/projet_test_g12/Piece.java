@@ -138,6 +138,7 @@ public class Piece {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(idPiece).append(" ; ")
+          .append(usage).append(" ; ")
           .append(sol.getidSol()).append(" ; ")
           .append(plafond.getidPlafond()).append(" ; ");
 

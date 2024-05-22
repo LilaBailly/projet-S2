@@ -93,6 +93,7 @@ public class Plafond {
         for (Revetement rev : listeRevPlafond) {
             sb.append(rev.getidRevetement()).append(" ; ");
         }
+        sb.append(nbrtremis).append(" ; ");
         return sb.toString();
     }
 }

@@ -108,7 +108,7 @@ public class Sol {
         for (Revetement rev : listeRevSol) {
             sb.append(rev.getidRevetement()).append(" ; ");
         }
-
+        sb.append(nbrtremis).append(" ; ");
         return sb.toString();
     }
 
