@@ -390,6 +390,7 @@ public class Main {
             if (ListeNiveaux.get(i).getidNiveau().equals(idNiveau)){
                 System.out.println("L'identifiant existe déja, donnez un nouvel identifiant pour le niveau :");
                 idNiveau=Lire.S() ;
+            }
         }
         System.out.println("hauteur : ");
         hauteur=Lire.i();
@@ -428,8 +429,8 @@ public class Main {
         Niveau creaniveau = new Niveau(idNiveau,hauteur, ListeAppartements);
         code=creaniveau.toString()+" \n";
         return creationObjet(ListeNiveaux, creaniveau,code);
-    }
     
+    }
     public Resultat creationBatiment(){
         Batiment creabat = new Batiment();
         String code, idBat = null,idBatiment,idRecherche ;
