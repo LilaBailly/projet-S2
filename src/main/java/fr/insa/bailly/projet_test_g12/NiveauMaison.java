@@ -11,24 +11,24 @@ import java.util.ArrayList;
  * @author becqu
  */
 public class NiveauMaison {
-    private int idNiveauMaison ;
+    private String idNiveauMaison ;
     private double hauteursousPlafond ; //int hauteur à voir
     private ArrayList<Piece> listePiece ;
     
     public NiveauMaison(){
         
     }
-    public NiveauMaison (int id, double hauteurplafond, ArrayList<Piece> listePiece){
+    public NiveauMaison (String id, double hauteurplafond, ArrayList<Piece> listePiece){
         this.idNiveauMaison = id ;
         this.hauteursousPlafond = hauteurplafond ;
         this.listePiece = listePiece ;
     }
     
     //get et set pour donner et utiliser les attributs
-    public int getidNiveauMaison(){
+    public String getidNiveauMaison(){
         return idNiveauMaison ;
     }
-    public void setidNiveauMaison(int idNiveau){
+    public void setidNiveauMaison(String idNiveau){
         this.idNiveauMaison = idNiveau ;
     }
     public double gethauteursousPlafond(){
