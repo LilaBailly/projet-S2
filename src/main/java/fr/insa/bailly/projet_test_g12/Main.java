@@ -796,8 +796,12 @@ public class Main {
                 if (!ligne.trim().isEmpty()) { // Vérifier si la ligne n'est pas vide
                     String[] tab = ligne.split(";");
                     int i = tab.length;
+                    /*System.out.println(i);
+                    for (int u=0; u<i;u++){
+                        System.out.println(tab[u]);
+                    }*/
                     System.out.println(ligne);
-                    if (tab.length==2){
+                    if (tab.length==3){
                         n=1;
                         break;
                     }
@@ -816,7 +820,7 @@ public class Main {
                             Cy = Double.parseDouble(tab[2]);
                             Coin coin = new Coin(idCoin,Cx,Cy);
                             ListeCoins.add(coin);
-                            break;
+                            //break;
                         case 2:
                             idMur = Integer.parseInt(tab[0]);
                             idCoinD = Integer.parseInt(tab[1]);
