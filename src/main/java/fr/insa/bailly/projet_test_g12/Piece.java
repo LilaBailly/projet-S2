@@ -22,11 +22,11 @@ public class Piece {
     public Piece() {
         this.listeMurs = new ArrayList<>();
     }
-    public Piece(int idPiece, String usage, Sol sol,Plafond plafond, ArrayList<Mur> listeMurs){
+    public Piece(int idPiece, String usage, int idsol,int idplafond, ArrayList<Mur> listeMurs){
         this.idPiece=idPiece;
         this.usage=usage;
-        this.sol=sol;
-        this.plafond=plafond;
+        this.idsol=idsol;
+        this.idplafond=idplafond;
         this.listeMurs=listeMurs;
  
     }
@@ -93,6 +93,18 @@ public class Piece {
     public void setidPiece(int idPiece) {
         this.idPiece = idPiece ;
     }
+    public int getidSol(){
+        return idsol ;
+    }
+    public void setidSol(Sol sol) {
+        this.idsol = idsol ;
+    }
+    public int getidPlafond(){
+        return idplafond ;
+    }
+    public void setidPlafond(Plafond plafond) {
+        this.idplafond = idplafond ;
+    }
     public Sol getSol(){
         return sol ;
     }
@@ -102,7 +114,7 @@ public class Piece {
     public Plafond getPlafond(){
         return plafond ;
     }
-    public void setplafond(Plafond plafond) {
+    public void setPlafond(Plafond plafond) {
         this.plafond = plafond ;
     }
     public ArrayList<Mur> getlisteMurs(){
@@ -120,11 +132,22 @@ public class Piece {
     //surface d'une pièce égale surface au sol
 
     void afficherPiece(){
-            System.out.println(" Piece [ idPiece : "+this.idPiece+" , usage : "+this.usage+" , sol : "+this.sol+" , plafond : "+this.plafond+" , ListeMurs : "+listeMurs+" ]");
+        System.out.println(this.toString() + " ");
     }
     @Override 
-    public String toString(){
-        return " Piece [ idPiece : "+idPiece+" , usage : "+usage+" , sol : "+sol+" , plafond : "+plafond+" , ListeMurs : "+listeMurs+" ]";
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(idPiece).append(" ; ")
+          .append(usage).append(" ; ")
+          .append(sol.getidSol()).append(" ; ")
+          .append(plafond.getidPlafond()).append(" ; ");
+
+        // Ajouter les identifiants des revêtements
+        for (Mur mur : listeMurs) {
+            sb.append(mur.getidMur()).append(" ; ");
+        }
+
+        return sb.toString();
     }
 
 }

@@ -43,12 +43,18 @@ public class Maison extends Batiment {
         return s;
     }*/
     public void afficherMaison(){
-            System.out.println("Maison [ idMaison : "+this.getidBatiment()+" , listeNiveaux : "+this.listeNiveauxMaison+" ]");
+        System.out.println(this.toString() + " ");
     }
     
     @Override
     public String toString(){
-        return "Maison [ idMaison : "+getidBatiment()+" , listeNiveaux : "+listeNiveauxMaison+" ]";
+        StringBuilder sb = new StringBuilder();
+        sb.append(idBatiment).append(" ; ");
+        for (NiveauMaison niveauM : listeNiveauxMaison) {
+            sb.append(niveauM.getidNiveauMaison()).append(" ; ");
+        }
+        
+        return sb.toString();
     }
     
 }

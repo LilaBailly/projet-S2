@@ -80,10 +80,20 @@ public class Plafond {
         this.listeRevPlafond = liste_rev_plafond ;
     }
     void afficherPlafond(){
-            System.out.println(" Plafond [ idPlafond : "+this.idPlafond+" , ListeCoins : "+this.listeCoin+" , ListeRevetements : "+this.listeRevPlafond+" ]");
+        System.out.println(this.toString() + " ");
     }
     @Override 
     public String toString(){
-        return idPlafond+" ; "+ ListeCoins , ListeRevetements : "+listeRevPlafond+" ]";
-    }idCoin+" ; "+cx+" ; "+cy;
+        StringBuilder sb = new StringBuilder();
+        sb.append(idPlafond).append(" ; ");
+        for (Coin coin : listeCoin) {
+            sb.append(coin.getidCoin()).append(" ; ");
+        }
+        // Ajouter les identifiants des revêtements
+        for (Revetement rev : listeRevPlafond) {
+            sb.append(rev.getidRevetement()).append(" ; ");
+        }
+        sb.append(nbrtremis).append(" ; ");
+        return sb.toString();
+    }
 }

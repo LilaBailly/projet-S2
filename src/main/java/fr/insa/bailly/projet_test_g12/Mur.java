@@ -17,7 +17,6 @@ public class Mur {
     private int nbrFenetre ;
     private double hauteur ; 
     private double surface ;
-    private int nbrRev ;
     private ArrayList<Revetement> ListeRevMur ;
     private Ouverture ouverture;
     
@@ -26,13 +25,12 @@ public class Mur {
     }
     
     //déclaration du constructeur
-    public Mur(int id, Coin debut, Coin fin, int porte, int fenetre, int nbrRev, ArrayList<Revetement> listeRevetement) {
+    public Mur(int id, Coin debut, Coin fin, int porte, int fenetre, ArrayList<Revetement> listeRevetement) {
         this.idMur = id;
         this.coinDebut = debut;
         this.coinFin = fin;
         this.nbrPorte = porte;
         this.nbrFenetre = fenetre;
-        this.nbrRev = nbrRev;
         Revetement revetement = new Revetement(); 
         this.ListeRevMur = listeRevetement; 
         this.hauteur = 2.5; 
@@ -91,12 +89,6 @@ public class Mur {
     public void setnbrFenetre(int nbrFenetre){
         this.nbrFenetre = nbrFenetre ;
     }
-    public int getnbrRev(){
-        return nbrRev;
-    }
-    public void setnbrRev(int nbrRev){
-        this.nbrRev = nbrRev ;
-    }
     public double gethauteur(){
         return hauteur ;
     }
@@ -106,12 +98,25 @@ public class Mur {
     public ArrayList<Revetement> getlisteRevetementMur() {
         return ListeRevMur;
     }
+    
     void afficherMur(){
-            System.out.println(" Mur [ idMur : "+this.idMur+" , coinDebut : "+getcoinDebut()+" , coinFin : "+getcoinFin()+" , nbrPortes : "+this.nbrPorte+" , nbrFenetre : "+this.nbrFenetre+" , nbrRevetement : "+this.nbrRev+" , ListeRevetement : "+this.ListeRevMur+" ]");
+        System.out.println(this.toString() + " ");
     }
     @Override 
-    public String toString(){
-        return " Mur [ idMur : "+idMur+" , coinDebut : "+getcoinDebut()+" , coinFin : "+getcoinFin()+" , nbrPortes : "+nbrPorte+" , nbrFenetre : "+nbrFenetre+" , nbrRevetement : "+nbrRev+" , ListeRevetement : "+this.ListeRevMur+" ]";
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(idMur).append(" ; ")
+          .append(getcoinDebut().getidCoin()).append(" ; ")
+          .append(getcoinFin().getidCoin()).append(" ; ")
+          .append(nbrPorte).append(" ; ")
+          .append(nbrFenetre).append(" ; ");
+
+        // Ajouter les identifiants des revêtements
+        for (Revetement rev : ListeRevMur) {
+            sb.append(rev.getidRevetement()).append(" ; ");
+        }
+
+        return sb.toString();
     }
     
 }

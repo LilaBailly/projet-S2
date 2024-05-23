@@ -44,12 +44,18 @@ public class Immeuble extends Batiment {
         return s;
     }*/
     public void afficherImmeuble(){
-            System.out.println("Immeuble [ idImmeuble : "+this.getidBatiment()+" , listeNiveaux : "+this.listeNiveaux+" ]");
+        System.out.println(this.toString() + " ");
     }
     
     @Override
     public String toString(){
-        return "Immeuble [ idImmeuble : "+getidBatiment()+" , listeNiveaux : "+listeNiveaux+" ]";
+        StringBuilder sb = new StringBuilder();
+        sb.append(idBatiment).append(" ; ");
+        for (Niveau niveau : listeNiveaux) {
+            sb.append(niveau.getidNiveau()).append(" ; ");
+        }
+        
+        return sb.toString();
     }
     
 }
