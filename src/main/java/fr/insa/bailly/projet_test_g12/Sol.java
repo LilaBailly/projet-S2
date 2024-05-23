@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @author Elève
  */
 public class Sol {
-    private int idSol ;
+    private String idSol ;
     private ArrayList<Coin> listeCoin ;
     private int nbrtremis ;
     private int nbrrev ;
@@ -22,7 +22,7 @@ public class Sol {
     }
 
     //déclaration du constructeur
-    public Sol(int id, ArrayList<Coin> listeCoin,ArrayList<Revetement> listeRevetement, int nbrtremis ) {
+    public Sol(String id, ArrayList<Coin> listeCoin,ArrayList<Revetement> listeRevetement, int nbrtremis ) {
         this.idSol=id ;
         this.listeCoin = listeCoin ;
         this.nbrtremis = nbrtremis ;
@@ -67,10 +67,10 @@ public class Sol {
     }
 
     //get et set pour donner et utiliser les attributs
-    public int getidSol(){
+    public String getidSol(){
         return idSol ;
     }
-    public void setidSol(int idSol) {
+    public void setidSol(String idSol) {
         this.idSol = idSol ;
     }
     public ArrayList<Coin> getlisteCoin(){

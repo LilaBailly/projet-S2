@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @author Elève
  */
 public final class Niveau {
-    private int idNiveau ;
+    private String idNiveau ;
     private double hauteursousPlafond ; //int hauteur à voir
     private ArrayList<Appartement> listeAppart ;
     private ArrayList<Piece> listePiece ;
@@ -17,16 +17,16 @@ public final class Niveau {
     public Niveau(){
         
     }
-    public Niveau (int id, double hauteurplafond, ArrayList<Appartement> listeAppart) {
+    public Niveau (String id, double hauteurplafond, ArrayList<Appartement> listeAppart) {
         this.idNiveau = id ;
         this.hauteursousPlafond = hauteurplafond ;
         this.listeAppart = listeAppart ;
     }
     //get et set pour donner et utiliser les attributs
-    public int getidNiveau(){
+    public String getidNiveau(){
         return idNiveau ;
     }
-    public void setidNiveau(int idNiveau){
+    public void setidNiveau(String idNiveau){
         this.idNiveau = idNiveau ;
     }
     public double gethauteursousPlafond(){

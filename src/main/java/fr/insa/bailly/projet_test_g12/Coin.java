@@ -16,21 +16,21 @@ public class Coin {
     }
     
     // Déclaration des attributs de la classe coin
-    private int idCoin ;
+    private String idCoin ;
     private double cx ;
     private double cy ;
     
     //déclaration du constructeur
-    Coin(int id, double x, double y) {
+    Coin(String id, double x, double y) {
         this.idCoin=id ;
         this.cx=x ;
         this.cy=y ;
     }
     //get et set pour donner et utiliser les attributs
-    public int getidCoin () {
+    public String getidCoin () {
         return idCoin ;
     }
-    public void setidCoin(int idCoin) {
+    public void setidCoin(String idCoin) {
     this.idCoin = idCoin ;
     }
     public double getcx () {

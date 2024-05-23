@@ -13,18 +13,18 @@ import java.util.ArrayList;
 public class Immeuble extends Batiment {
  //   listeNiveau
     
-    private int idBatiment ;
+    private String idBatiment ;
     private ArrayList<Niveau> listeNiveaux;
 
-    public Immeuble (int idBatiment, ArrayList<Niveau> listeNiveaux) {
+    public Immeuble (String idBatiment, ArrayList<Niveau> listeNiveaux) {
         this.idBatiment = idBatiment ;
         this.listeNiveaux = listeNiveaux ;
     }
     
-    public int getidImmeuble(){
+    public String getidImmeuble(){
         return idBatiment ;
     }
-    public void setidImmeuble(int idBatiment) {
+    public void setidImmeuble(String idBatiment) {
         this.idBatiment = idBatiment ;
     }
     

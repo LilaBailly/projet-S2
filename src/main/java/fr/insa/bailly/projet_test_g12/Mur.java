@@ -10,7 +10,7 @@ import java.util.ArrayList ;
  */
 public class Mur {
     // Déclaration des attributs de la classe Mur
-    private int idMur ;
+    private String idMur ;
     private Coin coinDebut ;
     private Coin coinFin ;
     private int nbrPorte ;
@@ -25,13 +25,12 @@ public class Mur {
     }
     
     //déclaration du constructeur
-    public Mur(int id, Coin debut, Coin fin, int porte, int fenetre, ArrayList<Revetement> listeRevetement) {
+    public Mur(String id, Coin debut, Coin fin, int porte, int fenetre, ArrayList<Revetement> listeRevetement) {
         this.idMur = id;
         this.coinDebut = debut;
         this.coinFin = fin;
         this.nbrPorte = porte;
         this.nbrFenetre = fenetre;
-        Revetement revetement = new Revetement(); 
         this.ListeRevMur = listeRevetement; 
         this.hauteur = 2.5; 
     }
@@ -59,10 +58,10 @@ public class Mur {
     
     //get et set pour donner et utiliser les attributs
     
-    public int getidMur(){
+    public String getidMur(){
         return idMur ;
     }
-    public void setidMur(int idMur) {
+    public void setidMur(String idMur) {
         this.idMur = idMur ;
     }
     public Coin getcoinDebut(){

@@ -11,9 +11,9 @@ import java.util.Map;
  * @author Elève
  */
 public class Piece {
-    private int idPiece ;
-    private int idsol ;
-    private int idplafond ;
+    private String idPiece ;
+    private String idsol ;
+    private String idplafond ;
     private ArrayList<Mur> listeMurs ;
     private String usage ;
     private Sol sol;
@@ -22,7 +22,7 @@ public class Piece {
     public Piece() {
         this.listeMurs = new ArrayList<>();
     }
-    public Piece(int idPiece, String usage, int idsol,int idplafond, ArrayList<Mur> listeMurs){
+    public Piece(String idPiece, String usage, String idsol,String idplafond, ArrayList<Mur> listeMurs){
         this.idPiece=idPiece;
         this.usage=usage;
         this.idsol=idsol;
@@ -87,23 +87,23 @@ public class Piece {
         return coutTotal;
     }
     
-    public int getidPiece(){
+    public String getidPiece(){
         return idPiece ;
     }
-    public void setidPiece(int idPiece) {
+    public void setidPiece(String idPiece) {
         this.idPiece = idPiece ;
     }
-    public int getidSol(){
+    public String getidSol(){
         return idsol ;
     }
-    public void setidSol(Sol sol) {
-        this.idsol = idsol ;
+    public void setidSol(String id) {
+        this.idsol = id ;
     }
-    public int getidPlafond(){
+    public String getidPlafond(){
         return idplafond ;
     }
-    public void setidPlafond(Plafond plafond) {
-        this.idplafond = idplafond ;
+    public void setidPlafond(String id) {
+        this.idplafond = id ;
     }
     public Sol getSol(){
         return sol ;

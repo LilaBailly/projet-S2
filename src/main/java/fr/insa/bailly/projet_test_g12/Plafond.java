@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * @author Elève
  */
 public class Plafond {
-    private int idPlafond ;
+    private String idPlafond ;
     private ArrayList<Coin> listeCoin ;
     private ArrayList<Revetement> listeRevPlafond ;
     private int nbrtremis ; //ajouter nbr tremis
@@ -20,7 +20,7 @@ public class Plafond {
 
     }
     //Déclaration du constructeur
-    public Plafond (int id, ArrayList<Coin> listeCoin, ArrayList<Revetement> listeRevetement, int nbrtremis){
+    public Plafond (String id, ArrayList<Coin> listeCoin, ArrayList<Revetement> listeRevetement, int nbrtremis){
         this.idPlafond = id ;
         this.listeCoin = listeCoin ;
         this.listeRevPlafond = listeRevetement ;
@@ -61,10 +61,10 @@ public class Plafond {
         return cout ;
     }
     //get et set pour donner et utiliser les attributs
-    public int getidPlafond(){
+    public String getidPlafond(){
         return idPlafond ;
     }
-    public void setidPlafond(int idPlafond) {
+    public void setidPlafond(String idPlafond) {
         this.idPlafond = idPlafond ;
     }
     public ArrayList<Coin> getlisteCoin(){

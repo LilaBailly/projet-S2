@@ -12,18 +12,18 @@ import java.util.ArrayList;
  */
 public class Maison extends Batiment {
     
-    private int idBatiment ;
+    private String idBatiment ;
     private ArrayList<NiveauMaison> listeNiveauxMaison;
 
-    public Maison (int idBatiment, ArrayList<NiveauMaison> listeNiveaux) {
+    public Maison (String idBatiment, ArrayList<NiveauMaison> listeNiveaux) {
         this.idBatiment = idBatiment ;
         this.listeNiveauxMaison = listeNiveaux ;
     }
     
-    public int getidMaison(){
+    public String getidMaison(){
         return idBatiment ;
     }
-    public void setidMaison(int idBatiment) {
+    public void setidMaison(String idBatiment) {
         this.idBatiment = idBatiment ;
     }
     

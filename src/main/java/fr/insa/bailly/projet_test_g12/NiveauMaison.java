@@ -13,7 +13,6 @@ import java.util.ArrayList;
 public class NiveauMaison {
     private int idNiveauMaison ;
     private double hauteursousPlafond ; //int hauteur à voir
-    private ArrayList<Appartement> listeAppart ;
     private ArrayList<Piece> listePiece ;
     
     public NiveauMaison(){

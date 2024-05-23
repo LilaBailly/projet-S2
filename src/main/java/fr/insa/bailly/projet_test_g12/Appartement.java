@@ -9,13 +9,13 @@ import java.util.ArrayList ;
  * @author Elève
  */
 public class Appartement {
-    private int idAppartement ;
+    private String idAppartement ;
     private int idNiveauAppartement ;
     private Niveau niveauAppartement ;
     private ArrayList<Piece> listePiece ;
 
     //Constucteur
-    public Appartement (int id, int niveauApp, ArrayList<Piece> listePiece) {
+    public Appartement (String id, int niveauApp, ArrayList<Piece> listePiece) {
         this.idAppartement = id ;
         this.idNiveauAppartement = niveauApp ;
         this.listePiece = listePiece ;
@@ -25,10 +25,10 @@ public class Appartement {
 
     }
     //get et set pour donner et utiliser les attributs
-    public int getidAppartement(){
+    public String getidAppartement(){
         return idAppartement ;
     }
-    public void setidAppartement(int idAppartement){
+    public void setidAppartement(String idAppartement){
         this.idAppartement = idAppartement ;
     }
     public int getidNiveauAppartement(){

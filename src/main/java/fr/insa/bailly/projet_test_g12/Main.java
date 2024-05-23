@@ -72,14 +72,14 @@ public class Main {
 
         public Resultat creationCoin(){
             String code;
-            int id;
+            String id;
             double a,o;
             System.out.println("Identifiant du coin: ");
-            id=Lire.i();
+            id=Lire.S();
             for (int i=0;i<ListeCoins.size();i++){
-                if (ListeCoins.get(i).getidCoin()==id){
+                if ("id".equals(ListeCoins.get(i).getidCoin())){
                     System.out.println("L'identifiant existe déja, donnez un nouvel identifiant pour le coin :");
-                    id=Lire.i();
+                    id=Lire.S();
                 }
             }
             System.out.println("Abcisse: ");
@@ -93,8 +93,8 @@ public class Main {
         }
     
     public Resultat creationMur(){
-        String code="";
-        int idMur, exiCoinDeb, idRecherche,  exiCoinFin, nbrPorte, nbrFenetre, nbrRevetement ;
+        String code="", idRecherche ;
+        int idMur, exiCoinDeb,  exiCoinFin, nbrPorte, nbrFenetre, nbrRevetement ;
         Coin coinDebut = null; 
         Coin coinFin = null; 
         System.out.println("Identifiant du mur: ");
@@ -117,9 +117,9 @@ public class Main {
         //coin début existe déjà
         if(exiCoinDeb==1){
             System.out.println("Identifiant du coin de début recherché: ");
-            idRecherche=Lire.i();
+            idRecherche=Lire.S();
             for (Coin c : ListeCoins) {
-                if (c.getidCoin() == idRecherche) {
+                if (c.getidCoin().equals(idRecherche)) {
                     coinDebut = c;
                     break;
                 }
@@ -146,9 +146,9 @@ public class Main {
         // coin fin existe
         if(exiCoinFin==1){
             System.out.println("Identifiant du coin de fin recherché: ");
-            idRecherche=Lire.i();
+            idRecherche=Lire.S();
             for (Coin c : ListeCoins) {
-                if (c.getidCoin() == idRecherche) {
+                if (c.getidCoin().equals(idRecherche)) {
                     coinFin = c;
                     
                     break;
@@ -185,8 +185,8 @@ public class Main {
     
     public Resultat creationPiece(){
         String code;
-        int reponse;
-        int  idRecherche, idPiece, idSol, idPlafond, nbrRevSol, nbrRevPlafond, nbrTremisSol, nbrTremisPlafond;
+        int reponse, idSol ;
+        int  idRecherche, idPiece, idPlafond, nbrRevSol, nbrRevPlafond, nbrTremisSol, nbrTremisPlafond;
         ArrayList<Mur> ListeMursPiece = new ArrayList<>();
         Mur mur;
         String usage;
@@ -201,12 +201,12 @@ public class Main {
         System.out.println("Usage de la pièce :");
         usage=Lire.S();
         System.out.println("identifiant Sol : ");
-        idSol = Lire.i();
+        idSol = Lire.S();
         System.out.println(idSol);
         for (int i=0;i<ListeSols.size();i++){
-            if (ListeSols.get(i).getidSol()==idSol){
+            if (idSol==ListeSols.get(i).getidSol()){
                 System.out.println("L'identifiant existe déja, donnez un nouvel identifiant pour le sol :");
-                idSol=Lire.i();
+                idSol=Lire.S();
             }
         }
         System.out.println("Combien de revetement pour le sol ?");

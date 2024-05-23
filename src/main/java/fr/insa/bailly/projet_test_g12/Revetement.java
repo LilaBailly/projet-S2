@@ -6,17 +6,13 @@ package fr.insa.bailly.projet_test_g12;
 
 import java.util.ArrayList;
 import java.io.* ;
-import java.lang.Object ;
-import java.util.Arrays;
-//import java.util.logging.Level;
-//import java.util.logging.Logger;
 /**
  *
  * @author Elève
  */
 public class Revetement {
     
-    private int idRevetement ; //chercher si final ou private
+    private String idRevetement ; //chercher si final ou private
     private String designation ;
     private boolean pourMur ;
     final boolean pourSol ;
@@ -50,7 +46,7 @@ public class Revetement {
     //déclaration du constructeur
     public Revetement(String ligne) {
         String[] decoupe = ligne.split(";") ;
-        this.idRevetement = Integer.parseInt(decoupe[0]) ; //conversion du String en int
+        this.idRevetement = decoupe[0] ; //conversion du String en int
         this.designation = decoupe[1];
         this.pourMur = Integer.parseInt(decoupe[2]) == 1;
         //System.out.println("pourMur : " + pourMur);
@@ -76,10 +72,8 @@ public class Revetement {
             BufferedReader reader = new BufferedReader(new FileReader("catalogue revetement.txt"));
             while (reader.ready()) {
                 String ligne =reader.readLine() ;
-                //System.out.println("Ligne lue : " + ligne);
                 Revetement Rev = new Revetement (ligne) ; //Création d'un nouveau revetement
                 String[] decoupe = ligne.split(";");
-                //System.out.println("Découpe : " + Arrays.toString(decoupe));
                 listeRev.add(Rev);
                 if (Rev.getpourMur()) {
                     listeRevetementMur.add(Rev);
@@ -193,7 +187,7 @@ public class Revetement {
     // Méthode pour trouver un revêtement par son ID
     private Revetement trouverRevetementParId(ArrayList<Revetement> listeRevetements, int idRevetement) {
         for (Revetement rev : listeRevetements) {
-            if (rev.getidRevetement() == idRevetement) {
+            if ("idRevetement" == rev.getidRevetement()) {
                 return rev;
             }
         }
@@ -232,7 +226,7 @@ public class Revetement {
     }
 
     //get pour utiliser les attributs
-    public int getidRevetement () {
+    public String getidRevetement () {
         return this.idRevetement ;
     }
     public String getdesignation () {
