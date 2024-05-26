@@ -244,7 +244,15 @@ public class Revetement {
     public boolean getpourPlafond () {
         return this.pourPlafond ;
     }
-    
+    public ArrayList<Revetement> getlisteRevetementMur() {
+        return this.listeRevetementMur();
+    }
+    public ArrayList<Revetement> getlisteRevetementSol() {
+        return this.listeRevetementSol();
+    }
+    public ArrayList<Revetement> getlisteRevetementPlafond() {
+        return this.listeRevetementPlafond();
+    }
     public String Afficher(){
         return " Revetement [ idRevetement : "+this.idRevetement+" , désignation : "+this.designation+" , prix unitaire : "+this.prixUnitaire+" ] ";
     }

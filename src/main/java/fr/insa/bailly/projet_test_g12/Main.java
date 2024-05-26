@@ -781,14 +781,15 @@ public class Main {
         ArrayList<Niveau>ListeNiveaux = main.getListeNiveaux();
         ArrayList<Immeuble>ListeImmeubles = main.getListeImmeubles();
 
-        int choix, n = 0, nbrP, nbrF, nbrTS, nbrTP;
+        int choix, n = 0, nbrP, nbrF, nbrTS, nbrTP,idrev;
         double Cx, Cy;
         String usage, idCoin,  idMur,idNivAppart, idCoinD, idCoinF,idMurP,idSol,idSolP, idPlafond,idPlafondP,idPiece,idAppart, idNiveau ;
-        Coin coinD, coinF,C1,C2,C3,C4;
+        Coin coinD = null, coinF = null,C1,C2,C3,C4;
         Mur murP;
         Piece pieceA;
         Sol SolP;
         Plafond plafondP;
+        Revetement Rev = null;
         Batiment batiment = new Batiment();
         supprimerLignesVides("Liste_Batiment.txt");        
         try {
@@ -841,16 +842,44 @@ public class Main {
                             }
                             nbrP = Integer.parseInt(tab[3]);
                             nbrF = Integer.parseInt(tab[4]);
-                            Mur mur = new Mur(/*idMur,coinD,coinF,nbrP,nbrF*/);
+                            
+                            for (int r=5;r<i;r++){
+                                idrev=Integer.parseInt(tab[r]);
+                                for (Revetement R : Rev.getlisteRevetementMur()){
+                                    if(R.getidRevetement().equals(idrev)){
+                                       Rev = R;
+                                       main.ListeRevMur.add(Rev);
+                                   }
+                               } 
+                            }
+                            Mur mur = new Mur(idMur,coinD,coinF,nbrP,nbrF,main.ListeRevMur);
                             ListeMurs.add(mur);
                         case 3 :
                             idSol= tab[0];
                             nbrTS = Integer.parseInt(tab[i]);
+                            for (int r=1;r<i-1;r++){
+                                idrev=Integer.parseInt(tab[r]);
+                                for (Revetement R : Rev.getlisteRevetementSol()){
+                                    if(R.getidRevetement().equals(idrev)){
+                                       Rev = R;
+                                       main.ListeRevSol.add(Rev);
+                                   }
+                               } 
+                            }
                             Sol sol = new Sol(idSol,main.recupereCoin(tab),main.ListeRevSol,nbrTS);
                             ListeSols.add(sol);
                         case 4 :
                             idPlafond = tab[0];
                             nbrTP = Integer.parseInt(tab[i]);
+                            for (int r=1;r<i-1;r++){
+                                idrev=Integer.parseInt(tab[r]);
+                                for (Revetement R : Rev.getlisteRevetementPlafond()){
+                                    if(R.getidRevetement().equals(idrev)){
+                                       Rev = R;
+                                       main.ListeRevPlafond.add(Rev);
+                                   }
+                               } 
+                            }
                             Plafond plafond = new Plafond(idPlafond,main.recupereCoin(tab),main.ListeRevPlafond,nbrTP);
                             ListePlafonds.add(plafond);
                         case 5 :
@@ -858,19 +887,6 @@ public class Main {
                             usage = tab[1];
                             idSolP = tab[2];
                             idPlafondP = tab[3];
-                            /*for (Sol s : ListeSols) {
-                                if (s.getidSol() == idSolP) {
-                                    SolP= s;
-                                    break;
-                                }
-                            }
-                            
-                            for (Plafond p : ListePlafonds) {
-                                if (p.getidPlafond() == idPlafondP) {
-                                    plafondP= p;
-                                    break;
-                                }
-                            }*/
                             for (int j =4; j<7; j++){
                                 for (Mur m : ListeMurs){
                                     idMurP = tab[j];
