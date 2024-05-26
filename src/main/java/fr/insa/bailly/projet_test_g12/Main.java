@@ -777,18 +777,22 @@ public class Main {
         ArrayList<Sol>ListeSols = main.getListeSols();
         ArrayList<Plafond>ListePlafonds = main.getListePlafonds();
         ArrayList<Piece>ListePieces = main.getListePieces();
+        ArrayList<Piece>ListePieceAppart = new ArrayList<>();
+        ArrayList<Piece>ListePieceNiveauM = new ArrayList<>();
         ArrayList<Appartement>ListeAppartements = main.getListeAppartements();
         ArrayList<Niveau>ListeNiveaux = main.getListeNiveaux();
+        ArrayList<NiveauMaison>ListeNiveauMaison= main.getListeNiveauMaison();
         ArrayList<Immeuble>ListeImmeubles = main.getListeImmeubles();
 
-        int choix, n = 0, nbrP, nbrF, nbrTS, nbrTP,idrev;
-        double Cx, Cy;
-        String usage, idCoin,  idMur,idNivAppart, idCoinD, idCoinF,idMurP,idSol,idSolP, idPlafond,idPlafondP,idPiece,idAppart, idNiveau ;
+        int choix, n = 0, nbrP, nbrF, nbrTS, nbrTP,idrev,idNivAppart;
+        double Cx, Cy, hauteur;
+        String usage, idCoin,  idMur, idCoinD, idCoinF,idMurP,idSol,idSolP, idPlafond,idPlafondP,idPiece,idAppart, idNiveau, idNiveauM ;
         Coin coinD = null, coinF = null,C1,C2,C3,C4;
         Mur murP;
         Piece pieceA;
         Sol SolP;
         Plafond plafondP;
+        Appartement Appart;
         Revetement Rev = null;
         Batiment batiment = new Batiment();
         supprimerLignesVides("Liste_Batiment.txt");        
@@ -887,7 +891,7 @@ public class Main {
                             usage = tab[1];
                             idSolP = tab[2];
                             idPlafondP = tab[3];
-                            for (int j =4; j<7; j++){
+                            for (int j =4; j<i; j++){
                                 for (Mur m : ListeMurs){
                                     idMurP = tab[j];
                                     if (m.getidMur().equals(idMurP)) {
@@ -902,20 +906,50 @@ public class Main {
                             ListePieces.add(piece);
                         case 6 :
                             idAppart = tab[0];
-                            idNivAppart = tab[1];
+                            idNivAppart = Integer.parseInt(tab[1]);
                             int h =2;
                             while(h<i){
-                                
+                                for (Piece p : ListePieces){
+                                    idPiece = tab[h];
+                                    if (p.getidPiece().equals(idPiece)) {
+                                        pieceA= p;
+                                        ListePieceAppart.add(pieceA);
+                                        break;
+                                    }
+                                }
                             }
-                            Appartement appart =new Appartement(/*idAppart,idNivAppart,*/);
+                            Appartement appart =new Appartement(idAppart,idNivAppart,ListePieceAppart);
                             ListeAppartements.add(appart);
                         case 7 :
                             idNiveau = tab[0];
-                            
-                            Niveau niveau = new Niveau();
+                            hauteur=Integer.parseInt(tab[1]);
+                            for (int j =2; j<i; j++){
+                                for (Appartement a : ListeAppartements){
+                                    idAppart = tab[j];
+                                    if (a.getidAppartement().equals(idAppart)) {
+                                        Appart= a;
+                                        ListeAppartements.add(a);
+                                        break;
+                                    }
+                                }
+                            }
+                            Niveau niveau = new Niveau(idNiveau, hauteur, ListeAppartements);
                             ListeNiveaux.add(niveau);
                         case 8 :
-                            
+                            idNiveauM = tab[0];
+                            hauteur=Integer.parseInt(tab[1]);
+                            for (int j =2; j<i; j++){
+                                for (Piece p : ListePieces){
+                                    idPiece = tab[j];
+                                    if (p.getidPiece().equals(idPiece)) {
+                                        pieceA= p;
+                                        ListePieceNiveauM.add(pieceA);
+                                        break;
+                                    }
+                                }
+                            }
+                            NiveauMaison niveauM = new NiveauMaison(idNiveauM, hauteur, ListePieceNiveauM);
+                            ListeNiveauMaison.add(niveauM);
                        // default -> System.out.println("Ligne non reconnue: " + ligne);
                     }
                 }
@@ -954,145 +988,7 @@ public class Main {
 
  
     /*
-    private Coin parseCoinData(String[] tab, int IndexDebut) {
-        int id = Integer.parseInt(tab[IndexDebut]);
-        //System.out.println(tab[IndexDebut]);
-        double a = Double.parseDouble(tab[IndexDebut+4]);
-        //System.out.println(tab[IndexDebut+4]);
-        double o = Double.parseDouble(tab[IndexDebut+8]);
-        //System.out.println(tab[IndexDebut+8]);
-        return new Coin(id, a, o);
-    }
-    private void parseCoin(String[] tab){
-        if (tab.length >= 13) {
-            Coin coin = parseCoinData(tab,4);
-            ListeCoins.add(coin);
-        }
-    }
-    private Revetement parseRevData(String[] tab, int IndexDebut) {
-        int idRev = Integer.parseInt(tab[IndexDebut]);
-        System.out.println(tab[IndexDebut]);
-        Revetement revetement= null;
-        for (Revetement R : ListeRevMur) {
-                if (R.getidRevetement()== idRev) {
-                    revetement = R;
-                    break;
-                }
-            }
-        return revetement;
-    }
-    private Mur parseMurData(String[] tab, int IndexDebut) {
-        int idMur = Integer.parseInt(tab[IndexDebut]);
-        Coin coinDebut = parseCoinData(tab, IndexDebut+8);
-        Coin coinFin = parseCoinData(tab, IndexDebut+25);
-        int nbrPorte = Integer.parseInt(tab[IndexDebut+38]);
-        int nbrFenetre = Integer.parseInt(tab[IndexDebut+42]);
-        int nbrRevetement = Integer.parseInt(tab[IndexDebut+46]);
-        ArrayList<Revetement> listeRev = new ArrayList<>();
-        for (int i = IndexDebut + 6; i < tab.length; i++) {
-            int idRev = Integer.parseInt(tab[i]);
-            Revetement rev = parseRevData(tab, i);
-            if (rev != null) {
-                listeRev.add(rev);
-            }
-        }
-        return new Mur(idMur, coinDebut, coinFin, nbrPorte, nbrFenetre, nbrRevetement,listeRev);
-        
-    }
-    private void parseMur(String[] tab){
-        if (tab.length >= 13) {
-            Mur mur = parseMurData(tab, 4);
-            ListeMurs.add(mur);
-        }
-    }
-    
-    private Piece parsePieceData(String[] tab,int IndexDebut){
-        int idPiece = Integer.parseInt(tab[IndexDebut]);
-        System.out.println(IndexDebut);
-        String usage = tab[IndexDebut+4];
-        System.out.println(IndexDebut+4);
-        int sol = Integer.parseInt(tab[IndexDebut+8]);
-        System.out.println(IndexDebut+8);
-        int plafond = Integer.parseInt(tab[IndexDebut+12]);
-        System.out.println(IndexDebut+12);
-        ArrayList<Mur> murs = new ArrayList<>();
-        for (int i = 21; i < tab.length; i += 53) {
-            String[] murData = new String[53];
-            System.arraycopy(tab, i, murData, 0, Math.min(53, tab.length - i));
-            Mur mur = parseMurData(murData,4);
-            if (mur != null) {
-                murs.add(mur);
-            }
-        }
-        return new Piece(idPiece, usage, sol, plafond, murs);        
-        
-    }
-    public void parsePiece(String[] tab){
-        if (tab.length>=51){//changer taille
-            Piece piece = parsePieceData(tab, 4);
-            ListePieces.add(piece);
-        }
-    }
-    public Appartement parseAppartementData(String[] tab, int IndexDebut){
-        int idAppart = Integer.parseInt(tab[IndexDebut]);
-        int NiveauAppart =Integer.parseInt(tab[IndexDebut+4]);
-        ArrayList<Piece> pieces = new ArrayList<>();
-        for (int i = 21; i < tab.length; i += 53) {
-            String[] pieceData = new String[53];
-            System.arraycopy(tab, i, pieceData, 0, Math.min(53, tab.length - i));
-            Piece piece = parsePieceData(pieceData,4);
-            if (piece != null) {
-                pieces.add(piece);
-            }
-        }
-        return new Appartement(idAppart,NiveauAppart,pieces);
-    }
-    public void parseAppartement(String [] tab){
-        if (tab.length>=51){//changer taille
-            Appartement appart = parseAppartementData(tab, 4);
-            ListeAppartements.add(appart);
-        }
-    }
-    public Niveau parseNiveauData(String[] tab, int IndexDebut){
-        int idNiveau = Integer.parseInt(tab[IndexDebut]);
-        double hauteur =Double.parseDouble(tab[IndexDebut+4]);
-        ArrayList<Appartement> apparts = new ArrayList<>();
-        for (int i = 21; i < tab.length; i += 53) {
-            String[] pieceData = new String[53];
-            System.arraycopy(tab, i, pieceData, 0, Math.min(53, tab.length - i));
-            Appartement appart = parseAppartementData(pieceData,4);
-            if (appart != null) {
-                apparts.add(appart);
-            }
-        }
-        return new Niveau(idNiveau,hauteur,apparts);
-    }
-    public void parseNiveau(String [] tab){
-        if (tab.length>=51){//changer taille
-            Niveau niveau = parseNiveauData(tab, 4);
-            ListeNiveaux.add(niveau);
-        }
-    }
-    public NiveauMaison parseNiveauMaisonData(String[] tab, int IndexDebut){
-        int idNiveau = Integer.parseInt(tab[IndexDebut]);
-        double hauteur =Double.parseDouble(tab[IndexDebut+4]);
-        ArrayList<Piece> pieces = new ArrayList<>();
-        for (int i = 21; i < tab.length; i += 53) {
-            String[] pieceData = new String[53];
-            System.arraycopy(tab, i, pieceData, 0, Math.min(53, tab.length - i));
-            Piece piece = parsePieceData(pieceData,4);
-            if (piece != null) {
-                pieces.add(piece);
-            }
-        }
-        return new NiveauMaison(idNiveau,hauteur,pieces);
-    }
-    public void parseNiveauMaison(String [] tab){
-        if (tab.length>=51){//changer taille
-            NiveauMaison niveauM = parseNiveauMaisonData(tab, 4);
-            ListeNiveauMaison.add(niveauM);
-        }
-    }
+   
     public Immeuble parseImmeubleData(String[] tab, int IndexDebut){
         int idImmeuble = Integer.parseInt(tab[IndexDebut]);
         ArrayList<Niveau> niveaux = new ArrayList<>();
