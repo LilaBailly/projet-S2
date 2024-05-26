@@ -950,6 +950,11 @@ public class Main {
                             }
                             NiveauMaison niveauM = new NiveauMaison(idNiveauM, hauteur, ListePieceNiveauM);
                             ListeNiveauMaison.add(niveauM);
+                        case 9 ://immeuble
+                            
+                        case 10 ://maison
+                            
+                            
                        // default -> System.out.println("Ligne non reconnue: " + ligne);
                     }
                 }
