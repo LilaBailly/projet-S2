@@ -18,12 +18,12 @@ public class Piece {
     private String usage ;
     private Sol sol;
     private Plafond plafond;
-    
+    private static int compteur = 0;
     public Piece() {
         this.listeMurs = new ArrayList<>();
     }
-    public Piece(String idPiece, String usage, String idsol,String idplafond, ArrayList<Mur> listeMurs){
-        this.idPiece=idPiece;
+    public Piece( String usage, String idsol,String idplafond, ArrayList<Mur> listeMurs){
+        this.idPiece = "Pi" + (++compteur);
         this.usage=usage;
         this.idsol=idsol;
         this.idplafond=idplafond;

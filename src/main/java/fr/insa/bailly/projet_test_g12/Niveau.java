@@ -13,12 +13,12 @@ public final class Niveau {
     private double hauteursousPlafond ; //int hauteur à voir
     private ArrayList<Appartement> listeAppart ;
     private ArrayList<Piece> listePiece ;
-    
+    private static int compteur = 0;
     public Niveau(){
         
     }
-    public Niveau (String id, double hauteurplafond, ArrayList<Appartement> listeAppart) {
-        this.idNiveau = id ;
+    public Niveau ( double hauteurplafond, ArrayList<Appartement> listeAppart) {
+        this.idNiveau = "N" + (++compteur);
         this.hauteursousPlafond = hauteurplafond ;
         this.listeAppart = listeAppart ;
     }

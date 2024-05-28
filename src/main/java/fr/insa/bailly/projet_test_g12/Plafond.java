@@ -15,13 +15,13 @@ public class Plafond {
     private ArrayList<Revetement> listeRevPlafond ;
     private int nbrtremis ; //ajouter nbr tremis
     private Piece piece;
-    
+    private static int compteur = 0;
     public Plafond(){
 
     }
     //Déclaration du constructeur
-    public Plafond (String id, ArrayList<Coin> listeCoin, ArrayList<Revetement> listeRevetement, int nbrtremis){
-        this.idPlafond = id ;
+    public Plafond (ArrayList<Coin> listeCoin, ArrayList<Revetement> listeRevetement, int nbrtremis){
+        this.idPlafond = "Pl" + (++compteur);
         this.listeCoin = listeCoin ;
         this.listeRevPlafond = listeRevetement ;
         this.nbrtremis = nbrtremis ;

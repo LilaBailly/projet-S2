@@ -15,15 +15,15 @@ public class Sol {
     private int nbrrev ;
     private ArrayList<Revetement> listeRevSol ;
     private Piece piece;
-    
+    private static int compteur = 0;
     
     public Sol(){
 
     }
 
     //déclaration du constructeur
-    public Sol(String id, ArrayList<Coin> listeCoin,ArrayList<Revetement> listeRevetement, int nbrtremis ) {
-        this.idSol=id ;
+    public Sol(ArrayList<Coin> listeCoin,ArrayList<Revetement> listeRevetement, int nbrtremis ) {
+        this.idSol = "S" + (++compteur);
         this.listeCoin = listeCoin ;
         this.nbrtremis = nbrtremis ;
         this.listeRevSol = listeRevetement ;

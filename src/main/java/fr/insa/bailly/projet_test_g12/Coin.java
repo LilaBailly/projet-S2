@@ -11,20 +11,21 @@ package fr.insa.bailly.projet_test_g12;
 
 public class Coin {
 
-    public Coin(){
-        
-    }
     
     // Déclaration des attributs de la classe coin
     private String idCoin ;
     private double cx ;
     private double cy ;
-    
+    private static int compteur = 0;
+
+    // Constructeur par défaut
+    public Coin() {
+    }
     //déclaration du constructeur
-    Coin(String id, double x, double y) {
-        this.idCoin=id ;
-        this.cx=x ;
-        this.cy=y ;
+    public Coin(double x, double y) {
+        this.idCoin = "C" + (++compteur);
+        this.cx = x;
+        this.cy = y;
     }
     //get et set pour donner et utiliser les attributs
     public String getidCoin () {

@@ -13,10 +13,10 @@ public class Appartement {
     private int idNiveauAppartement ;
     private Niveau niveauAppartement ;
     private ArrayList<Piece> listePiece ;
-
+    private static int compteur = 0;
     //Constucteur
-    public Appartement (String id, int niveauApp, ArrayList<Piece> listePiece) {
-        this.idAppartement = id ;
+    public Appartement (int niveauApp, ArrayList<Piece> listePiece) {
+        this.idAppartement = "A" + (++compteur);
         this.idNiveauAppartement = niveauApp ;
         this.listePiece = listePiece ;
     }

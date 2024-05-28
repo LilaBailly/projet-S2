@@ -14,12 +14,12 @@ public class NiveauMaison {
     private String idNiveauMaison ;
     private double hauteursousPlafond ; //int hauteur à voir
     private ArrayList<Piece> listePiece ;
-    
+    private static int compteur = 0;
     public NiveauMaison(){
         
     }
-    public NiveauMaison (String id, double hauteurplafond, ArrayList<Piece> listePiece){
-        this.idNiveauMaison = id ;
+    public NiveauMaison (double hauteurplafond, ArrayList<Piece> listePiece){
+        this.idNiveauMaison = "NM" + (++compteur);
         this.hauteursousPlafond = hauteurplafond ;
         this.listePiece = listePiece ;
     }

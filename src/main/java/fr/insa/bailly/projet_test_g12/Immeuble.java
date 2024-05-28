@@ -15,9 +15,12 @@ public class Immeuble extends Batiment {
     
     private String idBatiment ;
     private ArrayList<Niveau> listeNiveaux;
-
-    public Immeuble (String idBatiment, ArrayList<Niveau> listeNiveaux) {
-        this.idBatiment = idBatiment ;
+    private static int compteur = 0;
+    public Immeuble(){
+        
+    }
+    public Immeuble ( ArrayList<Niveau> listeNiveaux) {
+        this.idBatiment = "I" + (++compteur);
         this.listeNiveaux = listeNiveaux ;
     }
     

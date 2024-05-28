@@ -19,14 +19,14 @@ public class Mur {
     private double surface ;
     private ArrayList<Revetement> ListeRevMur ;
     private Ouverture ouverture;
-    
+    private static int compteur = 0;
     public Mur(){
         
     }
     
     //déclaration du constructeur
-    public Mur(String id, Coin debut, Coin fin, int porte, int fenetre, ArrayList<Revetement> listeRevetement) {
-        this.idMur = id;
+    public Mur(Coin debut, Coin fin, int porte, int fenetre, ArrayList<Revetement> listeRevetement) {
+        this.idMur = "M" + (++compteur);
         this.coinDebut = debut;
         this.coinFin = fin;
         this.nbrPorte = porte;

@@ -14,10 +14,15 @@ public class Maison extends Batiment {
     
     private String idBatiment ;
     private ArrayList<NiveauMaison> listeNiveauxMaison;
-
-    public Maison (String idBatiment, ArrayList<NiveauMaison> listeNiveaux) {
-        this.idBatiment = idBatiment ;
-        this.listeNiveauxMaison = listeNiveaux ;
+    private static int compteur = 0;
+    
+    public Maison(){
+        
+    }
+    
+    public Maison ( ArrayList<NiveauMaison> listeNiveauxM) {
+        this.idBatiment = "Ma" + (++compteur);
+        this.listeNiveauxMaison = listeNiveauxM ;
     }
     
     public String getidMaison(){
@@ -31,8 +36,8 @@ public class Maison extends Batiment {
         return listeNiveauxMaison;
     }
     
-    public void setlisteNiveaux(ArrayList<NiveauMaison> listeNiveaux){
-        this.listeNiveauxMaison = listeNiveaux;
+    public void setlisteNiveaux(ArrayList<NiveauMaison> listeNiveauxM){
+        this.listeNiveauxMaison = listeNiveauxM;
     }
     /*
     public double surface(){
