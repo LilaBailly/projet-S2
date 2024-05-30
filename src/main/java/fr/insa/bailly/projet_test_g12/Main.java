@@ -141,7 +141,7 @@ public class Main {
         }
         //coin début existe déjà
         if(exiCoinDeb==1){
-            System.out.println("Identifiant du coin de début recherché: ");
+            System.out.println("Identifiant du coin de début recherché: (indentifiant sous la forme 'C 1')");
             idRecherche=Lire.S();
             for (Coin c : ListeCoins) {
                 if (c.getidCoin().equals(idRecherche)) {
@@ -170,7 +170,7 @@ public class Main {
         }
         // coin fin existe
         if(exiCoinFin==1){
-            System.out.println("Identifiant du coin de fin recherché: ");
+            System.out.println("Identifiant du coin de fin recherché: (indentifiant sous la forme 'C 1')");
             idRecherche=Lire.S();
             for (Coin c : ListeCoins) {
                 if (c.getidCoin().equals(idRecherche)) {
@@ -241,7 +241,7 @@ public class Main {
                 reponse=Lire.i();
             }
             if(reponse==1){
-                System.out.println("Identifiant du mur recherché: ");
+                System.out.println("Identifiant du mur recherché: (indentifiant sous la forme 'M 1') ");
                 idRecherche=Lire.S();
                 for (Mur m : ListeMurs) {
                     if (m.getidMur().equals(idRecherche)) {
@@ -298,7 +298,7 @@ public class Main {
                 reponse=Lire.i();
             }
             if(reponse==1){
-                System.out.println("Identifiant de la pièce recherchée: ");
+                System.out.println("Identifiant de la pièce recherchée: (indentifiant sous la forme 'Pi 1')");
                 idRecherche=Lire.S();
                 for (Piece p : ListePieces) {
                     if (p.getidPiece().equals(idRecherche)) {
@@ -340,7 +340,7 @@ public class Main {
                 reponse=Lire.i();
             }
             if(reponse==1){
-                System.out.println("Identifiant de la pièce recherchée: ");
+                System.out.println("Identifiant de la pièce recherchée: (indentifiant sous la forme 'Pi 1')");
                 idRecherche=Lire.S();
                 for (Piece p : ListePieces) {
                     if (p.getidPiece().equals(idRecherche)) {
@@ -383,7 +383,7 @@ public class Main {
                 reponse=Lire.i();
             }
             if(reponse==1){
-                System.out.println("Identifiant de l'appartement recherché: ");
+                System.out.println("Identifiant de l'appartement recherché: (indentifiant sous la forme 'A 1')");
                 idRecherche=Lire.S();
                 for (Appartement a : ListeAppartements) {
                     if (a.getidAppartement().equals(idRecherche)) {
@@ -434,7 +434,7 @@ public class Main {
                     reponse=Lire.i();
                 }
                 if(reponse==1){
-                    System.out.println("Identifiant du niveau recherché: ");
+                    System.out.println("Identifiant du niveau recherché: (indentifiant sous la forme 'N 1')");
                     idRecherche=Lire.S();
                     for (Niveau n : ListeNiveaux) {
                         if (n.getidNiveau().equals(idRecherche)) {
@@ -472,7 +472,7 @@ public class Main {
                     reponseM = Lire.i();
                 }
                 if (reponseM == 1) {
-                    System.out.println("Identifiant du niveau recherché :");
+                    System.out.println("Identifiant du niveau recherché :(indentifiant sous la forme 'NM 1')");
                     idRecherche = Lire.S();
                     NiveauMaison niveauM = null;
                     for (NiveauMaison nM : ListeNiveauMaison) {
