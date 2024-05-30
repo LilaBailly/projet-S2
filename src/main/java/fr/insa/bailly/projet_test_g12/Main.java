@@ -63,22 +63,11 @@ public class Main {
         ArrayList<Immeuble>ListeImmeubles = main.getListeImmeubles();
         ArrayList<Maison>ListeMaisons = main.getListeMaisons();
 
-        int choix, n = 0, nbrP, nbrF, nbrTS, nbrTP,idrev,idNivAppart;
-        double Cx, Cy, hauteur;
-        String usage, idCoin,  idMur, idCoinD, idCoinF,idMurP,idSol,idSolP, idPlafond,idPlafondP,idPiece,idAppart, idNiveau, idNiveauM ;
-        Coin coinD = null, coinF = null,C1,C2,C3,C4;
-        Mur murP;
-        Piece pieceA;
-        Sol SolP;
-        Plafond plafondP;
-        Appartement Appart;
-        Revetement Rev = null;
-        Batiment batiment = new Batiment();
+        int choix;
         supprimerLignesVides("Liste_Batiment.txt");        
         chargerDonnees(FICHIER_LISTE_BATIMENT,main,ListeCoins,ListeMurs,ListeSols,ListePlafonds,ListePieces,ListeAppartements,ListeNiveaux,ListeNiveauMaison,ListeImmeubles,ListeMaisons);              
         // Afficher les listes
         afficherListes(ListeCoins, ListeMurs, ListeSols, ListePlafonds, ListePieces, ListeAppartements, ListeNiveaux, ListeImmeubles);
-
         afficherMenu();
         choix = Lire.i();
         while (choix < 1 || choix > 9) {
@@ -708,7 +697,8 @@ public class Main {
             while ((ligne = reader.readLine()) != null) {
                 if (!ligne.trim().isEmpty()) { 
                     String[] tab = ligne.split(";");
-                    switch (tab[0]) {
+                    String[] indice = tab[0].split(" ");
+                    switch (indice[0]) {
                         case "C":
                             traiterCoin(tab, ListeCoins);
                             break;
