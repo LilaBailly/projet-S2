@@ -12,7 +12,7 @@ import java.io.* ;
  */
 public class Revetement {
     
-    private String idRevetement ; //chercher si final ou private
+    private int idRevetement ; //chercher si final ou private
     private String designation ;
     private boolean pourMur ;
     final boolean pourSol ;
@@ -46,7 +46,7 @@ public class Revetement {
     //déclaration du constructeur
     public Revetement(String ligne) {
         String[] decoupe = ligne.split(";") ;
-        this.idRevetement = decoupe[0] ; //conversion du String en int
+        this.idRevetement = Integer.parseInt(decoupe[0]) ; //conversion du String en int
         this.designation = decoupe[1];
         this.pourMur = Integer.parseInt(decoupe[2]) == 1;
         //System.out.println("pourMur : " + pourMur);
@@ -187,7 +187,7 @@ public class Revetement {
     // Méthode pour trouver un revêtement par son ID
     private Revetement trouverRevetementParId(ArrayList<Revetement> listeRevetements, int idRevetement) {
         for (Revetement rev : listeRevetements) {
-            if ("idRevetement" == rev.getidRevetement()) {
+            if (idRevetement == rev.getidRevetement()) {
                 return rev;
             }
         }
@@ -226,7 +226,7 @@ public class Revetement {
     }
 
     //get pour utiliser les attributs
-    public String getidRevetement () {
+    public int getidRevetement () {
         return this.idRevetement ;
     }
     public String getdesignation () {

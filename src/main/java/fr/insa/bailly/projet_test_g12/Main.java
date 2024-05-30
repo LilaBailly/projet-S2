@@ -788,7 +788,7 @@ public class Main {
         Revetement rev = new Revetement();
         ArrayList<Revetement> listeRevMur = new ArrayList<>();
         for (int r = 5; r < tab.length; r++) {
-            String idrev = tab[r];
+            int idrev = Integer.parseInt(tab[r]);
             Revetement revetement = trouverRevetementParId(idrev, rev.getlisteRevetementMur());
             if (revetement != null) {
                 listeRevMur.add(revetement);
@@ -803,7 +803,7 @@ public class Main {
         ArrayList<Revetement> listeRevSol = new ArrayList<>();
         Revetement rev = new Revetement();
         for (int r = 1; r < tab.length - 1; r++) {
-            String idrev = tab[r];
+            int idrev = Integer.parseInt(tab[r]);
             Revetement revetement = trouverRevetementParId(idrev, rev.getlisteRevetementSol());
             if (revetement != null) {
                 listeRevSol.add(revetement);
@@ -818,7 +818,7 @@ public class Main {
         ArrayList<Revetement> listeRevPlafond = new ArrayList<>();
         Revetement rev = new Revetement();
         for (int r = 1; r < tab.length - 1; r++) {
-            String idrev = tab[r];
+            int idrev = Integer.parseInt(tab[r]);
             Revetement revetement = trouverRevetementParId(idrev, rev.getlisteRevetementPlafond());
             if (revetement != null) {
                 listeRevPlafond.add(revetement);
@@ -982,7 +982,7 @@ public class Main {
         }
         return null;
     }
-    private static Revetement trouverRevetementParId(String id, ArrayList<Revetement> liste) {
+    private static Revetement trouverRevetementParId(int id, ArrayList<Revetement> liste) {
         for (Revetement r : liste) {
             if (r.getidRevetement() == id) {
                 return r;
