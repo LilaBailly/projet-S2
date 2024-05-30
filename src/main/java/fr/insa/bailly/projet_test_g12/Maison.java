@@ -21,7 +21,7 @@ public class Maison extends Batiment {
     }
     
     public Maison ( ArrayList<NiveauMaison> listeNiveauxM) {
-        this.idBatiment = "Ma" + (++compteur);
+        this.idBatiment = "Ma " + (++compteur);
         this.listeNiveauxMaison = listeNiveauxM ;
     }
     

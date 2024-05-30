@@ -23,7 +23,7 @@ public class Coin {
     }
     //déclaration du constructeur
     public Coin(double x, double y) {
-        this.idCoin = "C" + (++compteur);
+        this.idCoin = "C " + (++compteur);
         this.cx = x;
         this.cy = y;
     }

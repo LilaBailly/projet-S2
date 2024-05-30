@@ -19,7 +19,7 @@ public class NiveauMaison {
         
     }
     public NiveauMaison (double hauteurplafond, ArrayList<Piece> listePiece){
-        this.idNiveauMaison = "NM" + (++compteur);
+        this.idNiveauMaison = "NM " + (++compteur);
         this.hauteursousPlafond = hauteurplafond ;
         this.listePiece = listePiece ;
     }

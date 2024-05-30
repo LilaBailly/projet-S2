@@ -26,7 +26,7 @@ public class Mur {
     
     //déclaration du constructeur
     public Mur(Coin debut, Coin fin, int porte, int fenetre, ArrayList<Revetement> listeRevetement) {
-        this.idMur = "M" + (++compteur);
+        this.idMur = "M " + (++compteur);
         this.coinDebut = debut;
         this.coinFin = fin;
         this.nbrPorte = porte;

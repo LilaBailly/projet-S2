@@ -21,7 +21,7 @@ public class Plafond {
     }
     //Déclaration du constructeur
     public Plafond (ArrayList<Coin> listeCoin, ArrayList<Revetement> listeRevetement, int nbrtremis){
-        this.idPlafond = "Pl" + (++compteur);
+        this.idPlafond = "Pl " + (++compteur);
         this.listeCoin = listeCoin ;
         this.listeRevPlafond = listeRevetement ;
         this.nbrtremis = nbrtremis ;

@@ -18,7 +18,7 @@ public final class Niveau {
         
     }
     public Niveau ( double hauteurplafond, ArrayList<Appartement> listeAppart) {
-        this.idNiveau = "N" + (++compteur);
+        this.idNiveau = "N " + (++compteur);
         this.hauteursousPlafond = hauteurplafond ;
         this.listeAppart = listeAppart ;
     }

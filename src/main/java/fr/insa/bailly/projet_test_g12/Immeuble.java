@@ -20,7 +20,7 @@ public class Immeuble extends Batiment {
         
     }
     public Immeuble ( ArrayList<Niveau> listeNiveaux) {
-        this.idBatiment = "I" + (++compteur);
+        this.idBatiment = "I " + (++compteur);
         this.listeNiveaux = listeNiveaux ;
     }
     

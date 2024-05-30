@@ -23,7 +23,7 @@ public class Piece {
         this.listeMurs = new ArrayList<>();
     }
     public Piece( String usage, String idsol,String idplafond, ArrayList<Mur> listeMurs){
-        this.idPiece = "Pi" + (++compteur);
+        this.idPiece = "Pi " + (++compteur);
         this.usage=usage;
         this.idsol=idsol;
         this.idplafond=idplafond;

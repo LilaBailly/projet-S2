@@ -16,7 +16,7 @@ public class Appartement {
     private static int compteur = 0;
     //Constucteur
     public Appartement (int niveauApp, ArrayList<Piece> listePiece) {
-        this.idAppartement = "A" + (++compteur);
+        this.idAppartement = "A " + (++compteur);
         this.idNiveauAppartement = niveauApp ;
         this.listePiece = listePiece ;
     }
