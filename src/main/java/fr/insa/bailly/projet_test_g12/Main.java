@@ -116,22 +116,28 @@ public class Main {
 
         public Resultat creationCoin(){
             String code;
+            int id;
             double a,o;
+            System.out.println("Identifint du coin : ");
+            id=Lire.i();
+            
             System.out.println("Abcisse: ");
             a=Lire.d();
             System.out.println("Ordonnée: ");
             o=Lire.d();
-            Coin creacoin=new Coin(a,o);
+            Coin creacoin=new Coin(id,a,o);
             ListeCoins.add(creacoin);
             code=creacoin.toString()+" \n";
             return creationObjet(ListeCoins, creacoin, code);
         }
     
     public Resultat creationMur(){
-        String code="", idRecherche;
-        int exiCoinDeb,  exiCoinFin, nbrPorte, nbrFenetre, nbrRevetement ;
+        String code="";
+        int idMur,exiCoinDeb, idRecherche, exiCoinFin, nbrPorte, nbrFenetre, nbrRevetement ;
         Coin coinDebut = null; 
         Coin coinFin = null; 
+        System.out.println("Identifint du mur : ");
+        idMur=Lire.i();
         // choix pour un coin de début déjà existant ou non
         System.out.println("Le coin de début existe-t-il déjà ? (1 = OUI et 0 = NON)");
         exiCoinDeb=Lire.i();
@@ -142,9 +148,9 @@ public class Main {
         //coin début existe déjà
         if(exiCoinDeb==1){
             System.out.println("Identifiant du coin de début recherché: (indentifiant sous la forme 'C 1')");
-            idRecherche=Lire.S();
+            idRecherche=Lire.i();
             for (Coin c : ListeCoins) {
-                if (c.getidCoin().equals(idRecherche)) {
+                if (c.getidCoin()==idRecherche) {
                     coinDebut = c;
                     break;
                 }
@@ -171,9 +177,9 @@ public class Main {
         // coin fin existe
         if(exiCoinFin==1){
             System.out.println("Identifiant du coin de fin recherché: (indentifiant sous la forme 'C 1')");
-            idRecherche=Lire.S();
+            idRecherche=Lire.i();
             for (Coin c : ListeCoins) {
-                if (c.getidCoin().equals(idRecherche)) {
+                if (c.getidCoin()==idRecherche) {
                     coinFin = c;
                     
                     break;
@@ -201,7 +207,7 @@ public class Main {
         nbrRevetement=Lire.i();
         
         ListeRevMur = revetement.choixRevetementMur(nbrRevetement);
-        Mur creamur = new Mur(coinDebut,coinFin,nbrPorte,nbrFenetre,ListeRevMur);
+        Mur creamur = new Mur(idMur,coinDebut,coinFin,nbrPorte,nbrFenetre,ListeRevMur);
         ListeMurs.add(creamur);
         code+=creamur.toString()+" \n";
         return creationObjet(ListeMurs, creamur,code);
@@ -211,22 +217,26 @@ public class Main {
     public Resultat creationPiece(){
         String code;
         int reponse ;
-        String idRecherche ;
+        int idPiece, idRecherche, idSol, idPlafond ;
         int nbrRevSol, nbrRevPlafond, nbrTremisSol, nbrTremisPlafond;
         ArrayList<Mur> ListeMursPiece = new ArrayList<>();
         Mur mur;
         String usage;
-        
+        System.out.println("Identifint de la piece : ");
+        idPiece=Lire.i();
         System.out.println("Usage de la pièce :");
         usage=Lire.S();
         
+        System.out.println("Identifint du sol : ");
+        idSol=Lire.i();
         System.out.println("Combien de revetement pour le sol ?");
         nbrRevSol=Lire.i();
         ListeRevSol = revetement.choixRevetementSol(nbrRevSol);
         System.out.println("Combien de tremis pour le sol ?");
         nbrTremisSol=Lire.i();
         
-        
+        System.out.println("Identifint du plafond : ");
+        idPlafond=Lire.i();
         System.out.println("Combien de revetement pour le plafond ?");
         nbrRevPlafond=Lire.i();
         ListeRevPlafond = revetement.choixRevetementPlafond(nbrRevPlafond);
@@ -242,9 +252,9 @@ public class Main {
             }
             if(reponse==1){
                 System.out.println("Identifiant du mur recherché: (indentifiant sous la forme 'M 1') ");
-                idRecherche=Lire.S();
+                idRecherche=Lire.i();
                 for (Mur m : ListeMurs) {
-                    if (m.getidMur().equals(idRecherche)) {
+                    if (m.getidMur()==idRecherche) {
                         mur = m;
                         ListeCoinsP.add(mur.getcoinDebut());
                         ListeCoinsP.add(mur.getcoinFin());
@@ -269,23 +279,24 @@ public class Main {
             }
         }
         
-        Sol Sol = new Sol(ListeCoinsP,ListeRevSol,nbrTremisSol);
+        Sol Sol = new Sol(idSol,ListeCoinsP,ListeRevSol,nbrTremisSol);
         ListeSols.add(Sol);
         Sol.afficherSol();
-        Plafond Plafond = new Plafond(ListeCoinsP,ListeRevPlafond,nbrTremisPlafond);
+        Plafond Plafond = new Plafond(idPlafond,ListeCoinsP,ListeRevPlafond,nbrTremisPlafond);
         ListePlafonds.add(Plafond);
         Plafond.afficherPlafond();
-        Piece creapiece = new Piece(usage, Sol.getidSol(), Plafond.getidPlafond(), ListeMursPiece);
+        Piece creapiece = new Piece(idPiece,usage, Sol.getidSol(), Plafond.getidPlafond(), ListeMursPiece);
         ListePieces.add(creapiece);
         code=creapiece.toString()+" \n";
         return creationObjet(ListePieces, creapiece,code);
     }
     
     public Resultat creationAppartement(){
-        String code, idRecherche ;
-        int niveauApp, nbrPieces, reponse;
+        String code ;
+        int idAppart,niveauApp, nbrPieces, reponse, idRecherche;
         Piece piece;
-        
+        System.out.println("Identifint de l'appartement : ");
+        idAppart=Lire.i();
         System.out.println("Quel est le niveau de l'appartement ? ");
         niveauApp=Lire.i();
         System.out.println("Combien y a-t-il de pièces dans l'appartement ?");
@@ -299,9 +310,9 @@ public class Main {
             }
             if(reponse==1){
                 System.out.println("Identifiant de la pièce recherchée: (indentifiant sous la forme 'Pi 1')");
-                idRecherche=Lire.S();
+                idRecherche=Lire.i();
                 for (Piece p : ListePieces) {
-                    if (p.getidPiece().equals(idRecherche)) {
+                    if (p.getidPiece()==idRecherche) {
                         piece = p;
                         ListePieces.add(piece);
                         break;
@@ -319,15 +330,16 @@ public class Main {
                 
             }
         }
-        Appartement creaappart = new Appartement(niveauApp, ListePieces);
+        Appartement creaappart = new Appartement(idAppart,niveauApp, ListePieces);
         code=creaappart.toString()+" \n";
         return creationObjet(ListeAppartements, creaappart,code);
     }
     public Resultat creationNiveauMaison(){
-        String code, idRecherche ;
-        int nbrPieces, reponse, Hniveau;
+        String code;
+        int idNiveauM, nbrPieces, reponse, Hniveau, idRecherche;
         Piece piece;
-        
+        System.out.println("Identifint de la piece : ");
+        idNiveauM=Lire.i();
         System.out.println("Quel est la hauteur du niveau ? ");
         Hniveau=Lire.i();
         System.out.println("Combien y a-t-il de pièces dans l'appartement ?");
@@ -341,9 +353,9 @@ public class Main {
             }
             if(reponse==1){
                 System.out.println("Identifiant de la pièce recherchée: (indentifiant sous la forme 'Pi 1')");
-                idRecherche=Lire.S();
+                idRecherche=Lire.i();
                 for (Piece p : ListePieces) {
-                    if (p.getidPiece().equals(idRecherche)) {
+                    if (p.getidPiece()==idRecherche) {
                         piece = p;
                         ListePieces.add(piece);
                         break;
@@ -361,16 +373,17 @@ public class Main {
                 
             }
         }
-        NiveauMaison creaNiveauM = new NiveauMaison(Hniveau, ListePieces);
+        NiveauMaison creaNiveauM = new NiveauMaison(idNiveauM,Hniveau, ListePieces);
         code=creaNiveauM.toString()+" \n";
         return creationObjet(ListeNiveauMaison, creaNiveauM,code);
     }
     public Resultat creationNiveau(){
-        String code,idRecherche ;
-        int nbrApparts,reponse;
+        String code ;
+        int idNiveau, idRecherche, nbrApparts,reponse;
         double hauteur;
         Appartement appart;
-        
+        System.out.println("Identifint du niveau : ");
+        idNiveau=Lire.i();
         System.out.println("hauteur : ");
         hauteur=Lire.i();
         System.out.println("Combien y a-t-il d'appartements dans le niveau ?");
@@ -384,9 +397,9 @@ public class Main {
             }
             if(reponse==1){
                 System.out.println("Identifiant de l'appartement recherché: (indentifiant sous la forme 'A 1')");
-                idRecherche=Lire.S();
+                idRecherche=Lire.i();
                 for (Appartement a : ListeAppartements) {
-                    if (a.getidAppartement().equals(idRecherche)) {
+                    if (a.getidAppartement()==idRecherche) {
                         appart = a;
                         ListeAppartements.add(appart);
                         break;
@@ -405,15 +418,17 @@ public class Main {
             }
         }
         
-        Niveau creaniveau = new Niveau(hauteur, ListeAppartements);
+        Niveau creaniveau = new Niveau(idNiveau, hauteur, ListeAppartements);
         code=creaniveau.toString()+" \n";
         return creationObjet(ListeNiveaux, creaniveau,code);
     
     }
     public Resultat creationBatiment(){
         Batiment creabat = new Batiment();
-        String code, idBat = null,idRecherche ;
-        int typeBatiment,nbrNiveaux,reponse ;
+        String code ;
+        int idBat, idRecherche,typeBatiment,nbrNiveaux,reponse ;
+        System.out.println("Identifint de la piece : ");
+        idBat=Lire.i();
         Niveau niveau;
         System.out.println("Quel type de bâtiment souhaitez-vous créer ? (1 = Immeuble et 0 = Maison)");
         typeBatiment = Lire.i();
@@ -435,9 +450,9 @@ public class Main {
                 }
                 if(reponse==1){
                     System.out.println("Identifiant du niveau recherché: (indentifiant sous la forme 'N 1')");
-                    idRecherche=Lire.S();
+                    idRecherche=Lire.i();
                     for (Niveau n : ListeNiveaux) {
-                        if (n.getidNiveau().equals(idRecherche)) {
+                        if (n.getidNiveau()==idRecherche) {
                             niveau = n;
                             ListeNiveaux.add(niveau);
                             break;
@@ -455,7 +470,7 @@ public class Main {
 
                 }
             }
-            Immeuble immeuble = new Immeuble(ListeNiveaux);
+            Immeuble immeuble = new Immeuble(idBat,ListeNiveaux);
             immeuble.setlisteNiveaux(ListeNiveaux);
             ListeImmeubles.add(immeuble);
             ListeBatiments.add(immeuble);
@@ -473,10 +488,10 @@ public class Main {
                 }
                 if (reponseM == 1) {
                     System.out.println("Identifiant du niveau recherché :(indentifiant sous la forme 'NM 1')");
-                    idRecherche = Lire.S();
+                    idRecherche = Lire.i();
                     NiveauMaison niveauM = null;
                     for (NiveauMaison nM : ListeNiveauMaison) {
-                        if (nM.getidNiveauMaison().equals(idRecherche)) {
+                        if (nM.getidNiveauMaison()==idRecherche) {
                             niveauM = nM;
                             ListeNiveauMaison.add(niveauM);
                             break;
@@ -490,7 +505,7 @@ public class Main {
                     ListeNiveauMaison.add((NiveauMaison) resNiveauM.getObjet());
                 }
             }
-            Maison maison = new Maison( ListeNiveauMaison);
+            Maison maison = new Maison(idBat, ListeNiveauMaison);
             ListeMaisons.add(maison);
             ListeBatiments.add(maison);
             creabat= maison;
@@ -742,30 +757,30 @@ public class Main {
     }
     public ArrayList<Coin> recupereCoin(String [] tab){
         Coin C1,C2,C3,C4;
-        String idC1 = tab[1], idC2 = tab[2], idC3 = tab[3], idC4 = tab[4];
+        int idC1 = Integer.parseInt(tab[2]), idC2 = Integer.parseInt(tab[3]), idC3 = Integer.parseInt(tab[4]), idC4 = Integer.parseInt(tab[5]);
         for (Coin c : ListeCoins) {
-            if (c.getidCoin().equals(idC1)) {
+            if (c.getidCoin()==idC1) {
                 C1= c;
                 ListeCoinsP.add(C1);
                 break;
             }
         }
         for (Coin c : ListeCoins) {
-            if (c.getidCoin().equals(idC2)) {
+            if (c.getidCoin()==idC2) {
                 C2= c;
                 ListeCoinsP.add(C2);
                 break;
             }
         }
         for (Coin c : ListeCoins) {
-            if (c.getidCoin().equals(idC3)) {
+            if (c.getidCoin()==idC3) {
                 C3= c;
                 ListeCoinsP.add(C3);
                 break;
             }
         }
         for (Coin c : ListeCoins) {
-            if (c.getidCoin().equals(idC4)) {
+            if (c.getidCoin()==idC4) {
                 C4= c;
                 ListeCoinsP.add(C4);
                 break;
@@ -774,141 +789,151 @@ public class Main {
         return ListeCoinsP;
     }
     private static void traiterCoin(String[] tab, ArrayList<Coin> ListeCoins) {
-        double Cx = Double.parseDouble(tab[1].trim());
-        double Cy = Double.parseDouble(tab[2].trim());
-        Coin coin = new Coin(Cx, Cy);
+        int id = Integer.parseInt(tab[1].trim());
+        double Cx = Double.parseDouble(tab[2].trim());
+        double Cy = Double.parseDouble(tab[3].trim());
+        Coin coin = new Coin(id,Cx, Cy);
         ListeCoins.add(coin);
     }
 
     private static void traiterMur(String[] tab, ArrayList<Coin> ListeCoins, ArrayList<Mur> ListeMurs, Main main) {
-        Coin coinD = trouverCoinParId(tab[1].trim(), ListeCoins);
-        Coin coinF = trouverCoinParId(tab[2].trim(), ListeCoins);
-        int nbrP = Integer.parseInt(tab[3]);
-        int nbrF = Integer.parseInt(tab[4]);
+        int idMur = Integer.parseInt(tab[1].trim());
+        Coin coinD = trouverCoinParId(Integer.parseInt(tab[2].trim()), ListeCoins);
+        Coin coinF = trouverCoinParId(Integer.parseInt(tab[3].trim()), ListeCoins);
+        int nbrP = Integer.parseInt(tab[4]);
+        int nbrF = Integer.parseInt(tab[5]);
         Revetement rev = new Revetement();
         ArrayList<Revetement> listeRevMur = new ArrayList<>();
-        for (int r = 5; r < tab.length; r++) {
+        for (int r = 6; r < tab.length; r++) {
             int idrev = Integer.parseInt(tab[r]);
             Revetement revetement = trouverRevetementParId(idrev, rev.getlisteRevetementMur());
             if (revetement != null) {
                 listeRevMur.add(revetement);
             }
         }
-        Mur mur = new Mur(coinD, coinF, nbrP, nbrF, listeRevMur);
+        Mur mur = new Mur(idMur,coinD, coinF, nbrP, nbrF, listeRevMur);
         ListeMurs.add(mur);
     }
 
     private static void traiterSol(String[] tab, ArrayList<Sol> ListeSols, Main main) {
+        int idSol = Integer.parseInt(tab[1].trim());
         int nbrTS = Integer.parseInt(tab[tab.length - 1]);
         ArrayList<Revetement> listeRevSol = new ArrayList<>();
         Revetement rev = new Revetement();
-        for (int r = 1; r < tab.length - 1; r++) {
+        for (int r = 2; r < tab.length - 1; r++) {
             int idrev = Integer.parseInt(tab[r]);
             Revetement revetement = trouverRevetementParId(idrev, rev.getlisteRevetementSol());
             if (revetement != null) {
                 listeRevSol.add(revetement);
             }
         }
-        Sol sol = new Sol(main.recupereCoin(tab), listeRevSol, nbrTS);
+        Sol sol = new Sol(idSol,main.recupereCoin(tab), listeRevSol, nbrTS);
         ListeSols.add(sol);
     }
 
     private static void traiterPlafond(String[] tab, ArrayList<Plafond> ListePlafonds, Main main) {
+        int idPlafond = Integer.parseInt(tab[1].trim());
         int nbrTP = Integer.parseInt(tab[tab.length - 1]);
         ArrayList<Revetement> listeRevPlafond = new ArrayList<>();
         Revetement rev = new Revetement();
-        for (int r = 1; r < tab.length - 1; r++) {
+        for (int r = 2; r < tab.length - 1; r++) {
             int idrev = Integer.parseInt(tab[r]);
             Revetement revetement = trouverRevetementParId(idrev, rev.getlisteRevetementPlafond());
             if (revetement != null) {
                 listeRevPlafond.add(revetement);
             }
         }
-        Plafond plafond = new Plafond(main.recupereCoin(tab), listeRevPlafond, nbrTP);
+        Plafond plafond = new Plafond(idPlafond,main.recupereCoin(tab), listeRevPlafond, nbrTP);
         ListePlafonds.add(plafond);
     }
 
     private static void traiterPiece(String[] tab, ArrayList<Piece> ListePieces, ArrayList<Mur> ListeMurs, Main main) {
-        String usage = tab[1];
-        String idSolP = tab[2];
-        String idPlafondP = tab[3];
+        int idPiece = Integer.parseInt(tab[1].trim());
+        String usage = tab[2];
+        int idSolP = Integer.parseInt(tab[3].trim());
+        int idPlafondP = Integer.parseInt(tab[4].trim());
         ArrayList<Mur> ListeMursPiece = new ArrayList<>();
-        for (int j = 4; j < tab.length; j++) {
-            String idMurP = tab[j];
+        for (int j = 5; j < tab.length; j++) {
+            int idMurP = Integer.parseInt(tab[j]);
             Mur mur = trouverMurParId(idMurP, ListeMurs);
             if (mur != null) {
                 ListeMursPiece.add(mur);
             }
         }
-        Piece piece = new Piece(usage, idSolP, idPlafondP, ListeMursPiece);
+        Piece piece = new Piece(idPiece,usage, idSolP, idPlafondP, ListeMursPiece);
         ListePieces.add(piece);
     }
 
     private static void traiterAppartement(String[] tab, ArrayList<Appartement> ListeAppartements, ArrayList<Piece> ListePieces) {
-        int idNivAppart = Integer.parseInt(tab[1]);
+        int idAppart = Integer.parseInt(tab[1].trim());
+        int idNivAppart = Integer.parseInt(tab[2]);
         ArrayList<Piece> ListePieceAppart = new ArrayList<>();
-        for (int h = 2; h < tab.length; h++) {
-            String idPiece = tab[h];
+        for (int h = 3; h < tab.length; h++) {
+            int idPiece = Integer.parseInt(tab[h]);
             Piece piece = trouverPieceParId(idPiece, ListePieces);
             if (piece != null) {
                 ListePieceAppart.add(piece);
             }
         }
-        Appartement appart = new Appartement(idNivAppart, ListePieceAppart);
+        Appartement appart = new Appartement(idAppart,idNivAppart, ListePieceAppart);
         ListeAppartements.add(appart);
     }
 
     private static void traiterNiveau(String[] tab, ArrayList<Niveau> ListeNiveaux, ArrayList<Appartement> ListeAppartements) {
-        double hauteur = Double.parseDouble(tab[1]);
+        int idNiveau = Integer.parseInt(tab[1].trim());
+        double hauteur = Double.parseDouble(tab[2]);
         ArrayList<Appartement> ListeAppartementsNiveau = new ArrayList<>();
-        for (int j = 2; j < tab.length; j++) {
-            String idAppart = tab[j];
+        for (int j = 3; j < tab.length; j++) {
+            int idAppart = Integer.parseInt(tab[j]);
             Appartement appart = trouverAppartementParId(idAppart, ListeAppartements);
             if (appart != null) {
                 ListeAppartementsNiveau.add(appart);
             }
         }
-        Niveau niveau = new Niveau(hauteur, ListeAppartementsNiveau);
+        Niveau niveau = new Niveau(idNiveau,hauteur, ListeAppartementsNiveau);
         ListeNiveaux.add(niveau);
     }
 
     private static void traiterNiveauMaison(String[] tab, ArrayList<NiveauMaison> ListeNiveauMaison, ArrayList<Piece> ListePieces) {
-        double hauteur = Double.parseDouble(tab[1]);
+        int idNiveauM = Integer.parseInt(tab[1].trim());
+        double hauteur = Double.parseDouble(tab[2]);
         ArrayList<Piece> ListePieceNiveauM = new ArrayList<>();
-        for (int j = 2; j < tab.length; j++) {
-            String idPiece = tab[j];
+        for (int j = 3; j < tab.length; j++) {
+            int idPiece = Integer.parseInt(tab[j]);
             Piece piece = trouverPieceParId(idPiece, ListePieces);
             if (piece != null) {
                 ListePieceNiveauM.add(piece);
             }
         }
-        NiveauMaison niveauM = new NiveauMaison(hauteur, ListePieceNiveauM);
+        NiveauMaison niveauM = new NiveauMaison(idNiveauM,hauteur, ListePieceNiveauM);
         ListeNiveauMaison.add(niveauM);
     }
 
     private static void traiterImmeuble(String[] tab, ArrayList<Niveau> ListeNiveaux, ArrayList<Immeuble> ListeImmeubles) {
+        int idImmeuble = Integer.parseInt(tab[1].trim());
         ArrayList<Niveau> ListeNiveauxImmeuble = new ArrayList<>();
-        for (int j = 1; j < tab.length; j++) {
-            String idNiveau = tab[j];
+        for (int j = 2; j < tab.length; j++) {
+            int idNiveau = Integer.parseInt(tab[j]);
             Niveau niveau = trouverNiveauParId(idNiveau, ListeNiveaux);
             if (niveau != null) {
                 ListeNiveauxImmeuble.add(niveau);
             }
         }
-        Immeuble immeuble = new Immeuble(ListeNiveauxImmeuble);
+        Immeuble immeuble = new Immeuble(idImmeuble,ListeNiveauxImmeuble);
         ListeImmeubles.add(immeuble);
     }
 
     private static void traiterMaison(String[] tab, ArrayList<NiveauMaison> ListeNiveauMaison, ArrayList<Maison> ListeMaisons) {
+        int idMaison = Integer.parseInt(tab[1].trim());
         ArrayList<NiveauMaison> ListeNiveauxMaison = new ArrayList<>();
-        for (int j = 1; j < tab.length; j++) {
-            String idNiveauM = tab[j];
+        for (int j = 2; j < tab.length; j++) {
+            int idNiveauM = Integer.parseInt(tab[j]);
             NiveauMaison niveauM = trouverNiveauMaisonParId(idNiveauM, ListeNiveauMaison);
             if (niveauM != null) {
                 ListeNiveauMaison.add(niveauM);
             }
         }
-        Maison maison = new Maison(ListeNiveauxMaison);
+        Maison maison = new Maison(idMaison,ListeNiveauxMaison);
         ListeMaisons.add(maison);
     }
     /*
@@ -921,62 +946,62 @@ public class Main {
     Trouver par identifiant 
     
     */
-    private static Coin trouverCoinParId(String id, ArrayList<Coin> liste) {
+    private static Coin trouverCoinParId(int id, ArrayList<Coin> liste) {
         for (Coin c : liste) {
-            if (c.getidCoin().equals(id)) {
+            if (c.getidCoin()==id) {
                 return c;
             }
         }
         return null;
     }
 
-    private static Mur trouverMurParId(String id, ArrayList<Mur> liste) {
+    private static Mur trouverMurParId(int id, ArrayList<Mur> liste) {
         for (Mur m : liste) {
-            if (m.getidMur().equals(id)) {
+            if (m.getidMur()==id) {
                 return m;
             }
         }
         return null;
     }
 
-    private static Piece trouverPieceParId(String id, ArrayList<Piece> liste) {
+    private static Piece trouverPieceParId(int id, ArrayList<Piece> liste) {
         for (Piece p : liste) {
-            if (p.getidPiece().equals(id)) {
+            if (p.getidPiece()==id) {
                 return p;
             }
         }
         return null;
     }
 
-    private static Appartement trouverAppartementParId(String id, ArrayList<Appartement> liste) {
+    private static Appartement trouverAppartementParId(int id, ArrayList<Appartement> liste) {
         for (Appartement a : liste) {
-            if (a.getidAppartement().equals(id)) {
+            if (a.getidAppartement()==id) {
                 return a;
             }
         }
         return null;
     }
 
-    private static Niveau trouverNiveauParId(String id, ArrayList<Niveau> liste) {
+    private static Niveau trouverNiveauParId(int id, ArrayList<Niveau> liste) {
         for (Niveau n : liste) {
-            if (n.getidNiveau().equals(id)) {
+            if (n.getidNiveau()==id) {
                 return n;
             }
         }
         return null;
     }
 
-    private static NiveauMaison trouverNiveauMaisonParId(String id, ArrayList<NiveauMaison> liste) {
+    private static NiveauMaison trouverNiveauMaisonParId(int id, ArrayList<NiveauMaison> liste) {
         for (NiveauMaison nm : liste) {
-            if (nm.getidNiveauMaison().equals(id)) {
+            if (nm.getidNiveauMaison()==id) {
                 return nm;
             }
         }
         return null;
     }
-    private static Maison trouverMaisonParId(String id, ArrayList<Maison> liste) {
+    private static Maison trouverMaisonParId(int id, ArrayList<Maison> liste) {
         for (Maison m : liste) {
-            if (m.getidMaison().equals(id)) {
+            if (m.getidMaison()==id) {
                 return m;
             }
         }
