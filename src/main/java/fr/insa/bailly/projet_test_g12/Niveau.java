@@ -9,24 +9,24 @@ import java.util.ArrayList;
  * @author Elève
  */
 public final class Niveau {
-    private String idNiveau ;
+    private int idNiveau ;
     private double hauteursousPlafond ; //int hauteur à voir
     private ArrayList<Appartement> listeAppart ;
     private ArrayList<Piece> listePiece ;
-    private static int compteur = 0;
+   
     public Niveau(){
         
     }
-    public Niveau ( double hauteurplafond, ArrayList<Appartement> listeAppart) {
-        this.idNiveau = "N " + (++compteur);
+    public Niveau (int idNiveau, double hauteurplafond, ArrayList<Appartement> listeAppart) {
+        this.idNiveau = idNiveau;
         this.hauteursousPlafond = hauteurplafond ;
         this.listeAppart = listeAppart ;
     }
     //get et set pour donner et utiliser les attributs
-    public String getidNiveau(){
+    public int getidNiveau(){
         return idNiveau ;
     }
-    public void setidNiveau(String idNiveau){
+    public void setidNiveau(int idNiveau){
         this.idNiveau = idNiveau ;
     }
     public double gethauteursousPlafond(){
@@ -55,10 +55,11 @@ public final class Niveau {
     @Override 
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        sb.append(idNiveau).append(" ; ");
-        sb.append(hauteursousPlafond).append(" ; ");
+        sb.append("N;")
+          .append(idNiveau).append(";")
+          .append(hauteursousPlafond).append(";");
         for (Appartement appart : listeAppart) {
-            sb.append(appart.getidAppartement()).append(" ; ");
+            sb.append(appart.getidAppartement()).append(";");
         }
         
         return sb.toString();

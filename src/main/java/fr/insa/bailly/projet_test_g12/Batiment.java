@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * @author Elève
  */
 public class Batiment {
-   private String idBatiment ;
+   private int idBatiment ;
    private ArrayList<Niveau> listeNiveau = new ArrayList<>();
    private ArrayList<NiveauMaison> listeNiveauMaison = new ArrayList<>();
 //get et set pour donner et utiliser les attributs
@@ -18,10 +18,10 @@ public class Batiment {
     
     } 
    
-   public String getidBatiment(){
+   public int getidBatiment(){
         return idBatiment ;
     }
-    public void setidBatiment(String idBatiment) {
+    public void setidBatiment(int idBatiment) {
         this.idBatiment = idBatiment ;
     }
     public ArrayList<Niveau> getlisteNiveau(){

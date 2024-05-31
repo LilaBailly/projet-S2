@@ -11,19 +11,19 @@ import java.util.Map;
  * @author Elève
  */
 public class Piece {
-    private String idPiece ;
-    private String idsol ;
-    private String idplafond ;
+    private int idPiece ;
+    private int idsol ;
+    private int idplafond ;
     private ArrayList<Mur> listeMurs ;
     private String usage ;
     private Sol sol;
     private Plafond plafond;
-    private static int compteur = 0;
+    
     public Piece() {
         this.listeMurs = new ArrayList<>();
     }
-    public Piece( String usage, String idsol,String idplafond, ArrayList<Mur> listeMurs){
-        this.idPiece = "Pi " + (++compteur);
+    public Piece(int idPiece, String usage, int idsol,int idplafond, ArrayList<Mur> listeMurs){
+        this.idPiece = idPiece;
         this.usage=usage;
         this.idsol=idsol;
         this.idplafond=idplafond;
@@ -87,22 +87,22 @@ public class Piece {
         return coutTotal;
     }
     
-    public String getidPiece(){
+    public int getidPiece(){
         return idPiece ;
     }
-    public void setidPiece(String idPiece) {
+    public void setidPiece(int idPiece) {
         this.idPiece = idPiece ;
     }
-    public String getidSol(){
+    public int getidSol(){
         return idsol ;
     }
-    public void setidSol(String id) {
+    public void setidSol(int id) {
         this.idsol = id ;
     }
-    public String getidPlafond(){
+    public int getidPlafond(){
         return idplafond ;
     }
-    public void setidPlafond(String id) {
+    public void setidPlafond(int id) {
         this.idplafond = id ;
     }
     public Sol getSol(){
@@ -137,14 +137,15 @@ public class Piece {
     @Override 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(idPiece).append(" ; ")
-          .append(usage).append(" ; ")
-          .append(sol.getidSol()).append(" ; ")
-          .append(plafond.getidPlafond()).append(" ; ");
+        sb.append("Pi;")
+          .append(idPiece).append(";")
+          .append(usage).append(";")
+          .append(sol.getidSol()).append(";")
+          .append(plafond.getidPlafond()).append(";");
 
         // Ajouter les identifiants des revêtements
         for (Mur mur : listeMurs) {
-            sb.append(mur.getidMur()).append(" ; ");
+            sb.append(mur.getidMur()).append(";");
         }
 
         return sb.toString();

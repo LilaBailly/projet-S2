@@ -10,18 +10,18 @@ import java.util.ArrayList;
  * @author Elève
  */
 public class Plafond {
-    private String idPlafond ;
+    private int idPlafond ;
     private ArrayList<Coin> listeCoin ;
     private ArrayList<Revetement> listeRevPlafond ;
     private int nbrtremis ; //ajouter nbr tremis
     private Piece piece;
-    private static int compteur = 0;
+    
     public Plafond(){
 
     }
     //Déclaration du constructeur
-    public Plafond (ArrayList<Coin> listeCoin, ArrayList<Revetement> listeRevetement, int nbrtremis){
-        this.idPlafond = "Pl " + (++compteur);
+    public Plafond (int idPlafond, ArrayList<Coin> listeCoin, ArrayList<Revetement> listeRevetement, int nbrtremis){
+        this.idPlafond = idPlafond;
         this.listeCoin = listeCoin ;
         this.listeRevPlafond = listeRevetement ;
         this.nbrtremis = nbrtremis ;
@@ -61,10 +61,10 @@ public class Plafond {
         return cout ;
     }
     //get et set pour donner et utiliser les attributs
-    public String getidPlafond(){
+    public int getidPlafond(){
         return idPlafond ;
     }
-    public void setidPlafond(String idPlafond) {
+    public void setidPlafond(int idPlafond) {
         this.idPlafond = idPlafond ;
     }
     public ArrayList<Coin> getlisteCoin(){
@@ -85,15 +85,16 @@ public class Plafond {
     @Override 
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        sb.append(idPlafond).append(" ; ");
+        sb.append("Pl;")
+          .append(idPlafond).append(";");
         for (Coin coin : listeCoin) {
-            sb.append(coin.getidCoin()).append(" ; ");
+            sb.append(coin.getidCoin()).append(";");
         }
         // Ajouter les identifiants des revêtements
         for (Revetement rev : listeRevPlafond) {
-            sb.append(rev.getidRevetement()).append(" ; ");
+            sb.append(rev.getidRevetement()).append(";");
         }
-        sb.append(nbrtremis).append(" ; ");
+        sb.append(nbrtremis).append(";");
         return sb.toString();
     }
 }

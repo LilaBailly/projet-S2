@@ -11,24 +11,24 @@ import java.util.ArrayList;
  * @author becqu
  */
 public class NiveauMaison {
-    private String idNiveauMaison ;
+    private int idNiveauMaison ;
     private double hauteursousPlafond ; //int hauteur à voir
     private ArrayList<Piece> listePiece ;
-    private static int compteur = 0;
+   
     public NiveauMaison(){
         
     }
-    public NiveauMaison (double hauteurplafond, ArrayList<Piece> listePiece){
-        this.idNiveauMaison = "NM " + (++compteur);
+    public NiveauMaison (int idNiveauM, double hauteurplafond, ArrayList<Piece> listePiece){
+        this.idNiveauMaison = idNiveauM;
         this.hauteursousPlafond = hauteurplafond ;
         this.listePiece = listePiece ;
     }
     
     //get et set pour donner et utiliser les attributs
-    public String getidNiveauMaison(){
+    public int getidNiveauMaison(){
         return idNiveauMaison ;
     }
-    public void setidNiveauMaison(String idNiveau){
+    public void setidNiveauMaison(int idNiveau){
         this.idNiveauMaison = idNiveau ;
     }
     public double gethauteursousPlafond(){
@@ -57,9 +57,10 @@ public class NiveauMaison {
     @Override 
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        sb.append(idNiveauMaison).append(" ; ");
+        sb.append("NM;")
+          .append(idNiveauMaison).append(";");
         for (Piece piece : listePiece) {
-            sb.append(piece.getidPiece()).append(" ; ");
+            sb.append(piece.getidPiece()).append(";");
         }
         
         return sb.toString();

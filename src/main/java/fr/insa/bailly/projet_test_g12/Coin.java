@@ -13,25 +13,25 @@ public class Coin {
 
     
     // Déclaration des attributs de la classe coin
-    private String idCoin ;
+    private int idCoin ;
     private double cx ;
     private double cy ;
-    private static int compteur = 0;
+    
 
     // Constructeur par défaut
     public Coin() {
     }
     //déclaration du constructeur
-    public Coin(double x, double y) {
-        this.idCoin = "C " + (++compteur);
+    public Coin(int id,double x, double y) {
+        this.idCoin = id;
         this.cx = x;
         this.cy = y;
     }
     //get et set pour donner et utiliser les attributs
-    public String getidCoin () {
+    public int getidCoin () {
         return idCoin ;
     }
-    public void setidCoin(String idCoin) {
+    public void setidCoin(int idCoin) {
     this.idCoin = idCoin ;
     }
     public double getcx () {
@@ -51,7 +51,13 @@ public class Coin {
             System.out.println(this.idCoin+" ; "+this.cx+" ; "+this.cy);
     }
     @Override 
-    public String toString(){
-        return idCoin+" ; "+cx+" ; "+cy;
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("C;")
+          .append(idCoin).append(";")
+          .append(cx).append(";")
+          .append(cy).append(";");
+
+        return sb.toString();
     }
 }

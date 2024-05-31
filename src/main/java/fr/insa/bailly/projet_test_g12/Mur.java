@@ -10,7 +10,7 @@ import java.util.ArrayList ;
  */
 public class Mur {
     // Déclaration des attributs de la classe Mur
-    private String idMur ;
+    private int idMur ;
     private Coin coinDebut ;
     private Coin coinFin ;
     private int nbrPorte ;
@@ -25,8 +25,8 @@ public class Mur {
     }
     
     //déclaration du constructeur
-    public Mur(Coin debut, Coin fin, int porte, int fenetre, ArrayList<Revetement> listeRevetement) {
-        this.idMur = "M " + (++compteur);
+    public Mur(int idMur,Coin debut, Coin fin, int porte, int fenetre, ArrayList<Revetement> listeRevetement) {
+        this.idMur = idMur;
         this.coinDebut = debut;
         this.coinFin = fin;
         this.nbrPorte = porte;
@@ -58,10 +58,10 @@ public class Mur {
     
     //get et set pour donner et utiliser les attributs
     
-    public String getidMur(){
+    public int getidMur(){
         return idMur ;
     }
-    public void setidMur(String idMur) {
+    public void setidMur(int idMur) {
         this.idMur = idMur ;
     }
     public Coin getcoinDebut(){
@@ -104,15 +104,16 @@ public class Mur {
     @Override 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(idMur).append(" ; ")
-          .append(getcoinDebut().getidCoin()).append(" ; ")
-          .append(getcoinFin().getidCoin()).append(" ; ")
-          .append(nbrPorte).append(" ; ")
-          .append(nbrFenetre).append(" ; ");
+        sb.append("Mu;")
+          .append(idMur).append(";")
+          .append(getcoinDebut().getidCoin()).append(";")
+          .append(getcoinFin().getidCoin()).append(";")
+          .append(nbrPorte).append(";")
+          .append(nbrFenetre).append(";");
 
         // Ajouter les identifiants des revêtements
         for (Revetement rev : ListeRevMur) {
-            sb.append(rev.getidRevetement()).append(" ; ");
+            sb.append(rev.getidRevetement()).append(";");
         }
 
         return sb.toString();

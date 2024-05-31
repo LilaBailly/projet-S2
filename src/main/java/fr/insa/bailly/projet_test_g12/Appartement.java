@@ -9,14 +9,14 @@ import java.util.ArrayList ;
  * @author Elève
  */
 public class Appartement {
-    private String idAppartement ;
+    private int idAppartement ;
     private int idNiveauAppartement ;
     private Niveau niveauAppartement ;
     private ArrayList<Piece> listePiece ;
     private static int compteur = 0;
     //Constucteur
-    public Appartement (int niveauApp, ArrayList<Piece> listePiece) {
-        this.idAppartement = "A " + (++compteur);
+    public Appartement (int idAppart,int niveauApp, ArrayList<Piece> listePiece) {
+        this.idAppartement = idAppart;
         this.idNiveauAppartement = niveauApp ;
         this.listePiece = listePiece ;
     }
@@ -25,10 +25,10 @@ public class Appartement {
 
     }
     //get et set pour donner et utiliser les attributs
-    public String getidAppartement(){
+    public int getidAppartement(){
         return idAppartement ;
     }
-    public void setidAppartement(String idAppartement){
+    public void setidAppartement(int idAppartement){
         this.idAppartement = idAppartement ;
     }
     public int getidNiveauAppartement(){
@@ -63,10 +63,11 @@ public class Appartement {
     @Override 
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        sb.append(idAppartement).append(" ; ");
-        sb.append(idNiveauAppartement).append(" ; ");
+        sb.append("A;")
+          .append(idAppartement).append(";")
+          .append(idNiveauAppartement).append(";");
         for (Piece piece : listePiece) {
-            sb.append(piece.getidPiece()).append(" ; ");
+            sb.append(piece.getidPiece()).append(";");
         }
         
         return sb.toString();

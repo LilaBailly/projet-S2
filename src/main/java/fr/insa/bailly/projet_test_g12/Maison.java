@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class Maison extends Batiment {
     
-    private String idBatiment ;
+    private int idBatiment ;
     private ArrayList<NiveauMaison> listeNiveauxMaison;
     private static int compteur = 0;
     
@@ -20,15 +20,15 @@ public class Maison extends Batiment {
         
     }
     
-    public Maison ( ArrayList<NiveauMaison> listeNiveauxM) {
-        this.idBatiment = "Ma " + (++compteur);
+    public Maison (int idMaison, ArrayList<NiveauMaison> listeNiveauxM) {
+        this.idBatiment = idMaison;
         this.listeNiveauxMaison = listeNiveauxM ;
     }
     
-    public String getidMaison(){
+    public int getidMaison(){
         return idBatiment ;
     }
-    public void setidMaison(String idBatiment) {
+    public void setidMaison(int idBatiment) {
         this.idBatiment = idBatiment ;
     }
     
@@ -54,9 +54,10 @@ public class Maison extends Batiment {
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        sb.append(idBatiment).append(" ; ");
+        sb.append("Ma;")
+          .append(idBatiment).append(";");
         for (NiveauMaison niveauM : listeNiveauxMaison) {
-            sb.append(niveauM.getidNiveauMaison()).append(" ; ");
+            sb.append(niveauM.getidNiveauMaison()).append(";");
         }
         
         return sb.toString();

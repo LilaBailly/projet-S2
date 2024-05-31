@@ -13,21 +13,21 @@ import java.util.ArrayList;
 public class Immeuble extends Batiment {
  //   listeNiveau
     
-    private String idBatiment ;
+    private int idBatiment ;
     private ArrayList<Niveau> listeNiveaux;
-    private static int compteur = 0;
+    
     public Immeuble(){
         
     }
-    public Immeuble ( ArrayList<Niveau> listeNiveaux) {
-        this.idBatiment = "I " + (++compteur);
+    public Immeuble (int idImmeuble, ArrayList<Niveau> listeNiveaux) {
+        this.idBatiment = idImmeuble;
         this.listeNiveaux = listeNiveaux ;
     }
     
-    public String getidImmeuble(){
+    public int getidImmeuble(){
         return idBatiment ;
     }
-    public void setidImmeuble(String idBatiment) {
+    public void setidImmeuble(int idBatiment) {
         this.idBatiment = idBatiment ;
     }
     
@@ -53,9 +53,10 @@ public class Immeuble extends Batiment {
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        sb.append(idBatiment).append(" ; ");
+        sb.append("I;")
+          .append(idBatiment).append(";");
         for (Niveau niveau : listeNiveaux) {
-            sb.append(niveau.getidNiveau()).append(" ; ");
+            sb.append(niveau.getidNiveau()).append(";");
         }
         
         return sb.toString();

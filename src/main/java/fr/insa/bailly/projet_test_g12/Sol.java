@@ -9,21 +9,21 @@ import java.util.ArrayList;
  * @author Elève
  */
 public class Sol {
-    private String idSol ;
+    private int idSol ;
     private ArrayList<Coin> listeCoin ;
     private int nbrtremis ;
     private int nbrrev ;
     private ArrayList<Revetement> listeRevSol ;
     private Piece piece;
-    private static int compteur = 0;
+ 
     
     public Sol(){
 
     }
 
     //déclaration du constructeur
-    public Sol(ArrayList<Coin> listeCoin,ArrayList<Revetement> listeRevetement, int nbrtremis ) {
-        this.idSol = "S " + (++compteur);
+    public Sol(int idSol, ArrayList<Coin> listeCoin,ArrayList<Revetement> listeRevetement, int nbrtremis ) {
+        this.idSol = idSol;
         this.listeCoin = listeCoin ;
         this.nbrtremis = nbrtremis ;
         this.listeRevSol = listeRevetement ;
@@ -67,10 +67,10 @@ public class Sol {
     }
 
     //get et set pour donner et utiliser les attributs
-    public String getidSol(){
+    public int getidSol(){
         return idSol ;
     }
-    public void setidSol(String idSol) {
+    public void setidSol(int idSol) {
         this.idSol = idSol ;
     }
     public ArrayList<Coin> getlisteCoin(){
@@ -100,15 +100,16 @@ public class Sol {
     @Override 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(idSol).append(" ; ");
+        sb.append("S;")
+          .append(idSol).append(";");
         for (Coin coin : listeCoin) {
-            sb.append(coin.getidCoin()).append(" ; ");
+            sb.append(coin.getidCoin()).append(";");
         }
         // Ajouter les identifiants des revêtements
         for (Revetement rev : listeRevSol) {
-            sb.append(rev.getidRevetement()).append(" ; ");
+            sb.append(rev.getidRevetement()).append(";");
         }
-        sb.append(nbrtremis).append(" ; ");
+        sb.append(nbrtremis).append(";");
         return sb.toString();
     }
 
