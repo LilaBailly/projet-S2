@@ -64,7 +64,8 @@ public class Main {
         ArrayList<Maison>ListeMaisons = main.getListeMaisons();
 
         int choix;
-        supprimerLignesVides("Liste_Batiment.txt");        
+        supprimerLignesVides("Liste_Batiment.txt");  
+        Revetement.LectureRevetement();
         chargerDonnees(FICHIER_LISTE_BATIMENT,main,ListeCoins,ListeMurs,ListeSols,ListePlafonds,ListePieces,ListeAppartements,ListeNiveaux,ListeNiveauMaison,ListeImmeubles,ListeMaisons);              
         // Afficher les listes
         afficherListes(ListeCoins, ListeMurs, ListeSols, ListePlafonds, ListePieces, ListeAppartements, ListeNiveaux, ListeImmeubles);
@@ -120,14 +121,20 @@ public class Main {
             double a,o;
             System.out.println("Identifint du coin : ");
             id=Lire.i();
-            
+            for (Coin coin : ListeCoins) {
+                if (coin.getidCoin() == id) {
+                    System.out.println("L'identifiant existe déja, donnez un nouvel identifiant pour le coin :");
+                    id = Lire.i();
+                }
+            }
+
             System.out.println("Abcisse: ");
             a=Lire.d();
             System.out.println("Ordonnée: ");
             o=Lire.d();
             Coin creacoin=new Coin(id,a,o);
             ListeCoins.add(creacoin);
-            code=creacoin.toString()+" \n";
+            code=creacoin.toString()+"\n";
             return creationObjet(ListeCoins, creacoin, code);
         }
     
@@ -138,6 +145,12 @@ public class Main {
         Coin coinFin = null; 
         System.out.println("Identifint du mur : ");
         idMur=Lire.i();
+        for (Mur mur : ListeMurs) {
+                if (mur.getidMur() == idMur) {
+                    System.out.println("L'identifiant existe déja, donnez un nouvel identifiant pour le coin :");
+                    idMur = Lire.i();
+                }
+            }
         // choix pour un coin de début déjà existant ou non
         System.out.println("Le coin de début existe-t-il déjà ? (1 = OUI et 0 = NON)");
         exiCoinDeb=Lire.i();
@@ -147,7 +160,7 @@ public class Main {
         }
         //coin début existe déjà
         if(exiCoinDeb==1){
-            System.out.println("Identifiant du coin de début recherché: (indentifiant sous la forme 'C 1')");
+            System.out.println("Identifiant du coin de début recherché: ");
             idRecherche=Lire.i();
             for (Coin c : ListeCoins) {
                 if (c.getidCoin()==idRecherche) {
@@ -176,7 +189,7 @@ public class Main {
         }
         // coin fin existe
         if(exiCoinFin==1){
-            System.out.println("Identifiant du coin de fin recherché: (indentifiant sous la forme 'C 1')");
+            System.out.println("Identifiant du coin de fin recherché: ");
             idRecherche=Lire.i();
             for (Coin c : ListeCoins) {
                 if (c.getidCoin()==idRecherche) {
@@ -209,7 +222,7 @@ public class Main {
         ListeRevMur = revetement.choixRevetementMur(nbrRevetement);
         Mur creamur = new Mur(idMur,coinDebut,coinFin,nbrPorte,nbrFenetre,ListeRevMur);
         ListeMurs.add(creamur);
-        code+=creamur.toString()+" \n";
+        code+=creamur.toString()+"\n";
         return creationObjet(ListeMurs, creamur,code);
     }
    
@@ -220,15 +233,28 @@ public class Main {
         int idPiece, idRecherche, idSol, idPlafond ;
         int nbrRevSol, nbrRevPlafond, nbrTremisSol, nbrTremisPlafond;
         ArrayList<Mur> ListeMursPiece = new ArrayList<>();
+        ListeCoinsP.clear();
         Mur mur;
         String usage;
         System.out.println("Identifint de la piece : ");
         idPiece=Lire.i();
-        System.out.println("Usage de la pièce :");
+        for (Piece piece : ListePieces) {
+                if (piece.getidPiece() == idPiece) {
+                    System.out.println("L'identifiant existe déja, donnez un nouvel identifiant pour le coin :");
+                    idPiece = Lire.i();
+                }
+            }
+        System.out.println("Usage de la piece :");
         usage=Lire.S();
         
         System.out.println("Identifint du sol : ");
         idSol=Lire.i();
+        for (Sol sol : ListeSols) {
+                if (sol.getidSol() == idSol) {
+                    System.out.println("L'identifiant existe déja, donnez un nouvel identifiant pour le coin :");
+                    idSol = Lire.i();
+                }
+            }
         System.out.println("Combien de revetement pour le sol ?");
         nbrRevSol=Lire.i();
         ListeRevSol = revetement.choixRevetementSol(nbrRevSol);
@@ -237,6 +263,12 @@ public class Main {
         
         System.out.println("Identifint du plafond : ");
         idPlafond=Lire.i();
+        for (Plafond plafond : ListePlafonds) {
+                if (plafond.getidPlafond() == idPlafond) {
+                    System.out.println("L'identifiant existe déja, donnez un nouvel identifiant pour le coin :");
+                    idPlafond = Lire.i();
+                }
+            }
         System.out.println("Combien de revetement pour le plafond ?");
         nbrRevPlafond=Lire.i();
         ListeRevPlafond = revetement.choixRevetementPlafond(nbrRevPlafond);
@@ -251,7 +283,7 @@ public class Main {
                 reponse=Lire.i();
             }
             if(reponse==1){
-                System.out.println("Identifiant du mur recherché: (indentifiant sous la forme 'M 1') ");
+                System.out.println("Identifiant du mur recherché: ");
                 idRecherche=Lire.i();
                 for (Mur m : ListeMurs) {
                     if (m.getidMur()==idRecherche) {
@@ -287,7 +319,7 @@ public class Main {
         Plafond.afficherPlafond();
         Piece creapiece = new Piece(idPiece,usage, Sol.getidSol(), Plafond.getidPlafond(), ListeMursPiece);
         ListePieces.add(creapiece);
-        code=creapiece.toString()+" \n";
+        code=creapiece.toString()+"\n";
         return creationObjet(ListePieces, creapiece,code);
     }
     
@@ -297,19 +329,25 @@ public class Main {
         Piece piece;
         System.out.println("Identifint de l'appartement : ");
         idAppart=Lire.i();
+        for (Appartement appart : ListeAppartements) {
+                if (appart.getidAppartement() == idAppart) {
+                    System.out.println("L'identifiant existe déja, donnez un nouvel identifiant pour le coin :");
+                    idAppart = Lire.i();
+                }
+            }
         System.out.println("Quel est le niveau de l'appartement ? ");
         niveauApp=Lire.i();
-        System.out.println("Combien y a-t-il de pièces dans l'appartement ?");
+        System.out.println("Combien y a-t-il de pieces dans l'appartement ?");
         nbrPieces=Lire.i();
         for (int j=0; j<nbrPieces; j++){
-            System.out.println("La pièce n°"+(j+1)+" existe-t-elle déjà ? (1 = OUI et 0 = NON)");
+            System.out.println("La piece n°"+(j+1)+" existe-t-elle déjà ? (1 = OUI et 0 = NON)");
             reponse=Lire.i();
             while (reponse!=0&&reponse!=1){
                 System.out.println("Valeur incorrect; veuillez donner une valeur correct : 1 = OUI et 0 = NON");
                 reponse=Lire.i();
             }
             if(reponse==1){
-                System.out.println("Identifiant de la pièce recherchée: (indentifiant sous la forme 'Pi 1')");
+                System.out.println("Identifiant de la piece recherchée: ");
                 idRecherche=Lire.i();
                 for (Piece p : ListePieces) {
                     if (p.getidPiece()==idRecherche) {
@@ -320,7 +358,7 @@ public class Main {
                 
                     if (p == null) {
                         // Si le mur  n'est pas trouvé, affiche un message d'erreur 
-                        System.out.println("La pièce recherchée n'a pas été trouvée.");
+                        System.out.println("La piece recherchée n'a pas été trouvée.");
                     }
                 }
             }
@@ -331,28 +369,34 @@ public class Main {
             }
         }
         Appartement creaappart = new Appartement(idAppart,niveauApp, ListePieces);
-        code=creaappart.toString()+" \n";
+        code=creaappart.toString()+"\n";
         return creationObjet(ListeAppartements, creaappart,code);
     }
     public Resultat creationNiveauMaison(){
         String code;
         int idNiveauM, nbrPieces, reponse, Hniveau, idRecherche;
         Piece piece;
-        System.out.println("Identifint de la piece : ");
+        System.out.println("Identifint du niveau : ");
         idNiveauM=Lire.i();
+        for (NiveauMaison niveauM : ListeNiveauMaison) {
+                if (niveauM.getidNiveauMaison() == idNiveauM) {
+                    System.out.println("L'identifiant existe déja, donnez un nouvel identifiant pour le coin :");
+                    idNiveauM = Lire.i();
+                }
+            }
         System.out.println("Quel est la hauteur du niveau ? ");
         Hniveau=Lire.i();
-        System.out.println("Combien y a-t-il de pièces dans l'appartement ?");
+        System.out.println("Combien y a-t-il de pieces dans l'appartement ?");
         nbrPieces=Lire.i();
         for (int j=0; j<nbrPieces; j++){
-            System.out.println("La pièce n°"+(j+1)+" existe-t-elle déjà ? (1 = OUI et 0 = NON)");
+            System.out.println("La piece n°"+(j+1)+" existe-t-elle déjà ? (1 = OUI et 0 = NON)");
             reponse=Lire.i();
             while (reponse!=0&&reponse!=1){
                 System.out.println("Valeur incorrect; veuillez donner une valeur correct : 1 = OUI et 0 = NON");
                 reponse=Lire.i();
             }
             if(reponse==1){
-                System.out.println("Identifiant de la pièce recherchée: (indentifiant sous la forme 'Pi 1')");
+                System.out.println("Identifiant de la piece recherchée: ");
                 idRecherche=Lire.i();
                 for (Piece p : ListePieces) {
                     if (p.getidPiece()==idRecherche) {
@@ -363,7 +407,7 @@ public class Main {
                 
                     if (p == null) {
                         // Si le mur  n'est pas trouvé, affiche un message d'erreur 
-                        System.out.println("La pièce recherchée n'a pas été trouvée.");
+                        System.out.println("La piece recherchée n'a pas été trouvée.");
                     }
                 }
             }
@@ -374,7 +418,7 @@ public class Main {
             }
         }
         NiveauMaison creaNiveauM = new NiveauMaison(idNiveauM,Hniveau, ListePieces);
-        code=creaNiveauM.toString()+" \n";
+        code=creaNiveauM.toString()+"\n";
         return creationObjet(ListeNiveauMaison, creaNiveauM,code);
     }
     public Resultat creationNiveau(){
@@ -384,6 +428,12 @@ public class Main {
         Appartement appart;
         System.out.println("Identifint du niveau : ");
         idNiveau=Lire.i();
+        for (Niveau niveau : ListeNiveaux) {
+                if (niveau.getidNiveau() == idNiveau) {
+                    System.out.println("L'identifiant existe déja, donnez un nouvel identifiant pour le coin :");
+                    idNiveau = Lire.i();
+                }
+            }
         System.out.println("hauteur : ");
         hauteur=Lire.i();
         System.out.println("Combien y a-t-il d'appartements dans le niveau ?");
@@ -396,7 +446,7 @@ public class Main {
                 reponse=Lire.i();
             }
             if(reponse==1){
-                System.out.println("Identifiant de l'appartement recherché: (indentifiant sous la forme 'A 1')");
+                System.out.println("Identifiant de l'appartement recherché: ");
                 idRecherche=Lire.i();
                 for (Appartement a : ListeAppartements) {
                     if (a.getidAppartement()==idRecherche) {
@@ -419,7 +469,7 @@ public class Main {
         }
         
         Niveau creaniveau = new Niveau(idNiveau, hauteur, ListeAppartements);
-        code=creaniveau.toString()+" \n";
+        code=creaniveau.toString()+"\n";
         return creationObjet(ListeNiveaux, creaniveau,code);
     
     }
@@ -427,8 +477,14 @@ public class Main {
         Batiment creabat = new Batiment();
         String code ;
         int idBat, idRecherche,typeBatiment,nbrNiveaux,reponse ;
-        System.out.println("Identifint de la piece : ");
+        System.out.println("Identifint du batiment : ");
         idBat=Lire.i();
+        for (Batiment bat : ListeBatiments) {
+                if (bat.getidBatiment() == idBat) {
+                    System.out.println("L'identifiant existe déja, donnez un nouvel identifiant pour le coin :");
+                    idBat = Lire.i();
+                }
+            }
         Niveau niveau;
         System.out.println("Quel type de bâtiment souhaitez-vous créer ? (1 = Immeuble et 0 = Maison)");
         typeBatiment = Lire.i();
@@ -449,7 +505,7 @@ public class Main {
                     reponse=Lire.i();
                 }
                 if(reponse==1){
-                    System.out.println("Identifiant du niveau recherché: (indentifiant sous la forme 'N 1')");
+                    System.out.println("Identifiant du niveau recherché: ");
                     idRecherche=Lire.i();
                     for (Niveau n : ListeNiveaux) {
                         if (n.getidNiveau()==idRecherche) {
@@ -487,7 +543,7 @@ public class Main {
                     reponseM = Lire.i();
                 }
                 if (reponseM == 1) {
-                    System.out.println("Identifiant du niveau recherché :(indentifiant sous la forme 'NM 1')");
+                    System.out.println("Identifiant du niveau recherché : ");
                     idRecherche = Lire.i();
                     NiveauMaison niveauM = null;
                     for (NiveauMaison nM : ListeNiveauMaison) {
@@ -510,7 +566,7 @@ public class Main {
             ListeBatiments.add(maison);
             creabat= maison;
         }    
-            code=creabat.toString()+" \n";
+            code=creabat.toString()+"\n";
         
         return creationObjet(ListeBatiments, creabat,code);
     }
@@ -661,13 +717,13 @@ public class Main {
     }
     private static void afficherMenu() {
         System.out.println("***** MENU *****");
-        System.out.println("1- Créer un coin");
-        System.out.println("2- Créer un mur");
-        System.out.println("3- Créer une pièce");
-        System.out.println("4- Créer un appartement");
-        System.out.println("5- Créer un niveau");
-        System.out.println("6- Créer un niveau maison)");
-        System.out.println("7- Créer un bâtiment (immeuble ou maison");
+        System.out.println("1- Creer un coin");
+        System.out.println("2- Creer un mur");
+        System.out.println("3- Creer une piece");
+        System.out.println("4- Creer un appartement");
+        System.out.println("5- Creer un niveau");
+        System.out.println("6- Creer un niveau maison");
+        System.out.println("7- Creer un batiment (immeuble ou maison)");
         System.out.println("8- Lire le fichier");
         System.out.println("9- Quitter");
         System.out.println("Faites votre choix : ");
@@ -691,7 +747,7 @@ public class Main {
         afficherListe("La liste de murs est vide.", ListeMurs);
         afficherListe("La liste de sols est vide.", ListeSols);
         afficherListe("La liste de plafonds est vide.", ListePlafonds);
-        afficherListe("La liste de pièces est vide.", ListePieces);
+        afficherListe("La liste de pieces est vide.", ListePieces);
         afficherListe("La liste d'appartements est vide.", ListeAppartements);
         afficherListe("La liste de niveaux est vide.", ListeNiveaux);
         afficherListe("La liste d'immeubles est vide.", ListeImmeubles);
@@ -717,7 +773,7 @@ public class Main {
                         case "C":
                             traiterCoin(tab, ListeCoins);
                             break;
-                        case "M":
+                        case "Mu":
                             traiterMur(tab, ListeCoins, ListeMurs, main);
                             break;
                         case "S":
@@ -800,13 +856,18 @@ public class Main {
         int idMur = Integer.parseInt(tab[1].trim());
         Coin coinD = trouverCoinParId(Integer.parseInt(tab[2].trim()), ListeCoins);
         Coin coinF = trouverCoinParId(Integer.parseInt(tab[3].trim()), ListeCoins);
-        int nbrP = Integer.parseInt(tab[4]);
-        int nbrF = Integer.parseInt(tab[5]);
+        int nbrP = Integer.parseInt(tab[4].trim());
+        int nbrF = Integer.parseInt(tab[5].trim());
         Revetement rev = new Revetement();
+        Revetement.LectureRevetement();
+            
+        //Revetement.LectureRevetement();
         ArrayList<Revetement> listeRevMur = new ArrayList<>();
+        ArrayList<Revetement> liste = rev.getlisteRevetementMur();
+        
         for (int r = 6; r < tab.length; r++) {
             int idrev = Integer.parseInt(tab[r]);
-            Revetement revetement = trouverRevetementParId(idrev, rev.getlisteRevetementMur());
+            Revetement revetement = trouverRevetementParId(idrev, liste);//liste vide
             if (revetement != null) {
                 listeRevMur.add(revetement);
             }
@@ -841,6 +902,7 @@ public class Main {
             Revetement revetement = trouverRevetementParId(idrev, rev.getlisteRevetementPlafond());
             if (revetement != null) {
                 listeRevPlafond.add(revetement);
+                System.out.println(listeRevPlafond);
             }
         }
         Plafond plafond = new Plafond(idPlafond,main.recupereCoin(tab), listeRevPlafond, nbrTP);
@@ -1009,7 +1071,7 @@ public class Main {
     }
     private static Revetement trouverRevetementParId(int id, ArrayList<Revetement> liste) {
         for (Revetement r : liste) {
-            if (r.getidRevetement() == id) {
+            if (r.getIdRevetement() == id) {
                 return r;
             }
         }

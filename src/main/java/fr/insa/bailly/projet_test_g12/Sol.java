@@ -18,7 +18,8 @@ public class Sol {
  
     
     public Sol(){
-
+        this.listeCoin = new ArrayList<>();
+        this.listeRevSol = new ArrayList<>();
     }
 
     //déclaration du constructeur
@@ -32,8 +33,12 @@ public class Sol {
     //méthode pour calculer la surface d'un sol
     public double CalculerSurfaceSol() {
         double surface = 0 ;
-        Coin coin1 = this.listeCoin.getFirst() ;
-        Coin coin2 = listeCoin.get(2);
+        if (listeCoin.size() < 4) {
+            System.out.println("Nombre insuffisant de coins pour calculer la surface.");
+            return surface;
+        }
+        Coin coin1 = this.listeCoin.get(0) ;
+        Coin coin2 = this.listeCoin.get(1);
         double x1 = coin1.getcx() ;
         double y1 = coin1.getcy() ;
         double x2 = coin1.getcx() ;
@@ -61,7 +66,7 @@ public class Sol {
         double cout = 0 ;
         double s = CalculerSurfaceSol() ;
         for (int i=0; i<listeRevSol.size(); i++){
-             cout = cout + s*listeRevSol.get(i).getprixunitaire() ;   
+             cout = cout + s*listeRevSol.get(i).getPrixUnitaire() ;   
         }
         return cout ;
     }
@@ -107,7 +112,7 @@ public class Sol {
         }
         // Ajouter les identifiants des revêtements
         for (Revetement rev : listeRevSol) {
-            sb.append(rev.getidRevetement()).append(";");
+            sb.append(rev.getIdRevetement()).append(";");
         }
         sb.append(nbrtremis).append(";");
         return sb.toString();

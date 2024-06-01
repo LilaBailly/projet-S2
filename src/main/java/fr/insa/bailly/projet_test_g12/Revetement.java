@@ -12,35 +12,26 @@ import java.io.* ;
  */
 public class Revetement {
     
-    private int idRevetement ; //chercher si final ou private
+    private int idRevetement ; 
     private String designation ;
     private boolean pourMur ;
     final boolean pourSol ;
     final boolean pourPlafond ;
     private double prixUnitaire ; 
     //les listes de revetements
-    private ArrayList<Revetement> listeRevetement;
-    private static ArrayList<Revetement> listeRevetementMur;
-    private static ArrayList<Revetement> listeRevetementSol;
-    private static ArrayList<Revetement> listeRevetementPlafond;
-    private ArrayList<Revetement> listeRevMurChoix;
-    private ArrayList<Revetement> listeRevSolChoix;
-    private ArrayList<Revetement> listeRevPlafondChoix;
-    private static ArrayList<Revetement> listeRev = new ArrayList<>();
-    private ArrayList<Revetement> listeRevPlafond = new ArrayList<>();
-    private ArrayList<Revetement> listeRevSol = new ArrayList<>();
-    private ArrayList<Revetement> listeRevMur = new ArrayList<>();
-                
+    private static ArrayList<Revetement> listeRevetement= new ArrayList<>();
+    private static ArrayList<Revetement> listeRevetementMur= new ArrayList<>();
+    private static ArrayList<Revetement> listeRevetementSol= new ArrayList<>();
+    private static ArrayList<Revetement> listeRevetementPlafond= new ArrayList<>();
+    private ArrayList<Revetement> listeRevMurChoix= new ArrayList<>();
+    private ArrayList<Revetement> listeRevSolChoix= new ArrayList<>();
+    private ArrayList<Revetement> listeRevPlafondChoix= new ArrayList<>();
+             
     
     
     public Revetement(){
         this.pourSol = false;
         this.pourPlafond = false;
-        this.listeRevetement = new ArrayList<>();
-        this.listeRevetementMur = new ArrayList<>();
-        this.listeRevetementSol = new ArrayList<>();
-        this.listeRevetementPlafond = new ArrayList<>();
-        //LectureRevetement();
     }
 
     //déclaration du constructeur
@@ -55,15 +46,15 @@ public class Revetement {
         this.pourPlafond = Integer.parseInt(decoupe[4]) == 1;
         //System.out.println("pourMur : " + pourPlafond);
         this.prixUnitaire = Double.parseDouble(decoupe[5]);
-        if (Integer.parseInt(decoupe[2])==1){
+        /*if (Integer.parseInt(decoupe[2])==1){
             this.prixUnitaire = Double.parseDouble(decoupe[5]) ; //conversion du String en double
-        }
+        }*/
     }
 
     //méthode pour lire le catalogue et creer une liste contenant tous les revetements
     public static ArrayList<Revetement> LectureRevetement() {
         //lire le doc, découper une ligne, avec cette ligne mettre dans revêtement
-        listeRev = new ArrayList<>();
+        listeRevetement = new ArrayList<>();
         listeRevetementMur = new ArrayList<>();
         listeRevetementSol = new ArrayList<>();
         listeRevetementPlafond = new ArrayList<>();
@@ -73,17 +64,16 @@ public class Revetement {
             while (reader.ready()) {
                 String ligne =reader.readLine() ;
                 Revetement Rev = new Revetement (ligne) ; //Création d'un nouveau revetement
-                String[] decoupe = ligne.split(";");
-                listeRev.add(Rev);
-                if (Rev.getpourMur()) {
+                listeRevetement.add(Rev);
+                if (Rev.getPourMur()) {
                     listeRevetementMur.add(Rev);
                 }
 
-                if (Rev.getpourSol()) {
+                if (Rev.getPourSol()) {
                     listeRevetementSol.add(Rev);
                 }
 
-                if (Rev.getpourPlafond()) {
+                if (Rev.getPourPlafond()) {
                     listeRevetementPlafond.add(Rev);
                 }
             }
@@ -95,15 +85,13 @@ public class Revetement {
         catch (IOException e){
             System.out.println(" Erreur :\n "+e);
         }
-        return listeRev ;
+        return listeRevetement ;
     }
 
     //méthode pour choisir un revetement, à finir
     public ArrayList<Revetement> choixRevetementSol (int nbrRev) {
         LectureRevetement();
-        if (listeRevSolChoix == null) {
-            listeRevSolChoix = new ArrayList<>();
-        }
+        
         if (nbrRev!=0){
             afficherRevetements(listeRevetementSol);
             System.out.println("Nombre de revêtements dans listeRevetementSol : " + listeRevetementSol.size());
@@ -126,9 +114,7 @@ public class Revetement {
     
     public ArrayList<Revetement> choixRevetementMur (int nbrRev) {
         LectureRevetement();
-        if (listeRevMurChoix == null) {
-            listeRevMurChoix = new ArrayList<>();
-        }
+       
         if (nbrRev != 0) {
             System.out.println("Nombre de revêtements dans listeRevetementMur : " + listeRevetementMur.size());
             afficherRevetements(listeRevetementMur);
@@ -152,9 +138,7 @@ public class Revetement {
     
     public ArrayList<Revetement> choixRevetementPlafond (int nbrRev) {
         LectureRevetement();
-        if (listeRevPlafondChoix == null) {
-            listeRevPlafondChoix = new ArrayList<>();
-        }
+        
         if (nbrRev != 0) {
             System.out.println("Nombre de revêtements dans listeRevetementPlafond : " + listeRevetementPlafond.size());
             afficherRevetements(listeRevetementPlafond);
@@ -185,10 +169,12 @@ public class Revetement {
     }
 
     // Méthode pour trouver un revêtement par son ID
-    private Revetement trouverRevetementParId(ArrayList<Revetement> listeRevetements, int idRevetement) {
+    public static Revetement trouverRevetementParId(ArrayList<Revetement> listeRevetements, int idRevetement) {
         for (Revetement rev : listeRevetements) {
-            if (idRevetement == rev.getidRevetement()) {
+            if (idRevetement == rev.getIdRevetement()) {
+                System.out.println(rev);
                 return rev;
+                
             }
         }
         return null;
@@ -196,18 +182,17 @@ public class Revetement {
     public ArrayList<Revetement> listeRevetementMur() {
         ArrayList<Revetement> listeRevMur = new ArrayList<>();
         for (Revetement rev : listeRevetement) {
-            if (rev.getpourMur()==true) {
+            if (rev.getPourMur()==true) {
                 listeRevMur.add(rev);
             }
         }
-        System.out.println("Contenu de la liste listeRevetementMur : " + listeRevMur);
         return listeRevMur;
     }
 
     public ArrayList<Revetement> listeRevetementSol () {
         ArrayList<Revetement> listeRevSol = new ArrayList<>();
         for (Revetement rev : listeRevetement) {
-            if (rev.getpourSol()==true) {
+            if (rev.getPourSol()==true) {
                 listeRevSol.add(rev);
             }
         }
@@ -218,7 +203,7 @@ public class Revetement {
     public ArrayList<Revetement> listeRevetementPlafond() {
         ArrayList<Revetement> listeRevPlafond = new ArrayList<>();
         for (Revetement rev : listeRevetement) {
-            if (rev.getpourPlafond()==true) {
+            if (rev.getPourPlafond()==true) {
                 listeRevPlafond.add(rev);
             }
         }
@@ -226,22 +211,22 @@ public class Revetement {
     }
 
     //get pour utiliser les attributs
-    public int getidRevetement () {
+    public int getIdRevetement () {
         return this.idRevetement ;
     }
-    public String getdesignation () {
+    public String getDesignation () {
         return this.designation ;
     }
-    public double getprixunitaire () {
+    public double getPrixUnitaire () {
         return this.prixUnitaire ;
     }
-    public boolean getpourMur () {
+    public boolean getPourMur () {
         return this.pourMur ;
     }
-    public boolean getpourSol () {
+    public boolean getPourSol () {
         return this.pourSol ;
     }
-    public boolean getpourPlafond () {
+    public boolean getPourPlafond () {
         return this.pourPlafond ;
     }
     public ArrayList<Revetement> getlisteRevetementMur() {
@@ -262,7 +247,7 @@ public class Revetement {
 
         // Ajouter les identifiants des revêtements
         for (Revetement rev : listeRevetement) {
-            sb.append(rev.getidRevetement()).append(" ; ");
+            sb.append(rev.getIdRevetement()).append(" ; ");
         }
 
         return sb.toString();

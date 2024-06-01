@@ -50,7 +50,7 @@ public class Mur {
         double cout = 0 ;
         double s = CalculerSurfaceMur()-nbrPorte*ouverture.getsurfacePorte()-nbrFenetre*ouverture.getsurfaceFenetre() ;
         for (Revetement revetement : ListeRevMur){
-            cout += s * revetement.getprixunitaire();  
+            cout += s * revetement.getPrixUnitaire();  
         }
        
         return cout ;
@@ -113,7 +113,7 @@ public class Mur {
 
         // Ajouter les identifiants des revêtements
         for (Revetement rev : ListeRevMur) {
-            sb.append(rev.getidRevetement()).append(";");
+            sb.append(rev.getIdRevetement()).append(";");
         }
 
         return sb.toString();

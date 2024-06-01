@@ -18,6 +18,7 @@ public class Piece {
     private String usage ;
     private Sol sol;
     private Plafond plafond;
+    private ArrayList<Coin> listeCoin;
     
     public Piece() {
         this.listeMurs = new ArrayList<>();
@@ -38,35 +39,37 @@ public class Piece {
         // Calculer les surfaces et coûts pour les murs
         for (Mur mur : listeMurs) {
             for (Revetement revetement : mur.getlisteRevetementMur()) {
-                if (revetement.getpourMur()) {
+                if (revetement.getPourMur()) {
                     ResultatRevetement resultat = resultats.computeIfAbsent(revetement, k -> new ResultatRevetement(k));
                     double surfaceMur = mur.CalculerSurfaceMur();
                     resultat.addToSurfaceTotale(surfaceMur);
-                    resultat.addToPrixTotal(surfaceMur * revetement.getprixunitaire());
+                    resultat.addToPrixTotal(surfaceMur * revetement.getPrixUnitaire());
                 }
             }
         }
-
+        ArrayList<Coin> coinsMurs = recupererCoinsMurs();
         // Calculer les surfaces et coûts pour le sol
         if (sol != null) {
+            sol = new Sol(idsol, coinsMurs,sol.getlisteRevSol() , sol.getNbrTremis() );
             for (Revetement revetement : sol.getlisteRevSol()) {
                 if (revetement.pourSol) {
                     ResultatRevetement resultat = resultats.computeIfAbsent(revetement, k -> new ResultatRevetement(k));
                     double surfaceSol = sol.CalculerSurfaceSol();
                     resultat.addToSurfaceTotale(surfaceSol);
-                    resultat.addToPrixTotal(surfaceSol * revetement.getprixunitaire());
+                    resultat.addToPrixTotal(surfaceSol * revetement.getPrixUnitaire());
                 }
             }
         }
 
         // Calculer les surfaces et coûts pour le plafond
         if (plafond != null) {
+            plafond = new Plafond(idplafond, coinsMurs, plafond.getlisteRevetementPlafond(), plafond.getNbrTremisP());
             for (Revetement revetement : plafond.getlisteRevetementPlafond()) {
                 if (revetement.pourPlafond) {
                     ResultatRevetement resultat = resultats.computeIfAbsent(revetement, k -> new ResultatRevetement(k));
                     double surfacePlafond = plafond.CalculerSurfacePlafond();
                     resultat.addToSurfaceTotale(surfacePlafond);
-                    resultat.addToPrixTotal(surfacePlafond * revetement.getprixunitaire());
+                    resultat.addToPrixTotal(surfacePlafond * revetement.getPrixUnitaire());
                 }
             }
         }
@@ -129,8 +132,16 @@ public class Piece {
     public void setusage(String usage) {
         this.usage = usage ;
     }
-    //surface d'une pièce égale surface au sol
-
+    
+    public ArrayList<Coin> recupererCoinsMurs() {
+    ArrayList<Coin> coinsMurs = new ArrayList<>();
+    for (Mur mur : listeMurs) {
+        // Ajoutez les coins de chaque mur à la liste
+        coinsMurs.add(mur.getcoinDebut());
+        coinsMurs.add(mur.getcoinFin());
+    }
+    return coinsMurs;
+}
     void afficherPiece(){
         System.out.println(this.toString() + " ");
     }

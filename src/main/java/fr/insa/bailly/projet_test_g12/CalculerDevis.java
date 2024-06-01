@@ -41,33 +41,33 @@ public class CalculerDevis {
     private static void calculerDevisPiece(Piece piece, ArrayList<ResultatRevetement> resultats) {
         for (Mur mur : piece.getlisteMurs()) {
             for (Revetement revetement : mur.getlisteRevetementMur()) {
-                if (revetement.getpourMur()) {
+                if (revetement.getPourMur()) {
                     ResultatRevetement resultat = trouverOuCreerResultat(resultats, revetement);
                     double surfaceMur = mur.CalculerSurfaceMur();
                     resultat.addToSurfaceTotale(surfaceMur);
-                    resultat.addToPrixTotal(surfaceMur * revetement.getprixunitaire());
+                    resultat.addToPrixTotal(surfaceMur * revetement.getPrixUnitaire());
                 }
             }
         }
 
         if (piece.getSol() != null) {
             for (Revetement revetement : piece.getSol().getlisteRevSol()) {
-                if (revetement.getpourSol()) {
+                if (revetement.getPourSol()) {
                     ResultatRevetement resultat = trouverOuCreerResultat(resultats, revetement);
                     double surfaceSol = piece.getSol().CalculerSurfaceSol();
                     resultat.addToSurfaceTotale(surfaceSol);
-                    resultat.addToPrixTotal(surfaceSol * revetement.getprixunitaire());
+                    resultat.addToPrixTotal(surfaceSol * revetement.getPrixUnitaire());
                 }
             }
         }
 
         if (piece.getPlafond() != null) {
             for (Revetement revetement : piece.getPlafond().getlisteRevetementPlafond()) {
-                if (revetement.getpourPlafond()) {
+                if (revetement.getPourPlafond()) {
                     ResultatRevetement resultat = trouverOuCreerResultat(resultats, revetement);
                     double surfacePlafond = piece.getPlafond().CalculerSurfacePlafond();
                     resultat.addToSurfaceTotale(surfacePlafond);
-                    resultat.addToPrixTotal(surfacePlafond * revetement.getprixunitaire());
+                    resultat.addToPrixTotal(surfacePlafond * revetement.getPrixUnitaire());
                 }
             }
         }
@@ -89,7 +89,7 @@ public class CalculerDevis {
 
         System.out.println("Devis par revêtement :");
         for (ResultatRevetement resultat : resultats) {
-            System.out.println(resultat.getRevetement().getdesignation() + " : " + resultat.getSurfaceTotale() + " m², " +
+            System.out.println(resultat.getRevetement().getDesignation() + " : " + resultat.getSurfaceTotale() + " m², " +
                     resultat.getPrixTotal() + " euros");
         }
 

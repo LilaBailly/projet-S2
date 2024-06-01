@@ -17,7 +17,8 @@ public class Plafond {
     private Piece piece;
     
     public Plafond(){
-
+        this.listeCoin = new ArrayList<>();
+        this.listeRevPlafond = new ArrayList<>();
     }
     //Déclaration du constructeur
     public Plafond (int idPlafond, ArrayList<Coin> listeCoin, ArrayList<Revetement> listeRevetement, int nbrtremis){
@@ -28,8 +29,12 @@ public class Plafond {
     } 
     public double CalculerSurfacePlafond() {
         double surface = 0 ;
-        Coin coin1 = this.listeCoin.getFirst() ;
-        Coin coin2 = listeCoin.get(2);
+        if (listeCoin.size() < 4) {
+            System.out.println("Nombre insuffisant de coins pour calculer la surface.");
+            return surface;
+        }
+        Coin coin1 = this.listeCoin.get(0) ;
+        Coin coin2 = listeCoin.get(1);
         double x1 = coin1.getcx() ;
         double y1 = coin1.getcy() ;
         double x2 = coin1.getcx() ;
@@ -56,7 +61,7 @@ public class Plafond {
         double cout = 0 ;
         double s = CalculerSurfacePlafond() ;
         for (int i=0; i<listeRevPlafond.size(); i++){
-             cout = cout + s*listeRevPlafond.get(i).getprixunitaire() ;   
+             cout = cout + s*listeRevPlafond.get(i).getPrixUnitaire() ;   
         }
         return cout ;
     }
@@ -79,6 +84,13 @@ public class Plafond {
     public void setlisteRevetement(ArrayList<Revetement> liste_rev_plafond) {
         this.listeRevPlafond = liste_rev_plafond ;
     }
+    public int getNbrTremisP() {
+        return nbrtremis;
+    }
+
+    public void setNbrTremisP(int nbrtremis) {
+        this.nbrtremis = nbrtremis;
+    }
     void afficherPlafond(){
         System.out.println(this.toString() + " ");
     }
@@ -92,7 +104,7 @@ public class Plafond {
         }
         // Ajouter les identifiants des revêtements
         for (Revetement rev : listeRevPlafond) {
-            sb.append(rev.getidRevetement()).append(";");
+            sb.append(rev.getIdRevetement()).append(";");
         }
         sb.append(nbrtremis).append(";");
         return sb.toString();
