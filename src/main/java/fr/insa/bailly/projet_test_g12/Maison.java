@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author becqu
  */
-public class Maison {
+public class Maison extends Batiment {
     
     private int idBatiment ;
     private ArrayList<NiveauMaison> listeNiveauxMaison;
