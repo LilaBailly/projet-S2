@@ -314,10 +314,12 @@ public class Main {
         Sol Sol = new Sol(idSol,ListeCoinsP,ListeRevSol,nbrTremisSol);
         ListeSols.add(Sol);
         Sol.afficherSol();
+        Sol.toString();
         Plafond Plafond = new Plafond(idPlafond,ListeCoinsP,ListeRevPlafond,nbrTremisPlafond);
         ListePlafonds.add(Plafond);
         Plafond.afficherPlafond();
-        Piece creapiece = new Piece(idPiece,usage, Sol.getidSol(), Plafond.getidPlafond(), ListeMursPiece);
+        Plafond.toString();
+        Piece creapiece = new Piece(idPiece,usage, idSol, idPlafond, ListeMursPiece);
         ListePieces.add(creapiece);
         code=creapiece.toString()+"\n";
         return creationObjet(ListePieces, creapiece,code);

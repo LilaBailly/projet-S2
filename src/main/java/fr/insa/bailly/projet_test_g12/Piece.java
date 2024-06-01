@@ -151,8 +151,8 @@ public class Piece {
         sb.append("Pi;")
           .append(idPiece).append(";")
           .append(usage).append(";")
-          .append(sol.getidSol()).append(";")
-          .append(plafond.getidPlafond()).append(";");
+          .append(this.idsol).append(";")
+          .append(this.idplafond).append(";");
 
         // Ajouter les identifiants des revêtements
         for (Mur mur : listeMurs) {
