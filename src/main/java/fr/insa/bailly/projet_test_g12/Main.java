@@ -68,7 +68,7 @@ public class Main {
         Revetement.LectureRevetement();
         chargerDonnees(FICHIER_LISTE_BATIMENT,main,ListeCoins,ListeMurs,ListeSols,ListePlafonds,ListePieces,ListeAppartements,ListeNiveaux,ListeNiveauMaison,ListeImmeubles,ListeMaisons);              
         // Afficher les listes
-        afficherListes(ListeCoins, ListeMurs, ListeSols, ListePlafonds, ListePieces, ListeAppartements, ListeNiveaux, ListeImmeubles);
+        afficherListes(ListeCoins, ListeMurs, ListeSols, ListePlafonds, ListePieces, ListeAppartements, ListeNiveaux, ListeNiveauMaison, ListeImmeubles, ListeMaisons);
         afficherMenu();
         choix = Lire.i();
         while (choix < 1 || choix > 9) {
@@ -744,7 +744,7 @@ public class Main {
             }
     }
         
-    private static void afficherListes(ArrayList<Coin> ListeCoins, ArrayList<Mur> ListeMurs, ArrayList<Sol> ListeSols, ArrayList<Plafond> ListePlafonds, ArrayList<Piece> ListePieces, ArrayList<Appartement> ListeAppartements, ArrayList<Niveau> ListeNiveaux, ArrayList<Immeuble> ListeImmeubles) {
+    private static void afficherListes(ArrayList<Coin> ListeCoins, ArrayList<Mur> ListeMurs, ArrayList<Sol> ListeSols, ArrayList<Plafond> ListePlafonds, ArrayList<Piece> ListePieces, ArrayList<Appartement> ListeAppartements, ArrayList<Niveau> ListeNiveaux,ArrayList<NiveauMaison> ListeNiveauMaisons, ArrayList<Immeuble> ListeImmeubles,ArrayList<Maison> ListeMaisons) {
         afficherListe("La liste de coins est vide.", ListeCoins);
         afficherListe("La liste de murs est vide.", ListeMurs);
         afficherListe("La liste de sols est vide.", ListeSols);
@@ -752,7 +752,9 @@ public class Main {
         afficherListe("La liste de pieces est vide.", ListePieces);
         afficherListe("La liste d'appartements est vide.", ListeAppartements);
         afficherListe("La liste de niveaux est vide.", ListeNiveaux);
+        afficherListe("La liste de niveau-maison est vide.", ListeNiveauMaisons);
         afficherListe("La liste d'immeubles est vide.", ListeImmeubles);
+        afficherListe("La liste de maisons est vide.", ListeMaisons);
     }
     /*
     

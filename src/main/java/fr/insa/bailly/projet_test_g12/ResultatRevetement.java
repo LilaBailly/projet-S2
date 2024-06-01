@@ -36,7 +36,9 @@ class ResultatRevetement {
     public double getPrixTotal() {
         return prixTotal;
     }
-
+    public void setPrixTotal(double prixTotal) {
+        this.prixTotal = prixTotal;
+    }
     public void addToPrixTotal(double prix) {
         this.prixTotal += prix;
     }

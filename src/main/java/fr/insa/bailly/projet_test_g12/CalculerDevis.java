@@ -17,82 +17,34 @@ import java.util.ArrayList;
 public class CalculerDevis {
 
     public static ArrayList<ResultatRevetement> calculerDevis(Batiment batiment) {
+        double devisTotal = 0.0;
         ArrayList<ResultatRevetement> resultats = new ArrayList<>();
 
-        if (batiment instanceof Immeuble) {
-            Immeuble immeuble = (Immeuble) batiment;
-            for (Niveau niveau : immeuble.getListeNiveaux()) {
-                for (Appartement appartement : niveau.getlisteAppart()) {
-                    for (Piece piece : appartement.getlistePieces()) {
-                        calculerDevisPiece(piece, resultats);
-                    }
-                }
-            }
-        } else if (batiment instanceof Maison) {
-            Maison maison = (Maison) batiment;
-            for (NiveauMaison niveauMaison : maison.getListeNiveaux()) {
-                for (Piece piece : niveauMaison.getlistePiece()) {
-                    calculerDevisPiece(piece, resultats);
-                }
-            }
+        System.out.println("Coût par revêtement :");
+        for (ResultatRevetement resultat : resultats) {
+            double coutTotalRev = resultat.getSurfaceTotale() * resultat.getRevetement().getPrixUnitaire();
+            System.out.println(coutTotalRev);
+            resultat.setPrixTotal(coutTotalRev); // Mettre à jour le prix total du revêtement dans le résultat
+            System.out.println(resultat.getRevetement().getDesignation() + " : " + coutTotalRev + " euros");
+            devisTotal += coutTotalRev;
+            System.out.println(devisTotal);
         }
 
+        System.out.println("Devis total : " + devisTotal + " euros");
         return resultats;
     }
 
-    private static void calculerDevisPiece(Piece piece, ArrayList<ResultatRevetement> resultats) {
-        for (Mur mur : piece.getlisteMurs()) {
-            for (Revetement revetement : mur.getlisteRevetementMur()) {
-                if (revetement.getPourMur()) {
-                    ResultatRevetement resultat = trouverOuCreerResultat(resultats, revetement);
-                    double surfaceMur = mur.CalculerSurfaceMur();
-                    resultat.addToSurfaceTotale(surfaceMur);
-                    resultat.addToPrixTotal(surfaceMur * revetement.getPrixUnitaire());
-                }
-            }
-        }
-
-        if (piece.getSol() != null) {
-            for (Revetement revetement : piece.getSol().getlisteRevSol()) {
-                if (revetement.getPourSol()) {
-                    ResultatRevetement resultat = trouverOuCreerResultat(resultats, revetement);
-                    double surfaceSol = piece.getSol().CalculerSurfaceSol();
-                    resultat.addToSurfaceTotale(surfaceSol);
-                    resultat.addToPrixTotal(surfaceSol * revetement.getPrixUnitaire());
-                }
-            }
-        }
-
-        if (piece.getPlafond() != null) {
-            for (Revetement revetement : piece.getPlafond().getlisteRevetementPlafond()) {
-                if (revetement.getPourPlafond()) {
-                    ResultatRevetement resultat = trouverOuCreerResultat(resultats, revetement);
-                    double surfacePlafond = piece.getPlafond().CalculerSurfacePlafond();
-                    resultat.addToSurfaceTotale(surfacePlafond);
-                    resultat.addToPrixTotal(surfacePlafond * revetement.getPrixUnitaire());
-                }
-            }
-        }
-    }
-
-    private static ResultatRevetement trouverOuCreerResultat(ArrayList<ResultatRevetement> resultats, Revetement revetement) {
-        for (ResultatRevetement resultat : resultats) {
-            if (resultat.getRevetement().equals(revetement)) {
-                return resultat;
-            }
-        }
-        ResultatRevetement nouveauResultat = new ResultatRevetement(revetement);
-        resultats.add(nouveauResultat);
-        return nouveauResultat;
-    }
 
     public static void afficherDevis(Batiment batiment) {
         ArrayList<ResultatRevetement> resultats = calculerDevis(batiment);
 
         System.out.println("Devis par revêtement :");
         for (ResultatRevetement resultat : resultats) {
-            System.out.println(resultat.getRevetement().getDesignation() + " : " + resultat.getSurfaceTotale() + " m², " +
-                    resultat.getPrixTotal() + " euros");
+            System.out.println("Identifiant: " + resultat.getRevetement().getIdRevetement()+ " - " +
+                               resultat.getRevetement().getDesignation() + " : " + 
+                               resultat.getSurfaceTotale() + " m², " + 
+                               resultat.getPrixTotal() + " euros (Prix unitaire : " + 
+                               resultat.getRevetement().getPrixUnitaire() + " euros/m²)");
         }
 
         double devisTotal = resultats.stream().mapToDouble(ResultatRevetement::getPrixTotal).sum();
@@ -113,7 +65,5 @@ public class CalculerDevis {
         } catch (IOException e) {
             System.err.println("Erreur lors de l'écriture du devis dans le fichier : " + e.getMessage());
         }
-    
-    
     }
 }
