@@ -1,4 +1,4 @@
-/*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -10,8 +10,7 @@ import java.util.ArrayList;
  *
  * @author Elève
  */
-public class Immeuble extends Batiment {
- //   listeNiveau
+public class Immeuble {
     
     private int idBatiment ;
     private ArrayList<Niveau> listeNiveaux;

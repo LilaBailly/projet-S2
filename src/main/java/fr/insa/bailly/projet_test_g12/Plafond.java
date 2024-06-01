@@ -13,7 +13,7 @@ public class Plafond {
     private int idPlafond ;
     private ArrayList<Coin> listeCoin ;
     private ArrayList<Revetement> listeRevPlafond ;
-    private int nbrtremis ; //ajouter nbr tremis
+    private int nbrtremis ;
     private Piece piece;
     
     public Plafond(){

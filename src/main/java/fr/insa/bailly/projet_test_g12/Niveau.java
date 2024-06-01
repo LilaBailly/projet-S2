@@ -12,7 +12,6 @@ public final class Niveau {
     private int idNiveau ;
     private double hauteursousPlafond ; //int hauteur à voir
     private ArrayList<Appartement> listeAppart ;
-    private ArrayList<Piece> listePiece ;
    
     public Niveau(){
         
