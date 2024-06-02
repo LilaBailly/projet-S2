@@ -9,91 +9,61 @@ package fr.insa.bailly.projet_test_g12;
  * @author ElèveTEST
  */
 
-
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class CalculerDevis {
 
     public static ArrayList<ResultatRevetement> calculerDevis(Batiment batiment) {
+        double devisTotal = 0.0;
         ArrayList<ResultatRevetement> resultats = new ArrayList<>();
 
-        if (batiment instanceof Immeuble) {
-            Immeuble immeuble = (Immeuble) batiment;
-            for (Niveau niveau : immeuble.getListeNiveaux()) {
-                for (Appartement appartement : niveau.getlisteAppart()) {
-                    for (Piece piece : appartement.getlistePieces()) {
-                        calculerDevisPiece(piece, resultats);
-                    }
-                }
-            }
-        } else if (batiment instanceof Maison) {
-            Maison maison = (Maison) batiment;
-            for (NiveauMaison niveauMaison : maison.getListeNiveaux()) {
-                for (Piece piece : niveauMaison.getlistePiece()) {
-                    calculerDevisPiece(piece, resultats);
-                }
-            }
+        System.out.println("Coût par revêtement :");
+        for (ResultatRevetement resultat : resultats) {
+            double coutTotalRev = resultat.getSurfaceTotale() * resultat.getRevetement().getPrixUnitaire();
+            System.out.println(coutTotalRev);
+            resultat.setPrixTotal(coutTotalRev); // Mettre à jour le prix total du revêtement dans le résultat
+            System.out.println(resultat.getRevetement().getDesignation() + " : " + coutTotalRev + " euros");
+            devisTotal += coutTotalRev;
+            System.out.println(devisTotal);
         }
 
+        System.out.println("Devis total : " + devisTotal + " euros");
         return resultats;
     }
 
-    private static void calculerDevisPiece(Piece piece, ArrayList<ResultatRevetement> resultats) {
-        for (Mur mur : piece.getlisteMurs()) {
-            for (Revetement revetement : mur.getlisteRevetementMur()) {
-                if (revetement.getpourMur()) {
-                    ResultatRevetement resultat = trouverOuCreerResultat(resultats, revetement);
-                    double surfaceMur = mur.CalculerSurfaceMur();
-                    resultat.addToSurfaceTotale(surfaceMur);
-                    resultat.addToPrixTotal(surfaceMur * revetement.getprixunitaire());
-                }
-            }
-        }
-
-        if (piece.getSol() != null) {
-            for (Revetement revetement : piece.getSol().getlisteRevSol()) {
-                if (revetement.getpourSol()) {
-                    ResultatRevetement resultat = trouverOuCreerResultat(resultats, revetement);
-                    double surfaceSol = piece.getSol().CalculerSurfaceSol();
-                    resultat.addToSurfaceTotale(surfaceSol);
-                    resultat.addToPrixTotal(surfaceSol * revetement.getprixunitaire());
-                }
-            }
-        }
-
-        if (piece.getPlafond() != null) {
-            for (Revetement revetement : piece.getPlafond().getlisteRevetementPlafond()) {
-                if (revetement.getpourPlafond()) {
-                    ResultatRevetement resultat = trouverOuCreerResultat(resultats, revetement);
-                    double surfacePlafond = piece.getPlafond().CalculerSurfacePlafond();
-                    resultat.addToSurfaceTotale(surfacePlafond);
-                    resultat.addToPrixTotal(surfacePlafond * revetement.getprixunitaire());
-                }
-            }
-        }
-    }
-
-    private static ResultatRevetement trouverOuCreerResultat(ArrayList<ResultatRevetement> resultats, Revetement revetement) {
-        for (ResultatRevetement resultat : resultats) {
-            if (resultat.getRevetement().equals(revetement)) {
-                return resultat;
-            }
-        }
-        ResultatRevetement nouveauResultat = new ResultatRevetement(revetement);
-        resultats.add(nouveauResultat);
-        return nouveauResultat;
-    }
 
     public static void afficherDevis(Batiment batiment) {
         ArrayList<ResultatRevetement> resultats = calculerDevis(batiment);
 
         System.out.println("Devis par revêtement :");
         for (ResultatRevetement resultat : resultats) {
-            System.out.println(resultat.getRevetement().getdesignation() + " : " + resultat.getSurfaceTotale() + " m², " +
-                    resultat.getPrixTotal() + " euros");
+            System.out.println("Identifiant: " + resultat.getRevetement().getIdRevetement()+ " - " +
+                               resultat.getRevetement().getDesignation() + " : " + 
+                               resultat.getSurfaceTotale() + " m², " + 
+                               resultat.getPrixTotal() + " euros (Prix unitaire : " + 
+                               resultat.getRevetement().getPrixUnitaire() + " euros/m²)");
         }
 
         double devisTotal = resultats.stream().mapToDouble(ResultatRevetement::getPrixTotal).sum();
         System.out.println("Devis total : " + devisTotal + " euros");
+        
+        // Enregistrer le devis dans un fichier texte
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("devis.txt"))) {
+            writer.write("Devis par revêtement :\n");
+            for (ResultatRevetement resultat : resultats) {
+                writer.write("Identifiant: " + resultat.getRevetement().getIdRevetement() + " - " +
+                             resultat.getRevetement().getDesignation() + " : " + 
+                             resultat.getSurfaceTotale() + " m², " + 
+                             resultat.getPrixTotal() + " euros (Prix unitaire : " + 
+                             resultat.getRevetement().getPrixUnitaire() + " euros/m²)\n");
+            }
+            writer.write("\nDevis total : " + devisTotal + " euros\n");
+            System.out.println("Le devis a été enregistré dans le fichier devis.txt.");
+        } catch (IOException e) {
+            System.err.println("Erreur lors de l'écriture du devis dans le fichier : " + e.getMessage());
+        }
     }
 }
