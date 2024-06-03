@@ -42,4 +42,5 @@ class ResultatRevetement {
     public void addToPrixTotal(double prix) {
         this.prixTotal += prix;
     }
+    
 }

@@ -42,20 +42,37 @@ public class Mur {
     }
     //Calcul de la surface du mur
     public double CalculerSurfaceMur (){
-        surface=this.Longueur()*this.hauteur ;
+        Ouverture ouverture = new Ouverture();
+        surface=this.Longueur()*this.hauteur-nbrPorte*ouverture.getsurfacePorte()-nbrFenetre*ouverture.getsurfaceFenetre() ;
+        System.out.println(surface);
         return surface ;
     }
     //méthode pour calculer le coût d'un mur
     public double coutMur(){
         double cout = 0 ;
-        double s = CalculerSurfaceMur()-nbrPorte*ouverture.getsurfacePorte()-nbrFenetre*ouverture.getsurfaceFenetre() ;
+        double s = CalculerSurfaceMur();
         for (Revetement revetement : ListeRevMur){
             cout += s * revetement.getPrixUnitaire();  
         }
        
         return cout ;
     }
-    
+    public ArrayList<ResultatRevetement> calculerResultatsRevetements() {
+        ArrayList<ResultatRevetement> resultats = new ArrayList<>();
+        ArrayList<Revetement> revetementsDuMur = getlisteRevetementMur();
+        for (Revetement revetement : revetementsDuMur) {
+            ResultatRevetement resultatRevetement = new ResultatRevetement(revetement);
+            double surfaceRev = CalculerSurfaceMur();
+            resultatRevetement.addToSurfaceTotale(surfaceRev);
+            double prixRev = revetement.getPrixUnitaire();
+            resultatRevetement.addToPrixTotal(prixRev);
+
+            // Ajoutez ce résultat à la liste des résultats
+            resultats.add(resultatRevetement);
+        }
+
+        return resultats;
+    }
     //get et set pour donner et utiliser les attributs
     
     public int getidMur(){

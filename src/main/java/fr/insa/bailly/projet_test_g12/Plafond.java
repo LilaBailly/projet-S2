@@ -13,11 +13,11 @@ public class Plafond {
     private int idPlafond ;
     private ArrayList<Coin> listeCoin ;
     private ArrayList<Revetement> listeRevPlafond ;
-    private int nbrtremis ;
+    private int nbrtremis ; 
     private Piece piece;
     
     public Plafond(){
-        this.listeCoin = new ArrayList<>();
+        this.listeCoin = piece.getrecupererCoinsMurs();
         this.listeRevPlafond = new ArrayList<>();
     }
     //Déclaration du constructeur
@@ -31,25 +31,31 @@ public class Plafond {
         double surface = 0 ;
         if (listeCoin.size() < 4) {
             System.out.println("Nombre insuffisant de coins pour calculer la surface.");
-            return surface;
+            //return surface;
+        }
+        if (listeCoin.size() > 4) {
+            System.out.println("Nombre trop important de coins pour calculer la surface.");
+            //return surface;
         }
         Coin coin1 = this.listeCoin.get(0) ;
         Coin coin2 = listeCoin.get(1);
         double x1 = coin1.getcx() ;
         double y1 = coin1.getcy() ;
-        double x2 = coin1.getcx() ;
-        double y2 = coin1.getcy() ;
-        int i = 2 ;
+        double x2 = coin2.getcx() ;
+        double y2 = coin2.getcy() ;
+        int i = 0 ;
         Ouverture tremis = new Ouverture("tremis") ;
-        if (i<=4){
-            while (x2== x1 || y2== y1) {
-                i+=1 ;
+        if (i<4){
+            while ((x2== x1 || y2== y1)&&(i<4)) {
                 coin2 = this.listeCoin.get(i) ;
+                i+=1 ;
+                
             } 
             double longueur = Math.abs(coin2.getcx() - coin1.getcx());
             double largeur = Math.abs(coin2.getcy() - coin1.getcy());
             surface = longueur * largeur;
             surface = surface-nbrtremis*tremis.getsurfaceTremis() ;
+            System.out.println(surface);
         }
         else {
             System.out.println("Aucun coin de la liste ne permet de calculer la surface, revoir leur coordonnées") ;
@@ -65,6 +71,22 @@ public class Plafond {
         }
         return cout ;
     }
+    
+    public ArrayList<ResultatRevetement> calculerResultatsRevetements() {
+        ArrayList<ResultatRevetement> resultats = new ArrayList<>();
+        ArrayList<Revetement> revetementsDuPlafond = getlisteRevetementPlafond();
+        for (Revetement revetement : revetementsDuPlafond) {
+            ResultatRevetement resultatRevetement = new ResultatRevetement(revetement);
+            double surfaceRev = CalculerSurfacePlafond();
+            resultatRevetement.addToSurfaceTotale(surfaceRev);
+            double prixRev = revetement.getPrixUnitaire();
+            resultatRevetement.addToPrixTotal(prixRev);
+            resultats.add(resultatRevetement);
+        }
+
+        return resultats;
+    }
+    
     //get et set pour donner et utiliser les attributs
     public int getidPlafond(){
         return idPlafond ;

@@ -12,9 +12,8 @@ public class Sol {
     private int idSol ;
     private ArrayList<Coin> listeCoin ;
     private int nbrtremis ;
-    private int nbrrev ;
     private ArrayList<Revetement> listeRevSol ;
-    private Piece piece;
+    
  
     
     public Sol(){
@@ -35,25 +34,31 @@ public class Sol {
         double surface = 0 ;
         if (listeCoin.size() < 4) {
             System.out.println("Nombre insuffisant de coins pour calculer la surface.");
-            return surface;
+            //return surface;
+        }
+        if (listeCoin.size() > 4) {
+            System.out.println("Nombre trop important de coins pour calculer la surface.");
+            //return surface;
         }
         Coin coin1 = this.listeCoin.get(0) ;
         Coin coin2 = this.listeCoin.get(1);
         double x1 = coin1.getcx() ;
         double y1 = coin1.getcy() ;
-        double x2 = coin1.getcx() ;
-        double y2 = coin1.getcy() ;
-        int i = 2 ;
+        double x2 = coin2.getcx() ;
+        double y2 = coin2.getcy() ;
+        int i = 0 ;
         Ouverture tremis = new Ouverture("tremis") ;
-        if (i<=4){
-            while (x2== x1 || y2== y1) {
-                i+=1 ;
+        if (i<4){
+            while ((x2== x1 || y2== y1)&&(i<4)) {
+                
                 coin2 = this.listeCoin.get(i) ;
+                i+=1 ;
             } 
             double longueur = Math.abs(coin2.getcx() - coin1.getcx());
             double largeur = Math.abs(coin2.getcy() - coin1.getcy());
             surface = longueur * largeur;
             surface = surface-nbrtremis*tremis.getsurfaceTremis() ;
+            System.out.println(surface);
         }
         else {
             System.out.println("Auncun coin de la liste ne permet de calculer la surface, revoir leur coordonnées") ;
@@ -68,9 +73,27 @@ public class Sol {
         for (int i=0; i<listeRevSol.size(); i++){
              cout = cout + s*listeRevSol.get(i).getPrixUnitaire() ;   
         }
+        System.out.println(cout);
         return cout ;
     }
 
+    public ArrayList<ResultatRevetement> calculerResultatsRevetements() {
+        ArrayList<ResultatRevetement> resultats = new ArrayList<>();
+        ArrayList<Revetement> revetementsDuSol = getlisteRevetementSol();
+        for (Revetement revetement : revetementsDuSol) {
+            ResultatRevetement resultatRevetement = new ResultatRevetement(revetement);
+            double surfaceRev = CalculerSurfaceSol();
+            resultatRevetement.addToSurfaceTotale(surfaceRev);
+            double prixRev = revetement.getPrixUnitaire();
+            resultatRevetement.addToPrixTotal(prixRev);
+
+            // Ajoutez ce résultat à la liste des résultats
+            resultats.add(resultatRevetement);
+        }
+
+        return resultats;
+    }
+    
     //get et set pour donner et utiliser les attributs
     public int getidSol(){
         return idSol ;

@@ -209,7 +209,25 @@ public class Revetement {
         }
         return listeRevPlafond;
     }
+    
+    // Méthode pour calculer le prix total pour un mur avec ce revêtement
+    public double calculerPrixMur(Mur mur) {
+        double surface = mur.CalculerSurfaceMur(); 
+        return surface * prixUnitaire;
+    }
 
+    // Méthode pour calculer le prix total pour un sol avec ce revêtement
+    public double calculerPrixSol(Sol sol) {
+        double surface = sol.CalculerSurfaceSol();
+        return surface * prixUnitaire;
+    }
+
+    // Méthode pour calculer le prix total pour un plafond avec ce revêtement
+    public double calculerPrixPlafond(Plafond plafond) {
+        double surface = plafond.CalculerSurfacePlafond();
+        return surface * prixUnitaire;
+    }
+    
     //get pour utiliser les attributs
     public int getIdRevetement () {
         return this.idRevetement ;
@@ -244,11 +262,11 @@ public class Revetement {
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
-
+        sb.append(" ");
         // Ajouter les identifiants des revêtements
-        for (Revetement rev : listeRevetement) {
+        /*for (Revetement rev : listeRevetement) {
             sb.append(rev.getIdRevetement()).append(" ; ");
-        }
+        }*/
 
         return sb.toString();
     }
