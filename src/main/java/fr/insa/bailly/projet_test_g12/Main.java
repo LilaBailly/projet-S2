@@ -232,6 +232,7 @@ public class Main {
         System.out.println("Combien de revêtement y a-t-il ?");
         nbrRevetement=Lire.i();
         
+        ListeRevMur.clear() ;
         ListeRevMur = revetement.choixRevetementMur(nbrRevetement);
         Mur creamur = new Mur(idMur,coinDebut,coinFin,nbrPorte,nbrFenetre,ListeRevMur);
         ListeMurs.add(creamur);
