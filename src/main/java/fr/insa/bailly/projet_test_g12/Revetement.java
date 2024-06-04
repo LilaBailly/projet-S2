@@ -94,7 +94,6 @@ public class Revetement {
         
         if (nbrRev!=0){
             afficherRevetements(listeRevetementSol);
-            System.out.println("Nombre de revêtements dans listeRevetementSol : " + listeRevetementSol.size());
             for (int i=0;i<nbrRev;i++){
                 System.out.println("Choisissez le revêtement "+(i+1)+" pour votre sol en indiquant son indentifiant.");
                 int idRevSol = Lire.i() ;
@@ -116,7 +115,6 @@ public class Revetement {
         LectureRevetement();
        
         if (nbrRev != 0) {
-            System.out.println("Nombre de revêtements dans listeRevetementMur : " + listeRevetementMur.size());
             afficherRevetements(listeRevetementMur);
             for (int i = 0; i < nbrRev; i++) {
                 System.out.println("Choisissez le revêtement " + (i+1) + " pour votre mur en indiquant son identifiant.");
@@ -140,7 +138,6 @@ public class Revetement {
         LectureRevetement();
         
         if (nbrRev != 0) {
-            System.out.println("Nombre de revêtements dans listeRevetementPlafond : " + listeRevetementPlafond.size());
             afficherRevetements(listeRevetementPlafond);
             for (int i = 0; i < nbrRev; i++) {
                 System.out.println("Choisissez le revêtement " + (i+1) + " pour votre plafond en indiquant son identifiant.");

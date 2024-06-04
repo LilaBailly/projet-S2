@@ -156,7 +156,7 @@ public class Main {
         int idMur,exiCoinDeb, idRecherche, exiCoinFin, nbrPorte, nbrFenetre, nbrRevetement ;
         Coin coinDebut = null; 
         Coin coinFin = null; 
-        System.out.println("Identifint du mur : ");
+        System.out.println("Identifiant du mur : ");
         idMur=Lire.i();
         for (Mur mur : ListeMurs) {
                 if (mur.getidMur() == idMur) {
