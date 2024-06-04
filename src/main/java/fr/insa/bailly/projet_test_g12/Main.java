@@ -67,7 +67,7 @@ public class Main {
         int choix;
         supprimerLignesVides("Liste_Batiment.txt");  
         Revetement.LectureRevetement();
-        chargerDonnees(FICHIER_LISTE_BATIMENT,main,ListeCoins,ListeMurs,ListeSols,ListePlafonds,ListePieces,ListeAppartements,ListeNiveaux,ListeNiveauMaison,ListeImmeubles,ListeMaisons);              
+        //chargerDonnees(FICHIER_LISTE_BATIMENT,main,ListeCoins,ListeMurs,ListeSols,ListePlafonds,ListePieces,ListeAppartements,ListeNiveaux,ListeNiveauMaison,ListeImmeubles,ListeMaisons);              
         // Afficher les listes
         afficherListes(ListeCoins, ListeMurs, ListeSols, ListePlafonds, ListePieces, ListeAppartements, ListeNiveaux, ListeNiveauMaison, ListeImmeubles, ListeMaisons);
         afficherMenu();
@@ -412,7 +412,7 @@ public class Main {
             }
         System.out.println("Quel est la hauteur du niveau ? ");
         Hniveau=Lire.i();
-        System.out.println("Combien y a-t-il de pieces dans l'appartement ?");
+        System.out.println("Combien y a-t-il de pieces dans le niveau ?");
         nbrPieces=Lire.i();
         for (int j=0; j<nbrPieces; j++){
             System.out.println("La piece n°"+(j+1)+" existe-t-elle deja ? (1 = OUI et 0 = NON)");
