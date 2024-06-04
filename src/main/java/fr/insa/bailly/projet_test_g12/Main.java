@@ -274,11 +274,12 @@ public class Main {
             }
         System.out.println("Combien de revetement pour le sol ?");
         nbrRevSol=Lire.i();
+        ListeRevSol.clear() ;
         ListeRevSol = revetement.choixRevetementSol(nbrRevSol);
         System.out.println("Combien de tremis pour le sol ?");
         nbrTremisSol=Lire.i();
         
-        System.out.println("Identifint du plafond : ");
+        System.out.println("Identifiant du plafond : ");
         idPlafond=Lire.i();
         for (Plafond plafond : ListePlafonds) {
                 if (plafond.getidPlafond() == idPlafond) {
@@ -288,6 +289,7 @@ public class Main {
             }
         System.out.println("Combien de revetement pour le plafond ?");
         nbrRevPlafond=Lire.i();
+        ListeRevPlafond.clear() ;
         ListeRevPlafond = revetement.choixRevetementPlafond(nbrRevPlafond);
         System.out.println("Combien de tremis pour le plafond ?");
         nbrTremisPlafond=Lire.i();
