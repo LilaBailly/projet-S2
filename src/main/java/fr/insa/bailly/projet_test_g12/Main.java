@@ -132,7 +132,7 @@ public class Main {
             String code;
             int id;
             double a,o;
-            System.out.println("Identifint du coin : ");
+            System.out.println("Identifiant du coin : ");
             id=Lire.i();
             for (Coin coin : ListeCoins) {
                 if (coin.getidCoin() == id) {
@@ -252,7 +252,7 @@ public class Main {
         Mur mur;
         Piece p= new Piece();
         String usage;
-        System.out.println("Identifint de la piece : ");
+        System.out.println("Identifiant de la piece : ");
         idPiece=Lire.i();
         for (Piece piece : ListePieces) {
                 if (piece.getidPiece() == idPiece) {
@@ -353,7 +353,7 @@ public class Main {
         String code ;
         int idAppart,niveauApp, nbrPieces, reponse, idRecherche;
         Piece piece;
-        System.out.println("Identifint de l'appartement : ");
+        System.out.println("Identifiant de l'appartement : ");
         idAppart=Lire.i();
         for (Appartement appart : ListeAppartements) {
                 if (appart.getidAppartement() == idAppart) {
@@ -402,7 +402,7 @@ public class Main {
         String code;
         int idNiveauM, nbrPieces, reponse, Hniveau, idRecherche;
         Piece piece;
-        System.out.println("Identifint du niveau : ");
+        System.out.println("Identifiant du niveau : ");
         idNiveauM=Lire.i();
         for (NiveauMaison niveauM : ListeNiveauMaison) {
                 if (niveauM.getidNiveauMaison() == idNiveauM) {
@@ -453,7 +453,7 @@ public class Main {
         int idNiveau, idRecherche, nbrApparts,reponse;
         double hauteur= mur.gethauteur();
         Appartement appart;
-        System.out.println("Identifint du niveau : ");
+        System.out.println("Identifiant du niveau : ");
         idNiveau=Lire.i();
         for (Niveau niveau : ListeNiveaux) {
                 if (niveau.getidNiveau() == idNiveau) {
@@ -504,7 +504,7 @@ public class Main {
         Batiment creabat = new Batiment();
         String code ;
         int idBat, idRecherche,typeBatiment,nbrNiveaux,reponse ;
-        System.out.println("Identifint du batiment : ");
+        System.out.println("Identifiant du batiment : ");
         idBat=Lire.i();
         for (Batiment bat : ListeBatiments) {
                 if (bat.getidBatiment() == idBat) {
